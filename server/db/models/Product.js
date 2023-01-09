@@ -1,0 +1,27 @@
+const Sequelize = require('sequelize')
+const db = require('../db')
+
+
+const Product = db.define('product', {
+  name:{
+    type:Sequelize.STRING,
+    allowNull: false,
+  },
+  imageUrl: {
+    type: Sequelize.STRING,
+    allowNull: true,
+    defaultValue: 'placeholder'
+  },
+  price: {
+    //Come back for decimal number specification
+    type: Sequelize.DECIMAL,
+    allowNull: false,
+  },
+  description: {
+    type: Sequelize.TEXT,
+
+  },
+
+});
+
+module.exports = Product; 
