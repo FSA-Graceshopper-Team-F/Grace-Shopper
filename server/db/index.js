@@ -8,8 +8,6 @@ const { User, Product } = require('./models/User')
 
 module.exports = {
   db,
-  models: {
     User,
     Product,
-  },
-}
+  }
