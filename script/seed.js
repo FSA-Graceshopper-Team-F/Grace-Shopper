@@ -40,7 +40,7 @@ async function runSeed() {
 		//wiping DB
 		await db.sync({ force: true });
 		//using lodash times function to seed 50 sets of data
-		await times(50, () => seed());
+		times(50, () => seed());
 		console.log("db seeded");
 	} catch (err) {
 		console.error(err);
