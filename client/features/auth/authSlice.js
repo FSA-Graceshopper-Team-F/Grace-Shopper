@@ -61,8 +61,7 @@ export const authSlice = createSlice({
     logout(state, action) {
       window.localStorage.removeItem(TOKEN);
       state.me = {};
-      state.error = null;
-    },
+      state.error = null;    },
   },
   extraReducers: (builder) => {
     builder.addCase(me.fulfilled, (state, action) => {
