@@ -7,7 +7,7 @@ import AllProducts from "../features/product/Products";
 import { Product } from "../features/product/Product";
 import { me } from "./store";
 import Cart from "../features/cart/Cart";
-
+import Users from "../features/users/Users";
 
 /**
  * COMPONENT
@@ -38,7 +38,11 @@ const AppRoutes = () => {
 					<Route
 						path="/cart"
 						element={<Cart name="cart" displayName="Cart"/>}
-					/>
+            	/>
+          <Route
+						path="/users"
+						element={<Users name="users" displayName="All users" />}
+					    />
 				</Routes>
 			) : (
 				<Routes>
