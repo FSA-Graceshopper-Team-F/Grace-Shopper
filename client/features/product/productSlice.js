@@ -1,7 +1,7 @@
 import {
 	createSlice,
 	createAsyncThunk,
-	bindActionCreators,
+
 } from "@reduxjs/toolkit";
 import axios from "axios";
 
