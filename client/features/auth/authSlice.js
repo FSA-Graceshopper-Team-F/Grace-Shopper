@@ -49,8 +49,7 @@ export const authenticate = createAsyncThunk(
 );
 
 /*
-  SLICE
-*/
+  SLICE*/
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {

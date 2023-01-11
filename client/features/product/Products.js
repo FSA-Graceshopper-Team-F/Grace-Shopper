@@ -41,6 +41,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from 'react';
 import { fetchProductsAsync, selectProducts } from "./productSlice";
+import { Link } from "react-router-dom";
 const AllProducts = () => {
   const products = useSelector(selectProducts);
   const dispatch = useDispatch();
@@ -54,9 +55,9 @@ const AllProducts = () => {
         <ul
         className="allProducts"
         key={`All products: ${product.id}`}>
-          <li>
-            {[product.name, product.price, product.imageUrl]}
-          </li>
+          <Link to={`/products/${product.id}`}><li>
+            {[product.name, product.price, product.imageUrl]}  </li>
+        </Link>        
         </ul>
        )): console.log('---NO PRODUCTS---', null)
     }
