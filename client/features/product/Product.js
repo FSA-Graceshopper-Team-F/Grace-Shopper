@@ -5,10 +5,10 @@ import { fetchProductAsync, selectSingleProduct } from "./singleProductSlice";
 
 export const Product = () => {
 	const product = useSelector(selectSingleProduct);
-  const {productId} = useParams();
+	const { productId } = useParams();
 	const dispatch = useDispatch();
 	const { name, price, imageUrl, description } = product;
-console.log(selectSingleProduct)
+	console.log(selectSingleProduct);
 	useEffect(() => {
 		dispatch(fetchProductAsync(productId));
 	}, [dispatch]);
