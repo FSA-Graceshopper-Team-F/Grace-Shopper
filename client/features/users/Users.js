@@ -21,7 +21,7 @@ const Users = () => {
             {[user.email]}
           </li>
         </ul>
-       )): <div>Access denied</div>
+       )): console.log('---NO Users---', null)
     }
     </div>
   )
