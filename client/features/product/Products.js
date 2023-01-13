@@ -15,7 +15,9 @@ const AllProducts = () => {
         <ul
         className="allProducts"
         key={`All products: ${product.id}`}>
-          <Link to={`/products/${product.id}`}><li>
+          <Link to={`/products/${product.id}`}>
+            <img src={`${product.imageUrl}`}/>
+            <li>
             {[product.name, product.price, product.imageUrl]}  </li>
         </Link>        
         </ul>
