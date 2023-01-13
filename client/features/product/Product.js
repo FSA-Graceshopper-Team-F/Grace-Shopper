@@ -17,7 +17,7 @@ export const Product = () => {
 	}, [dispatch]);
 
 	const handleAddToCart = (product) => {
-		const doesItExist = cart.find(({item}) => item.productId === product.id);
+		const doesItExist = cart.find((item) => item.productId === product.id);
 		if (doesItExist) {
 			return dispatch(increaseQuantity({ productId: product.id }));
 		}
