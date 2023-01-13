@@ -9,7 +9,6 @@ const Cart = () => {
 	const cart = useSelector(selectCart);
 	const getProductById = (id) =>
 		allProducts.find((product) => product.id === id);
-
 	const cartProducts = cart.map((item) => ({
 		...item,
 		...getProductById(item.productId),

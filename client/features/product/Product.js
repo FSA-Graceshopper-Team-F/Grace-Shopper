@@ -14,16 +14,14 @@ export const Product = () => {
 		dispatch(fetchProductAsync(productId));
 	}, [dispatch]);
 	const handleAddToCart = (product) => {
-		cart.items.map((item) => {
-			if (product.id !== item.id);
-		});
-		// dispatch(addItem({ ...product, quantity: 1 }));
+		const doesItExist = cart.find((item) => item.productId === product.id)
+		if (doesItExist) return console.log("oops already there pal")
+		dispatch(addItem({ productId:product.id, quantity: 1 }));
 	};
-	console.log(cart)
 	return (
 		<div className="singleProduct">
 			<Link to="/products">Back to Products</Link>
-			<h2>{[name, price, imageUrl, description]}</h2>
+			<h2>{[name, price, description]}</h2>
 			<img src={`${product.imageUrl}`}/>
 			<button onClick={() => handleAddToCart(product)}>Add to Cart</button>
 		</div>
