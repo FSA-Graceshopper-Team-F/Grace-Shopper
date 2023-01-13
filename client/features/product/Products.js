@@ -2,12 +2,15 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from 'react';
 import { fetchProductsAsync, selectProducts } from "./productSlice";
 import { Link } from "react-router-dom";
+
 const AllProducts = () => {
   const products = useSelector(selectProducts);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(fetchProductsAsync());
   }, [dispatch]);
+
   return (
     <div>
       {products && products.length ?
