@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchProductAsync, selectSingleProduct } from "./singleProductSlice";
-import { addItem, selectCart } from "../cart/cartSlice";
+import { addItem, increaseQuantity, selectCart } from "../cart/cartSlice";
 import { Link, useNavigate } from 'react-router-dom';
 export const Product = () => {
 	const product = useSelector(selectSingleProduct);
@@ -15,8 +15,11 @@ export const Product = () => {
 	}, [dispatch]);
 	const handleAddToCart = (product) => {
 		const doesItExist = cart.find((item) => item.productId === product.id)
-		if (doesItExist) return console.log("oops already there pal")
-		dispatch(addItem({ productId:product.id, quantity: 1 }));
+		if (doesItExist) {
+			dispatch(increaseQuantity( {productId:product.id}))
+			return console.log("oops already there pal")
+		}
+		return dispatch(addItem({ productId:product.id, quantity: 1 }));
 	};
 	return (
 		<div className="singleProduct">

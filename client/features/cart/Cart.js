@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProductsAsync, selectProducts } from "../product/productSlice";
-import { selectCart } from "./cartSlice";
+import { selectCart, increaseQuantity, decreaseQuantity } from "./cartSlice";
 
 const Cart = () => {
 	const dispatch = useDispatch();
@@ -23,13 +23,19 @@ const Cart = () => {
 		dispatch(fetchProductsAsync());
 	}, [dispatch]);
 
+	const handleIncreaseQuantity = (item) =>{
+		dispatch(increaseQuantity( {productId:item.id}))
+	}
+	const handleDecreaseQuantity = (item) =>{
+		dispatch(decreaseQuantity( {productId:item.id}))
+	}
 	return (
 		<div className="cart">
 			<ul>
 				{cartProducts.map((item) => (
 					<li key={`Cart item ${item.id}`}>
 						{item.name} {item.price} Qty:{item.quantity} ItemTotal:
-						{item.price * item.quantity}
+						{item.price * item.quantity}<button onClick={() => handleIncreaseQuantity(item)}>I WANT MORE</button><button onClick={() => handleDecreaseQuantity(item)}>I WANT LESS</button>
 					</li>
 				))}
 				Total Price: {totalCartPrice}

@@ -18,6 +18,23 @@ const cartSlice = createSlice({
 			const { productId, quantity } = action.payload;
 			state.push({ quantity, productId });
 		  },
+		  increaseQuantity: (state, action) => {
+			const { productId } = action.payload;
+			state.map(item => {
+				if (item.productId === productId){
+					return {item, productId: productId, quantity:item.quantity+=1}
+				}
+			})
+		  },
+		  decreaseQuantity: (state, action) => {
+			console.log("hit slice")
+			const { productId } = action.payload;
+			state.map(item => {
+				if (item.productId === productId){
+					return {item, productId: productId, quantity:item.quantity-=1}
+				}
+			})
+		  },
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchCartAsync.fulfilled, (_state, action) => {
@@ -29,6 +46,6 @@ const cartSlice = createSlice({
 export const selectCart = (state) => {
 	return state.cart;
 };
-export const { addItem } = cartSlice.actions;
+export const { addItem,increaseQuantity, decreaseQuantity } = cartSlice.actions;
 
 export default cartSlice.reducer;
