@@ -21,7 +21,8 @@ const Cart = () => {
 	
 	useEffect(() => {
 		dispatch(fetchProductsAsync());
-	}, [dispatch]);
+		console.log(cart,'use effect cart')
+	}, [dispatch,cart]);
 
 	const handleIncreaseQuantity = (item) =>{
 		dispatch(increaseQuantity( {productId:item.id}))
