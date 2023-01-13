@@ -90,7 +90,7 @@ export const authSlice = createSlice({
 */
 export const { reset } = authSlice.actions;
 export const selectAuth = (state) => {
-  return state.auth;
+  return state.auth.me;
 }
 
 /*
