@@ -6,6 +6,7 @@ import { addItem } from "../cart/cartSlice";
 import { Link, useNavigate } from 'react-router-dom';
 export const Product = () => {
 	const product = useSelector(selectSingleProduct);
+	const cart = useSelector(selectCart);
 	const { productId } = useParams();
 	const dispatch = useDispatch();
 	const { name, price, imageUrl, description } = product;
@@ -13,8 +14,12 @@ export const Product = () => {
 		dispatch(fetchProductAsync(productId));
 	}, [dispatch]);
 	const handleAddToCart = (product) => {
-		dispatch(addItem(product));
+		cart.items.map((item) => {
+			if (product.id !== item.id);
+		});
+		// dispatch(addItem({ ...product, quantity: 1 }));
 	};
+	console.log(cart)
 	return (
 		<div className="singleProduct">
 			<Link to="/products">Back to Products</Link>

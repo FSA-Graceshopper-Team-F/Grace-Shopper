@@ -1,6 +1,6 @@
 const router = require("express").Router();
+const Order = require("../db/models/Order");
 const User = require("../db/models/User");
-module.exports = router;
 
 router.get("/", async (req, res, next) => {
 	const user = await User.findByToken(req.headers.authorization);
@@ -20,3 +20,18 @@ router.get("/", async (req, res, next) => {
 		next(err);
 	}
 });
+
+router.get("/:userId", async (req, res, next) => {
+	try {
+		const user = await User.findOne({
+			where: {
+				id: req.params.userId,
+			},
+		});
+		res.json(user);
+	} catch (error) {
+		next(error);
+	}
+});
+
+module.exports = router;
