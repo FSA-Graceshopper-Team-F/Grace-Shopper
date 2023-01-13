@@ -28,12 +28,12 @@ const Cart = () => {
 		0
 	);
 
-	const handleIncreaseQuantity = (item) => {
-		dispatch(increaseQuantity({ productId: item.id }));
+	const handleIncreaseQuantity = ({ id: productId }) => {
+		dispatch(increaseQuantity({ productId }));
 	};
 
-	const handleDecreaseQuantity = (item) => {
-		dispatch(decreaseQuantity({ productId: item.id }));
+	const handleDecreaseQuantity = ({ id: productId }) => {
+		dispatch(decreaseQuantity({ productId }));
 	};
 
 	return (
