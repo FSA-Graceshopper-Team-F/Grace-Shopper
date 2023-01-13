@@ -7,6 +7,12 @@ const Cart = () => {
 	const dispatch = useDispatch();
 	const allProducts = useSelector(selectProducts);
 	const cart = useSelector(selectCart);
+	useEffect(() => {
+		dispatch(fetchProductsAsync());
+		console.log(cart,'use effect cart')
+	}, [dispatch,cart]);
+	if (allProducts.length === 0) return null
+	
 	const getProductById = (id) =>
 		allProducts.find((product) => product.id === id);
 	const cartProducts = cart.map((item) => ({
@@ -19,10 +25,7 @@ const Cart = () => {
 	});
 	const totalCartPrice = cartPerItemTotalPrice.reduce((a, b) => a + b, 0);
 	
-	useEffect(() => {
-		dispatch(fetchProductsAsync());
-		console.log(cart,'use effect cart')
-	}, [dispatch,cart]);
+	
 
 	const handleIncreaseQuantity = (item) =>{
 		dispatch(increaseQuantity( {productId:item.id}))
@@ -30,6 +33,7 @@ const Cart = () => {
 	const handleDecreaseQuantity = (item) =>{
 		dispatch(decreaseQuantity( {productId:item.id}))
 	}
+	
 	return (
 		<div className="cart">
 			<ul>
