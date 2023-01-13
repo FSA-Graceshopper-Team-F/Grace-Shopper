@@ -55,6 +55,20 @@ const orderSeed = async () => {
 		],
 	});
 };
+const adminSeed = async () => {
+	await User.create({
+		email:"admin@admin.com",
+		password:"admin",
+		cart: [
+			{ productId: 1, quantity: 2 },
+			{ productId: 2, quantity: 3 },
+			{ productId: 3, quantity: 1 },
+			{ productId: 4, quantity: 2 },
+			{ productId: 34, quantity: 3 },
+			{ productId: 31, quantity: 1 },
+		],
+	})
+}
 /*
  We've separated the `seed` function from the `runSeed` function.
  This way we can isolate the error handling and exit trapping.
@@ -67,6 +81,7 @@ async function runSeed() {
 		await db.sync({ force: true });
 		//using lodash times function to seed 50 sets of data
 		Promise.all(range(50).map(seed)).then((results) => orderSeed());
+		adminSeed()
 		// times(50, seed)
 		console.log("db seeded");
 	} catch (err) {
