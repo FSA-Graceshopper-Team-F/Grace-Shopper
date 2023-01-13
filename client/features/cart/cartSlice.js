@@ -1,50 +1,41 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-const initialState = {
-  items: [],
-  totalQuantity: 0,
-  totalCost: 0,
-};
+export const fetchCartAsync = createAsyncThunk("getCart", async (userId) => {
+	try {
+		const { data } = await axios.get(`/api/users/${userId}`);
+		return data;
+	} catch (error) {
+		console.error(error);
+	}
+});
 
-const cartSlice  = createSlice({
-  name: "cart",
-  initialState,
-  reducers: {
-    addItem: (state, action) => {
-      const { price } = action.payload;
-      state.items.push(action.payload);
-      state.totalQuantity += 1;
-      state.totalCost += price * 1 
-    },
-    removeItem: (state, action) => {
-      const { product } = action.payload;
-      const index = state.items.findIndex(
-        (item) => item.product.id === product.id
-      );
-      if (index !== -1) {
-        const removedItem = state.items.splice(index, 1);
-        state.totalQuantity -= removedItem.quantity;
-        state.totalCost -= removedItem.product.price * removedItem.quantity;
-      }
-    },
-    adjustQuantity: (state, action) => {
-      const { product, quantity } = action.payload;
-      const index = state.items.findIndex(
-        (item) => item.product.id === product.id
-      );
-      if (index !== -1) {
-        const targetItem = state.items[index];
-        state.totalQuantity += quantity - targetItem.quantity;
-        state.totalCost += product.price * (quantity - targetItem.quantity);
-        targetItem.quantity = quantity;
-      }
-    },
-  },
+export const fetchCartItemsAsync = createAsyncThunk("getCartItems", async (itemsArray) =>{
+  try {
+    console.log(itemsArray, "thunk items")
+    const {data} = await axios.get(`/api/cart/${itemsArray}`);
+    return data;
+  }catch (error) {
+    console.error(error)
+  }
+})
+
+const cartSlice = createSlice({
+	name: "cart",
+	initialState: [],
+	reducers: {},
+	extraReducers: (builder) => {
+		builder.addCase(fetchCartAsync.fulfilled, (_state, action) => {
+			return action.payload.cart;
+		});
+    builder.addCase(fetchCartItemsAsync.fulfilled, (_state, action) =>{
+      return action.payload;
+    });
+  }
 });
 
 export const selectCart = (state) => {
-	return state.cart}
-
-export const { addItem, removeItem, adjustQuantity } = cartSlice.actions;
+	return state.cart;
+};
 
 export default cartSlice.reducer;

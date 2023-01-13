@@ -1,9 +1,10 @@
 "use strict";
 const { faker } = require("@faker-js/faker");
-const { times } = require("lodash");
+const { range } = require("lodash");
 const { db } = require("../server/db");
 const User = require("../server/db/models/User");
 const Product = require("../server/db/models/Product");
+const Order = require("../server/db/models/Order");
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -15,18 +16,43 @@ const seed = async () => {
 	const fakeProduct = faker.commerce.productName();
 	const fakeDescription = faker.commerce.productDescription();
 	const fakePrice = faker.commerce.price(1, 100);
-	const fakeImage = faker.image.imageUrl(200, 200,true);
-	//creating users
-	await User.create({ 
-    email: fakeEmail,
-    password: fakePassword });
+	const fakeImage = faker.image.imageUrl(200, 200, true);
 
 	//creating products
 	await Product.create({
 		name: fakeProduct,
 		description: fakeDescription,
-    imageUrl: fakeImage,
+		imageUrl: fakeImage,
 		price: fakePrice,
+	});
+	//creating Users
+	await User.create({
+		email: fakeEmail,
+		password: fakePassword,
+		cart: [
+			{ productId: 1, quantity: 2 },
+			{ productId: 2, quantity: 3 },
+			{ productId: 3, quantity: 1 },
+		],
+	});
+};
+
+const orderSeed = async () => {
+	await Order.create({
+		userId: 1,
+		order: [
+			{ productId: 1, quantity: 2 },
+			{ productId: 2, quantity: 3 },
+			{ productId: 3, quantity: 1 },
+		],
+	});
+	await Order.create({
+		userId: 2,
+		order: [
+			{ productId: 3, quantity: 2 },
+			{ productId: 2, quantity: 3 },
+			{ productId: 1, quantity: 1 },
+		],
 	});
 };
 /*
@@ -40,7 +66,8 @@ async function runSeed() {
 		//wiping DB
 		await db.sync({ force: true });
 		//using lodash times function to seed 50 sets of data
-		times(50, () => seed());
+		Promise.all(range(50).map(seed)).then((results) => orderSeed());
+		// times(50, seed)
 		console.log("db seeded");
 	} catch (err) {
 		console.error(err);
