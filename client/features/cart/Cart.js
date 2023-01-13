@@ -23,11 +23,10 @@ const Cart = () => {
 		...getProductById(item.productId),
 	}));
 
-	const cartPerItemTotalPrice = cartProducts.map((item) => {
-		return item.price * item.quantity;
-	});
-
-	const totalCartPrice = cartPerItemTotalPrice.reduce((a, b) => a + b, 0);
+	const totalCartPrice = cartProducts.reduce(
+		(total, { price, quantity }) => total + price * quantity,
+		0
+	);
 
 	const handleIncreaseQuantity = (item) => {
 		dispatch(increaseQuantity({ productId: item.id }));
