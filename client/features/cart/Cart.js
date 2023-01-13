@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProductsAsync, selectProducts } from "../product/productSlice";
-import { selectCart, increaseQuantity, decreaseQuantity } from "./cartSlice";
+import { selectCart, increaseQuantity, decreaseQuantity, removeItem } from "./cartSlice";
 
 const Cart = () => {
 	const dispatch = useDispatch();
@@ -36,6 +36,10 @@ const Cart = () => {
 		dispatch(decreaseQuantity({ productId }));
 	};
 
+	const handleRemoveItem = ({ id: productId }) => {
+		dispatch(removeItem({ productId }));
+	};
+
 	return (
 		<div className="cart">
 			<ul>
@@ -48,6 +52,9 @@ const Cart = () => {
 						</button>
 						<button onClick={() => handleDecreaseQuantity(item)}>
 							I WANT LESS
+						</button>
+						<button onClick={() => handleRemoveItem(item)}>
+							REMOVE ITEM
 						</button>
 					</li>
 				))}

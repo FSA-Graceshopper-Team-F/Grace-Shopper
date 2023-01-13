@@ -35,6 +35,10 @@ const cartSlice = createSlice({
 			);
 			return decreased.filter(({ quantity }) => quantity !== 0);
 		},
+		removeItem: (state, action) => {
+			const { productId } = action.payload;
+			return state.filter((item ) => item.productId !== productId);
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchCartAsync.fulfilled, (_state, action) => {
@@ -46,7 +50,7 @@ const cartSlice = createSlice({
 export const selectCart = (state) => {
 	return state.cart;
 };
-export const { addItem, increaseQuantity, decreaseQuantity } =
+export const { addItem, increaseQuantity, decreaseQuantity, removeItem} =
 	cartSlice.actions;
 
 export default cartSlice.reducer;
