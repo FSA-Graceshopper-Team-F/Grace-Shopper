@@ -30,10 +30,11 @@ const AuthForm = ({ name, displayName }) => {
       if(isError){
         dispatch(reset())
          navigate('/login')
+        }
+      }, 2000);
+    }, [isError]);
 
-      }
-    }, 3000);
-  })
+
   return (
     <div>
       {isError ? <h3>{message}</h3> :
