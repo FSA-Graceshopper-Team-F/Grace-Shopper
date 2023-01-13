@@ -5,7 +5,6 @@ import axios from 'axios';
   CONSTANT VARIABLES
 */
 const TOKEN = 'token';
-
 /*
   THUNKS
 */
@@ -48,29 +47,40 @@ export const authenticate = createAsyncThunk(
   }
 );
 
+export const logout = createAsyncThunk('auth/logout',
+  async() => {
+    await localStorage.removeItem(TOKEN);
+  })
+
 /*
   SLICE*/
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
     me: {},
-    error: null,
+    isError: false,
+    message: '',
   },
   reducers: {
-    logout(state, action) {
-      window.localStorage.removeItem(TOKEN);
-      state.me = {};
-      state.error = null;    },
+    reset: (state) => {
+      state.me = {},
+      state.isError = false,
+      state.message = ''
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(me.fulfilled, (state, action) => {
       state.me = action.payload;
     });
     builder.addCase(me.rejected, (state, action) => {
-      state.error = action.error;
+      state.isError = action.error;
+    });
+    builder.addCase(logout.fulfilled, (state) => {
+      state.me = {};
     });
     builder.addCase(authenticate.rejected, (state, action) => {
-      state.error = action.payload;
+      state.isError = true,
+      state.message = action.payload;
     });
   },
 });
@@ -78,9 +88,11 @@ export const authSlice = createSlice({
 /*
   ACTIONS
 */
-export const { logout } = authSlice.actions;
+export const { reset } = authSlice.actions;
 export const selectAuth = (state) => {
-	return state.auth.me}
+  return state.auth;
+}
+
 /*
   REDUCER
 */

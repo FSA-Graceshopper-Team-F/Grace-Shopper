@@ -1,17 +1,16 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../../app/store';
+import { logout,reset } from '../auth/authSlice';
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const logoutAndRedirectHome = () => {
+  const onLogout = () => {
     dispatch(logout());
-    navigate('/login');
+    dispatch(reset());
   };
-  
+
   return (
     <div>
       <h1>FS-App-Template</h1>
@@ -20,9 +19,7 @@ const Navbar = () => {
           <div>
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
-            <button type="button" onClick={logoutAndRedirectHome}>
-              Logout
-            </button>
+            <Link to="/home" onClick={onLogout}>Logout</Link>
             <Link to="/cart">Cart</Link>
             <Link to="/products">Products</Link>
           </div>

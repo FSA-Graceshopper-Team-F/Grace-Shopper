@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { redirect, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 import { authenticate } from "../../app/store";
+import { reset } from "../../app/store";
 
 /**
   The AuthForm component can be used for Login or Sign Up.
@@ -9,8 +12,10 @@ import { authenticate } from "../../app/store";
 **/
 
 const AuthForm = ({ name, displayName }) => {
-  const { error } = useSelector((state) => state.auth);
+  const { isError, message } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -18,10 +23,21 @@ const AuthForm = ({ name, displayName }) => {
     const email = evt.target.email.value;
     const password = evt.target.password.value;
     dispatch(authenticate({ email, password, method: formName }));
-  };
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      if(isError){
+        dispatch(reset())
+         navigate('/login')
+        }
+      }, 2000);
+    }, [isError]);
+
 
   return (
     <div>
+      {isError ? <h3>{message}</h3> :
       <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="email">
@@ -39,8 +55,9 @@ const AuthForm = ({ name, displayName }) => {
           <button type="submit">{displayName}</button>
         </div>
       </form>
+      }
     </div>
-  );
-};
+    )
+  };
 
 export default AuthForm;

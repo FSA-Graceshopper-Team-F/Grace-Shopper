@@ -47,7 +47,7 @@ User.prototype.generateToken = function() {
 User.authenticate = async function({ email, password }){
     const user = await this.findOne({where: { email }})
     if (!user || !(await user.correctPassword(password))) {
-      const error = Error('Incorrect email/password');
+      const error = Error('Incorrect email/password, redirecting you');
       error.status = 401;
       throw error;
     }
@@ -65,7 +65,7 @@ User.findByToken = async function(token) {
   } catch (ex) {
     const error = Error('bad token')
     error.status = 401
-    throw error
+    throw error;
   }
 }
 
