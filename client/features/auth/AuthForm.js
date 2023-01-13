@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { redirect, useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import { authenticate } from "../../app/store";
+import { reset } from "../../app/store";
 
 /**
   The AuthForm component can be used for Login or Sign Up.
@@ -27,6 +28,7 @@ const AuthForm = ({ name, displayName }) => {
   useEffect(() => {
     setTimeout(() => {
       if(isError){
+        dispatch(reset())
          navigate('/login')
 
       }

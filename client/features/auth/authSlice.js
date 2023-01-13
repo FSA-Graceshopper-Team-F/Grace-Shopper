@@ -59,11 +59,18 @@ export const authSlice = createSlice({
     message: '',
   },
   reducers: {
-    logout(state, action) {
-      window.localStorage.removeItem(TOKEN);
-      state.me = {};
-      state.isError = null;
-     },
+    reset: (state) => {
+      state.isError = false,
+      state.message = '',
+      state.me = {}
+    }
+
+
+    // logout(state, action) {
+    //   window.localStorage.removeItem(TOKEN);
+    //   state.me = {};
+    //   state.isError = null;
+    //  },
   },
   extraReducers: (builder) => {
     builder.addCase(me.fulfilled, (state, action) => {
@@ -72,6 +79,11 @@ export const authSlice = createSlice({
     builder.addCase(me.rejected, (state, action) => {
       state.error = action.error;
     });
+    // builder.addCase(logout.fulfilled, (state) => {
+    //   window.localStorage.removeItem(TOKEN);
+    //   state.me = {};
+    //   state.isError = null
+    // })
     builder.addCase(authenticate.rejected, (state, action) => {
       state.isError = true,
       state.message = action.payload;
@@ -82,7 +94,7 @@ export const authSlice = createSlice({
 /*
   ACTIONS
 */
-export const { logout } = authSlice.actions;
+export const { reset } = authSlice.actions;
 
 /*
   REDUCER
