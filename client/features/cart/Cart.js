@@ -12,11 +12,12 @@ const Cart = () => {
 		dispatch(fetchProductsAsync());
 		console.log(cart, "use effect cart");
 	}, [dispatch, cart]);
-	
+
 	if (allProducts.length === 0) return null;
 
 	const getProductById = (id) =>
 		allProducts.find((product) => product.id === id);
+
 	const cartProducts = cart.map((item) => ({
 		...item,
 		...getProductById(item.productId),
@@ -25,11 +26,13 @@ const Cart = () => {
 	const cartPerItemTotalPrice = cartProducts.map((item) => {
 		return item.price * item.quantity;
 	});
+
 	const totalCartPrice = cartPerItemTotalPrice.reduce((a, b) => a + b, 0);
 
 	const handleIncreaseQuantity = (item) => {
 		dispatch(increaseQuantity({ productId: item.id }));
 	};
+
 	const handleDecreaseQuantity = (item) => {
 		dispatch(decreaseQuantity({ productId: item.id }));
 	};
