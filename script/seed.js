@@ -59,6 +59,7 @@ const adminSeed = async () => {
 	await User.create({
 		email:"admin@admin.com",
 		password:"admin",
+		isAdmin:true,
 		cart: [
 			{ productId: 1, quantity: 2 },
 			{ productId: 2, quantity: 3 },
