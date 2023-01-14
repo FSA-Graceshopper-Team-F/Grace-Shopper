@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { selectAuth } from "../auth/authSlice.js";
 import { fetchProductAsync, selectSingleProduct } from "./singleProductSlice";
 import {
 	addItem,
@@ -10,18 +9,17 @@ import {
 	updateCartAsync,
 } from "../cart/cartSlice";
 import { Link, useNavigate } from "react-router-dom";
+import { selectAuth } from "../auth/authSlice";
 
 export const Product = () => {
-	const { id } = useSelector(selectAuth);
+	const {id} = useSelector(selectAuth)
 	const product = useSelector(selectSingleProduct);
 	const cart = useSelector(selectCart);
 	const { productId } = useParams();
 	const dispatch = useDispatch();
 	const { name, price, imageUrl, description } = product;
-	console.log(id, "user id", cart, "user cart");
 	useEffect(() => {
 		dispatch(fetchProductAsync(productId));
-		console.log("dispatch", dispatch(fetchProductAsync(productId)));
 	}, [dispatch]);
 
 	const handleAddToCart = (product) => {
@@ -32,15 +30,19 @@ export const Product = () => {
 		return dispatch(addItem({ productId: product.id, quantity: 1 }));
 	};
 
+	const handleUpdateCart = () =>{
+		if(id)return dispatch(updateCartAsync());
+		return null
+	}
 	return (
 		<div className="singleProduct">
 			<Link to="/products">Back to Products</Link>
 			<h2>{[name, price, description]}</h2>
-			<img src={`${product.imageUrl}`} />
+			<img src={`${imageUrl}`} />
 			<button
 				onClick={() => {
 					handleAddToCart(product);
-					dispatch(updateCartAsync());
+					handleUpdateCart()
 				}}
 			>
 				Add to Cart

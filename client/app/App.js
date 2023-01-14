@@ -10,7 +10,6 @@ const App = () => {
 	const { id } = useSelector(selectAuth);
 	const dispatch = useDispatch();
 	const cart = useSelector(selectCart);
-	console.log(cart, "app wide cart");
 	useEffect(() => {
     if(id)dispatch(fetchCartAsync(id));
 	}, [dispatch,id]);
