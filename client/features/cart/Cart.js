@@ -92,7 +92,6 @@ const Cart = () => {
 					</li>
 				))}
 				Total Price: {totalCartPrice}
-				<button onClick={() => handleCartToOrder()}>COMPLETE CHECKOUT</button>
 			</ul>
 		</div>
 	);
