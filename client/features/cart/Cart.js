@@ -16,7 +16,6 @@ const Cart = () => {
 	const allProducts = useSelector(selectProducts);
 	const cart = useSelector(selectCart);
 	const { id } = useSelector(selectAuth);
-
 	useEffect(() => {
 		dispatch(fetchProductsAsync());
 	}, [dispatch, cart]);
