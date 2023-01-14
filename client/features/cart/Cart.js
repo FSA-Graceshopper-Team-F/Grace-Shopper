@@ -8,7 +8,6 @@ import {
 	decreaseQuantity,
 	removeItem,
 	updateCartAsync,
-	cartToOrderAsync,
 } from "./cartSlice";
 
 const Cart = () => {
@@ -29,6 +28,10 @@ const Cart = () => {
 		...item,
 		...getProductById(item.productId),
 	}));
+
+	const cartQuantity = cart.length
+		? cart.reduce((total, { quantity }) => total + quantity, 0)
+		: null;
 
 	const totalCartPrice = cartProducts.reduce(
 		(total, { price, quantity }) => total + price * quantity,
@@ -58,33 +61,35 @@ const Cart = () => {
 				{cartProducts.map((item) => (
 					<li key={`Cart item ${item.id}`}>
 						{item.name} {item.price} Qty:{item.quantity} ItemTotal:
-						{item.price * item.quantity}
+						{item.price * item.quantity}{" "}
 						<button
 							onClick={() => {
 								handleIncreaseQuantity(item);
 								handleUpdateCart();
 							}}
 						>
-							I WANT MORE
-						</button>
+							+
+						</button>{" "}
 						<button
 							onClick={() => {
 								handleDecreaseQuantity(item);
 								handleUpdateCart();
 							}}
 						>
-							I WANT LESS
-						</button>
+							-
+						</button>{" "}
 						<button
 							onClick={() => {
 								handleRemoveItem(item);
 								handleUpdateCart();
 							}}
 						>
-							REMOVE ITEM
+							X
 						</button>
+						<hr />
 					</li>
 				))}
+				Total item quantity: {cartQuantity}<br/>
 				Total Price: {totalCartPrice}
 			</ul>
 		</div>
