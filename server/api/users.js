@@ -24,11 +24,6 @@ router.get("/", async (req, res, next) => {
 router.get("/:userId", async (req, res, next) => {
 	try {
 		const user = await User.findByToken(req.headers.authorization)
-		// const user = await User.findOne({
-		// 	where: {
-		// 		id: req.params.userId,
-		// 	},
-		// });
 		res.json(user);
 	} catch (error) {
 		next(error);
