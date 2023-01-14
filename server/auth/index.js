@@ -3,7 +3,10 @@ const User = require("../db/models/User");
 module.exports = router;
 router.post('/login', async (req, res, next) => {
   try {
-    res.send({ token: await User.authenticate(req.body) });
+    const token = await User.authenticate(req.body);
+    const user = await User.findByToken(token)
+    await user.update({cart: req.body.cart})
+    res.send({ token: token });
   } catch (err) {
     next(err);
   }
@@ -11,6 +14,7 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
   try {
+    console.log(req.body, "signup cart")
     const user = await User.create(req.body);
     res.send({ token: await user.generateToken() });
   } catch (err) {
