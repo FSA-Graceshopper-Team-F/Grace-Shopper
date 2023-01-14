@@ -85,6 +85,7 @@ const Cart = () => {
 						>
 							X
 						</button><br/>
+						<img src={item.imageUrl} width="75" height="75"/><br/>
 						Qty:{item.quantity}<br/>
 						Price:{item.price}<br/>
 						ItemTotal:${item.price * item.quantity}.00{" "}
