@@ -14,6 +14,7 @@ const store = configureStore({
 		cart: cartSlice,
 		users: usersReducer,
 	},
+	//uncomment out the next line if you want to see redux logs, and uncomment out the import
 	// middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 

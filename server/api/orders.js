@@ -28,9 +28,7 @@ router.get("/:userId", async (req, res, next) => {
 //creating a new order
 router.post("/:userId", async (req, res, next) => {
 	try {
-		console.log(req.headers)
 		const user = await User.findByToken(req.headers.authorization)
-		console.log(user, "user from auth token")
 		res.status(201).send(
 			await Order.create({
 				userId: user.id,
