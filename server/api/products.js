@@ -28,11 +28,13 @@ router.route('/')
         throw new Error('Product already exists');
       }
       //Create product
-      const product = await Product.create({name, price})
+      const product = await Product.create({name, price, imgUrl, description})
       if(product){
         res.status(201).json({
           name: product.name,
           price: product.price,
+          description: product.description,
+          imgUrl: product.imgUrl
         })
       }
     } else{
@@ -70,7 +72,7 @@ router.route('/:productId')
         throw new Error('Product not found');
       }else{
         const updatedProduct = await product.update(req.body);
-        res.status(202).sned(updatedProduct);
+        res.status(202).send(updatedProduct);
       }
     } catch(err){
       next(err);
