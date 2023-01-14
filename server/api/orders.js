@@ -28,34 +28,19 @@ router.get("/:userId", async (req, res, next) => {
 //creating a new order
 router.post("/:userId", async (req, res, next) => {
 	try {
-		const userCurrentCart = await User.findOne({
-			where: { id: req.params.userId },
-			attributes: ["id", "cart"],
-		});
+		console.log(req.headers)
+		const user = await User.findByToken(req.headers.authorization)
+		console.log(user, "user from auth token")
 		res.status(201).send(
 			await Order.create({
-				userId: userCurrentCart.id,
-				order: userCurrentCart.cart,
+				userId: user.id,
+				order: user.cart,
 			})
 		);
-		await userCurrentCart.update({ cart: [] });
+		await user.update({ cart: [] });
 	} catch (error) {
 		next(error);
 	}
 });
 
-//deleting an exisiting order
-router.delete("/:orderId", async (req, res, next) => {
-	try {
-		const orderToDestroy = await Order.findOne({
-			where: {
-				id: req.params.orderId,
-			},
-		});
-		await orderToDestroy.destroy();
-		res.status(204).send(orderToDestroy);
-	} catch (error) {
-		next(error);
-	}
-});
 module.exports = router;

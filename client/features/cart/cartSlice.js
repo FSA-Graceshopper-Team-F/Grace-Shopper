@@ -2,8 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchCartAsync = createAsyncThunk("getCart", async (userId) => {
+	const token = window.localStorage.getItem("token");
 	try {
-		const { data } = await axios.get(`/api/users/${userId}`);
+		const { data } = await axios.get(`/api/users/${userId}`, {
+			headers:{
+				authorization: token,
+			}
+		});
 		return data;
 	} catch (error) {
 		console.error(error);
@@ -16,11 +21,10 @@ export const updateCartAsync = createAsyncThunk(
 		const token = window.localStorage.getItem("token");
 		const { cart, auth } = getState();
 		try {
-			const { data } = await axios.put(`/api/cart/${auth.me.id}`, {
+			const { data } = await axios.put(`/api/cart/${auth.me.id}`, cart,{
 				headers: {
 					authorization: token,
-				},
-				cart,
+				}
 			});
 			return data;
 		} catch (error) {
@@ -35,11 +39,10 @@ export const cartToOrderAsync = createAsyncThunk(
 		const token = window.localStorage.getItem("token");
 		const { cart, auth } = getState();
 		try {
-			const { data } = await axios.post(`/api/orders/${auth.me.id}`, {
+			const { data } = await axios.post(`/api/orders/${auth.me.id}`,cart, {
 				headers: {
 					authorization: token,
-				},
-				cart,
+				}
 			});
 			return data;
 		} catch (error) {
