@@ -8,7 +8,6 @@ import {
 	decreaseQuantity,
 	removeItem,
 	updateCartAsync,
-	cartToOrderAsync,
 } from "./cartSlice";
 
 const Cart = () => {
@@ -29,6 +28,10 @@ const Cart = () => {
 		...item,
 		...getProductById(item.productId),
 	}));
+
+	const cartQuantity = cart.length
+		? cart.reduce((total, { quantity }) => total + quantity, 0)
+		: 0;
 
 	const totalCartPrice = cartProducts.reduce(
 		(total, { price, quantity }) => total + price * quantity,
@@ -57,35 +60,40 @@ const Cart = () => {
 			<ul>
 				{cartProducts.map((item) => (
 					<li key={`Cart item ${item.id}`}>
-						{item.name} {item.price} Qty:{item.quantity} ItemTotal:
-						{item.price * item.quantity}
+						Item:{item.name}{" "}
 						<button
 							onClick={() => {
 								handleIncreaseQuantity(item);
 								handleUpdateCart();
 							}}
 						>
-							I WANT MORE
-						</button>
+							+
+						</button>{" "}
 						<button
 							onClick={() => {
 								handleDecreaseQuantity(item);
 								handleUpdateCart();
 							}}
 						>
-							I WANT LESS
-						</button>
+							-
+						</button>{" "}
 						<button
 							onClick={() => {
 								handleRemoveItem(item);
 								handleUpdateCart();
 							}}
 						>
-							REMOVE ITEM
-						</button>
+							X
+						</button><br/>
+						<img src={item.imageUrl} width="75" height="75"/><br/>
+						Qty:{item.quantity}<br/>
+						Price:{item.price}<br/>
+						ItemTotal:${item.price * item.quantity}.00{" "}
+						<hr />
 					</li>
 				))}
-				Total Price: {totalCartPrice}
+				Total Qty: {cartQuantity}<br/>
+				Total Price: ${totalCartPrice}.00
 			</ul>
 		</div>
 	);

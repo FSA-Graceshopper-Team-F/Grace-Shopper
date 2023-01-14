@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const Order = require("../db/models/Order");
 const User = require("../db/models/User");
 
 router.get("/", async (req, res, next) => {
@@ -23,11 +22,7 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:userId", async (req, res, next) => {
 	try {
-		const user = await User.findOne({
-			where: {
-				id: req.params.userId,
-			},
-		});
+		const user = await User.findByToken(req.headers.authorization)
 		res.json(user);
 	} catch (error) {
 		next(error);
