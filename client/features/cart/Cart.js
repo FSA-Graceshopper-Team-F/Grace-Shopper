@@ -53,11 +53,6 @@ const Cart = () => {
 		return null;
 	};
 
-	const handleCartToOrder = () => {
-		if (id && cart.length) return dispatch(cartToOrderAsync());
-		return null;
-	};
-
 	return (
 		<div className="cart">
 			<ul>
