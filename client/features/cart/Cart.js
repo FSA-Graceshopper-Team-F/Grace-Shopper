@@ -31,7 +31,7 @@ const Cart = () => {
 
 	const cartQuantity = cart.length
 		? cart.reduce((total, { quantity }) => total + quantity, 0)
-		: null;
+		: 0;
 
 	const totalCartPrice = cartProducts.reduce(
 		(total, { price, quantity }) => total + price * quantity,
@@ -60,8 +60,7 @@ const Cart = () => {
 			<ul>
 				{cartProducts.map((item) => (
 					<li key={`Cart item ${item.id}`}>
-						{item.name} {item.price} Qty:{item.quantity} ItemTotal:
-						{item.price * item.quantity}{" "}
+						Item:{item.name}{" "}
 						<button
 							onClick={() => {
 								handleIncreaseQuantity(item);
@@ -85,12 +84,15 @@ const Cart = () => {
 							}}
 						>
 							X
-						</button>
+						</button><br/>
+						Qty:{item.quantity}<br/>
+						Price:{item.price}<br/>
+						ItemTotal:${item.price * item.quantity}.00{" "}
 						<hr />
 					</li>
 				))}
-				Total item quantity: {cartQuantity}<br/>
-				Total Price: {totalCartPrice}
+				Total Qty: {cartQuantity}<br/>
+				Total Price: ${totalCartPrice}.00
 			</ul>
 		</div>
 	);

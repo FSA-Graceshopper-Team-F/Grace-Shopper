@@ -8,7 +8,7 @@ const Navbar = () => {
   const cart = useSelector(selectCart)
   const dispatch = useDispatch();
 
-  const cartQuantity = cart.length ? cart.reduce((total, {quantity})=> total+ quantity,0) : null
+  const cartQuantity = cart.length ? cart.reduce((total, {quantity})=> total+ quantity,0) : 0
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
@@ -24,16 +24,17 @@ const Navbar = () => {
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
             <Link to="/home" onClick={onLogout}>Logout</Link>
-            <Link to="/cart">Cart:{cartQuantity}</Link>
             <Link to="/products">Products</Link>
+            <Link to="/cart">Cart:{cartQuantity}</Link>
+            
           </div>
         ) : (
           <div>
             {/* The navbar will show these links before you log in */}
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
-            <Link to="/cart">Cart:{cartQuantity}</Link>
             <Link to="/products">Products</Link>
+            <Link to="/cart">Cart:{cartQuantity}</Link>
           </div>
         )}
       </nav>
