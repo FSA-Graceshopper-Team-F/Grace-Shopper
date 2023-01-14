@@ -29,6 +29,25 @@ export const updateCartAsync = createAsyncThunk(
 	}
 );
 
+export const cartToOrderAsync = createAsyncThunk(
+	"cartToOrder",
+	async (_, { getState }) => {
+		const token = window.localStorage.getItem("token");
+		const { cart, auth } = getState();
+		try {
+			const { data } = await axios.post(`/api/orders/${auth.me.id}`, {
+				headers: {
+					authorization: token,
+				},
+				cart,
+			});
+			return data;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+);
+
 const cartSlice = createSlice({
 	name: "cart",
 	initialState: [],
@@ -68,6 +87,9 @@ const cartSlice = createSlice({
 		});
 		builder.addCase(updateCartAsync.fulfilled, (_state, action) => {
 			return action.payload.cart;
+		});
+		builder.addCase(cartToOrderAsync.fulfilled, (_state, action) => {
+			return []
 		});
 	},
 });

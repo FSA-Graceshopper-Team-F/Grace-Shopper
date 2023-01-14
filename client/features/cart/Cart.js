@@ -8,6 +8,7 @@ import {
 	decreaseQuantity,
 	removeItem,
 	updateCartAsync,
+	cartToOrderAsync,
 } from "./cartSlice";
 
 const Cart = () => {
@@ -52,6 +53,11 @@ const Cart = () => {
 		return null;
 	};
 
+	const handleCartToOrder = () => {
+		if (id && cart.length) return dispatch(cartToOrderAsync());
+		return null;
+	};
+
 	return (
 		<div className="cart">
 			<ul>
@@ -86,6 +92,7 @@ const Cart = () => {
 					</li>
 				))}
 				Total Price: {totalCartPrice}
+				<button onClick={() => handleCartToOrder()}>COMPLETE CHECKOUT</button>
 			</ul>
 		</div>
 	);
