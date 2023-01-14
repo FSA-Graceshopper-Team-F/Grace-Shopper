@@ -60,10 +60,17 @@ router.route('/:productId')
   const user = await User.findByToken(req.headers.authorization);
   if(user.isAdmin){
     try{
-      const product = await Product.findById(req.params.id)
+      const product = await Product.findOne({
+        where:{
+          id: req.params.productId
+        }
+      })
       if(!product){
         res.status(404);
         throw new Error('Product not found');
+      }else{
+        const updatedProduct = await product.update(req.body);
+        res.status(202).json(updatedProduct);
       }
     } catch(err){
       next(err);
