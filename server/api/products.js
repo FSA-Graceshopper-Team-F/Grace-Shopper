@@ -37,7 +37,7 @@ router.route('/')
       }
     } else{
       res.status(401)
-      throw new Error('Invalid credentials');
+      throw new Error('Not authorized');
     }
   } catch(err){
     next(err);
@@ -70,11 +70,38 @@ router.route('/:productId')
         throw new Error('Product not found');
       }else{
         const updatedProduct = await product.update(req.body);
-        res.status(202).json(updatedProduct);
+        res.status(202).sned(updatedProduct);
       }
     } catch(err){
       next(err);
     }
+  } else{
+    res.status(401);
+    throw new Error('Not authorized')
+  }
+})
+.delete(async(req,res,next) => {
+  const user = await User.findByToken(req.headers.authorization);
+  if(user.isAdmin){
+    try{
+      const product = await Product.findOne({
+        where:{
+          id: req.params.productId
+        }
+      })
+      if(!product){
+        res.status(404);
+        throw new Error('Product not found');
+      }else{
+        await product.destroy();
+        res.status(200).send('Terminated');
+      }
+    } catch(err){
+      next(err);
+    }
+  } else{
+    res.status(401);
+    throw new Error('Not authorized');
   }
 })
 
