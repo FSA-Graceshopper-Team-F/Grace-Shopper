@@ -28,13 +28,13 @@ router.route('/')
         throw new Error('Product already exists');
       }
       //Create product
-      const product = await Product.create({name, price, imgUrl, description})
+      const product = await Product.create({name, price, imageUrl, description})
       if(product){
         res.status(201).json({
           name: product.name,
           price: product.price,
           description: product.description,
-          imgUrl: product.imgUrl
+          imageUrl: product.imageUrl
         })
       }
     } else{
