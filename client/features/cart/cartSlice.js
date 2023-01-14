@@ -10,6 +10,44 @@ export const fetchCartAsync = createAsyncThunk("getCart", async (userId) => {
 	}
 });
 
+export const updateCartAsync = createAsyncThunk(
+	"updateCart",
+	async (_, { getState }) => {
+		const token = window.localStorage.getItem("token");
+		const { cart, auth } = getState();
+		try {
+			const { data } = await axios.put(`/api/cart/${auth.me.id}`, {
+				headers: {
+					authorization: token,
+				},
+				cart,
+			});
+			return data;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+);
+
+export const cartToOrderAsync = createAsyncThunk(
+	"cartToOrder",
+	async (_, { getState }) => {
+		const token = window.localStorage.getItem("token");
+		const { cart, auth } = getState();
+		try {
+			const { data } = await axios.post(`/api/orders/${auth.me.id}`, {
+				headers: {
+					authorization: token,
+				},
+				cart,
+			});
+			return data;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+);
+
 const cartSlice = createSlice({
 	name: "cart",
 	initialState: [],
@@ -35,10 +73,23 @@ const cartSlice = createSlice({
 			);
 			return decreased.filter(({ quantity }) => quantity !== 0);
 		},
+		removeItem: (state, action) => {
+			const { productId } = action.payload;
+			return state.filter((item) => item.productId !== productId);
+		},
+		clearCartOnLogout: (state, action) => {
+			return (state = []);
+		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchCartAsync.fulfilled, (_state, action) => {
 			return action.payload.cart;
+		});
+		builder.addCase(updateCartAsync.fulfilled, (_state, action) => {
+			return action.payload.cart;
+		});
+		builder.addCase(cartToOrderAsync.fulfilled, (_state, action) => {
+			return []
 		});
 	},
 });
@@ -46,7 +97,12 @@ const cartSlice = createSlice({
 export const selectCart = (state) => {
 	return state.cart;
 };
-export const { addItem, increaseQuantity, decreaseQuantity } =
-	cartSlice.actions;
+export const {
+	addItem,
+	increaseQuantity,
+	decreaseQuantity,
+	removeItem,
+	clearCartOnLogout,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;

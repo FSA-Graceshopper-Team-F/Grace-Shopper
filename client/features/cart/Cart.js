@@ -1,16 +1,23 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { selectAuth } from "../auth/authSlice";
 import { fetchProductsAsync, selectProducts } from "../product/productSlice";
-import { selectCart, increaseQuantity, decreaseQuantity } from "./cartSlice";
+import {
+	selectCart,
+	increaseQuantity,
+	decreaseQuantity,
+	removeItem,
+	updateCartAsync,
+	cartToOrderAsync,
+} from "./cartSlice";
 
 const Cart = () => {
 	const dispatch = useDispatch();
 	const allProducts = useSelector(selectProducts);
 	const cart = useSelector(selectCart);
-
+	const { id } = useSelector(selectAuth);
 	useEffect(() => {
 		dispatch(fetchProductsAsync());
-		console.log(cart, "use effect cart");
 	}, [dispatch, cart]);
 
 	if (allProducts.length === 0) return null;
@@ -36,6 +43,15 @@ const Cart = () => {
 		dispatch(decreaseQuantity({ productId }));
 	};
 
+	const handleRemoveItem = ({ id: productId }) => {
+		dispatch(removeItem({ productId }));
+	};
+
+	const handleUpdateCart = () => {
+		if (id) return dispatch(updateCartAsync());
+		return null;
+	};
+
 	return (
 		<div className="cart">
 			<ul>
@@ -43,11 +59,29 @@ const Cart = () => {
 					<li key={`Cart item ${item.id}`}>
 						{item.name} {item.price} Qty:{item.quantity} ItemTotal:
 						{item.price * item.quantity}
-						<button onClick={() => handleIncreaseQuantity(item)}>
+						<button
+							onClick={() => {
+								handleIncreaseQuantity(item);
+								handleUpdateCart();
+							}}
+						>
 							I WANT MORE
 						</button>
-						<button onClick={() => handleDecreaseQuantity(item)}>
+						<button
+							onClick={() => {
+								handleDecreaseQuantity(item);
+								handleUpdateCart();
+							}}
+						>
 							I WANT LESS
+						</button>
+						<button
+							onClick={() => {
+								handleRemoveItem(item);
+								handleUpdateCart();
+							}}
+						>
+							REMOVE ITEM
 						</button>
 					</li>
 				))}

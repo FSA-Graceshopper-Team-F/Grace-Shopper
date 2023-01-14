@@ -4,7 +4,6 @@ const User = require("../db/models/User.js");
 //retrieving ALL orders, this is admin only
 router.get("/", async (req, res, next) => {
 	try {
-		console.log("all got hit");
 		const allOrders = await Order.findAll();
 		res.json(allOrders);
 	} catch (error) {
@@ -15,7 +14,6 @@ router.get("/", async (req, res, next) => {
 //retrieving a single users, entire order history
 router.get("/:userId", async (req, res, next) => {
 	try {
-		console.log("individual got hit");
 		const orderHistory = await Order.findAll({
 			where: {
 				userId: req.params.userId,
@@ -41,20 +39,6 @@ router.post("/:userId", async (req, res, next) => {
 			})
 		);
 		await userCurrentCart.update({ cart: [] });
-	} catch (error) {
-		next(error);
-	}
-});
-
-//updating an existing order, this will only be updating total or status
-router.put("/:orderId", async (req, res, next) => {
-	try {
-		const orderToUpdate = await Order.findOne({
-			where: {
-				id: req.params.orderId,
-			},
-		});
-		res.status(202).send(await orderToUpdate.update(req.body));
 	} catch (error) {
 		next(error);
 	}

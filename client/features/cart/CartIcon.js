@@ -2,13 +2,11 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 const CartIcon = () => {
-  const { items } = useSelector(state => state.cart);
-  const totalQuantity = items.reduce((total, item) => total + item.quantity, 0);
-
+  const cart = useSelector(state => state.cart);
   return (
     <div className="cart-icon">
-      <img src={require('./shopping-cart.svg')} alt="cart icon" />
-      <span className="total-quantity">{totalQuantity}</span>
+      <img src={require('/public/shopping-cart.png')} alt="cart icon" />
+      <span className="total-quantity">{cart}</span>
     </div>
   );
 };

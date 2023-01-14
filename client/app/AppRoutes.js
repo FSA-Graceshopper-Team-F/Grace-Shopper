@@ -5,10 +5,11 @@ import AuthForm from "../features/auth/AuthForm";
 import Home from "../features/home/Home";
 import AllProducts from "../features/product/Products";
 import { Product } from "../features/product/Product";
+import Checkout from "../features/checkout/Checkout";
 import { me } from "./store";
 import Cart from "../features/cart/Cart";
 import Users from "../features/users/Users";
-
+import { CartView } from "../features/cart/CartView";
 /**
  * COMPONENT
  */
@@ -37,12 +38,16 @@ const AppRoutes = () => {
 					/>
 					<Route
 						path="/cart"
-						element={<Cart name="cart" displayName="Cart"/>}
-            	/>
-          			<Route
+						element={<CartView name="cart" displayName="Cart" />}
+					/>
+					<Route
 						path="/users"
 						element={<Users name="users" displayName="All users" />}
-					    />
+					/>
+					<Route
+						path="/checkout"
+						element={<Checkout name="checkout" displayName="checkout" />}
+					/>
 				</Routes>
 			) : (
 				<Routes>
@@ -68,7 +73,7 @@ const AppRoutes = () => {
 					/>
 					<Route
 						path="/cart"
-						element={<Cart name="cart" displayName="Cart"/>}
+						element={<CartView name="cart" displayName="Cart" />}
 					/>
 				</Routes>
 			)}
