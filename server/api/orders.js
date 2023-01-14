@@ -46,20 +46,6 @@ router.post("/:userId", async (req, res, next) => {
 	}
 });
 
-//updating an existing order, this will only be updating total or status
-router.put("/:orderId", async (req, res, next) => {
-	try {
-		const orderToUpdate = await Order.findOne({
-			where: {
-				id: req.params.orderId,
-			},
-		});
-		res.status(202).send(await orderToUpdate.update(req.body));
-	} catch (error) {
-		next(error);
-	}
-});
-
 //deleting an exisiting order
 router.delete("/:orderId", async (req, res, next) => {
 	try {

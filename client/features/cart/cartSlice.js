@@ -10,6 +10,25 @@ export const fetchCartAsync = createAsyncThunk("getCart", async (userId) => {
 	}
 });
 
+export const updateCartAsync = createAsyncThunk(
+	"updateCart",
+	async (_, { getState }) => {
+		const token = window.localStorage.getItem('token');
+		try {
+			const { cart,auth } = getState();
+			const { data } = await axios.put(`/api/cart/${auth.me.id}`, {
+				headers: {
+					authorization: token,
+				},
+				cart
+			});
+			return data;
+		} catch (error) {
+			console.error(error);
+		}
+	}
+);
+
 const cartSlice = createSlice({
 	name: "cart",
 	initialState: [],
@@ -37,12 +56,15 @@ const cartSlice = createSlice({
 		},
 		removeItem: (state, action) => {
 			const { productId } = action.payload;
-			return state.filter((item ) => item.productId !== productId);
+			return state.filter((item) => item.productId !== productId);
 		},
 	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchCartAsync.fulfilled, (_state, action) => {
 			return action.payload.cart;
+		});
+		builder.addCase(updateCartAsync.fulfilled, (_state, action) => {
+			// return action.payload.cart;
 		});
 	},
 });
@@ -50,7 +72,7 @@ const cartSlice = createSlice({
 export const selectCart = (state) => {
 	return state.cart;
 };
-export const { addItem, increaseQuantity, decreaseQuantity, removeItem} =
+export const { addItem, increaseQuantity, decreaseQuantity, removeItem } =
 	cartSlice.actions;
 
 export default cartSlice.reducer;
