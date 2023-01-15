@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout, reset, selectAuth } from "../auth/authSlice";
 import { clearCartOnLogout, selectCart } from "../cart/cartSlice";
+import { resetUsers } from "../users/usersSlice";
 import { AdminNavbar } from "./AdminNavbar";
 const Navbar = () => {
 	const isLoggedIn = useSelector((state) => !!state.auth.me.id);
@@ -16,6 +17,9 @@ const Navbar = () => {
 		dispatch(logout());
 		dispatch(reset());
 		dispatch(clearCartOnLogout());
+		if(isAdmin){
+			dispatch(resetUsers())
+		}
 	};
 
 	return (
