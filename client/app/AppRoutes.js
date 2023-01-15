@@ -2,12 +2,10 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import AuthForm from "../features/auth/AuthForm";
-import Home from "../features/home/Home";
 import AllProducts from "../features/product/Products";
 import { Product } from "../features/product/Product";
 import Checkout from "../features/checkout/Checkout";
 import { me } from "./store";
-import Cart from "../features/cart/Cart";
 import Users from "../features/users/Users";
 import { CartView } from "../features/cart/CartView";
 /**
@@ -26,8 +24,7 @@ const AppRoutes = () => {
 		<div>
 			{isLoggedIn ? (
 				<Routes>
-					<Route path="/*" element={<Home />} />
-					<Route path="/home" element={<Home />} />
+					<Route path="/*" element={<AllProducts />} />
 					<Route
 						path="/products"
 						element={<AllProducts name="products" displayName="All Products" />}
@@ -55,7 +52,6 @@ const AppRoutes = () => {
 						path="/*"
 						element={<AuthForm name="login" displayName="Login" />}
 					/>
-					<Route path="/home" element={<Home />} />
 					<Route
 						path="/login"
 						element={<AuthForm name="login" displayName="Login" />}
