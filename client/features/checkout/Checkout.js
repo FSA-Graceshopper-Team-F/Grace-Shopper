@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { selectAuth } from "../auth/authSlice";
 import Cart from "../cart/Cart";
 import { cartToOrderAsync, selectCart } from "../cart/cartSlice";
 
 const Checkout = () => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const cart = useSelector(selectCart);
 	const { id } = useSelector(selectAuth);
 	const [name, setName] = useState("");
@@ -16,6 +18,7 @@ const Checkout = () => {
 	const [country, setCountry] = useState("United States");
 	const [email, setEmail] = useState("");
 	const [formMissingField, setFormMissingField] = useState(true);
+	const [orderPlaced, setOrderPlaced] = useState(false)
 	const address = {
 		name,
 		address: streetAddress,
@@ -35,7 +38,11 @@ const Checkout = () => {
 			setStateAddress("");
 			setZipCode("");
 			setCountry("");
-			return setEmail("");
+			setEmail("");
+			setOrderPlaced(true)
+			setTimeout(()=> {
+				setOrderPlaced(false)
+				navigate("/products")}, 3000)
 		}
 		return null;
 	};
@@ -53,9 +60,10 @@ const Checkout = () => {
 			return setFormMissingField(false);
 		return setFormMissingField(true);
 	}, [address]);
+
 	return (
 		<div>
-			Checkout
+			{orderPlaced ? <h1>THANK YOU FOR YOUR ORDER</h1> : "Checkout"}
 			<Cart />
 			<form id="order-form" onSubmit={(event) => handleCartToOrder(event)}>
 				<label htmlFor="userName">Name: </label>
