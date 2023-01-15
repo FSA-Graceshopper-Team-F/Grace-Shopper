@@ -1,17 +1,16 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 /**
  * COMPONENT
  */
 const Home = (props) => {
-  const email = useSelector((state) => state.auth.me.email);
 
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-    </div>
-  );
+    return (
+		<div className="singleProduct">
+      whats new 
+		</div>
+	);
 };
 
 export default Home;

@@ -36,9 +36,12 @@ export const Product = () => {
 	}
 	return (
 		<div className="singleProduct">
-			<Link to="/products">Back to Products</Link>
-			<h2>{[name, price, description]}</h2>
-			<img src={`${imageUrl}`} />
+			<img src={`${imageUrl}`} /><br/>
+			<div>
+			<h2>{[name]}</h2>
+			<span>{description}</span><br/>
+			<h3>${price}</h3><br/>
+			</div>
 			<button
 				onClick={() => {
 					handleAddToCart(product);
@@ -46,7 +49,8 @@ export const Product = () => {
 				}}
 			>
 				Add to Cart
-			</button>
+			</button><br/>
+			<Link to="/products"><button>Keep Shopping</button></Link>
 		</div>
 	);
 };

@@ -28,11 +28,13 @@ router.get("/:userId", async (req, res, next) => {
 //creating a new order
 router.post("/:userId", async (req, res, next) => {
 	try {
+		console.log(req.body.address)
 		const user = await User.findByToken(req.headers.authorization)
 		res.status(201).send(
 			await Order.create({
 				userId: user.id,
 				order: user.cart,
+				address: req.body.address
 			})
 		);
 		await user.update({ cart: [] });

@@ -5,6 +5,10 @@ const Order = db.define('order',{
     order: {
         type:Sequelize.JSONB,
         defaultValue:[]
+    },
+    address: {
+        type:Sequelize.JSONB,
+        defaultValue:{}
     }
 })
 

@@ -6,7 +6,7 @@ import { clearCartOnLogout, selectCart } from "../cart/cartSlice";
 import { AdminNavbar } from "./AdminNavbar";
 const Navbar = () => {
 	const isLoggedIn = useSelector((state) => !!state.auth.me.id);
-	const { isAdmin } = useSelector(selectAuth);
+	const { isAdmin, email } = useSelector(selectAuth);
 	const cart = useSelector(selectCart);
 	const dispatch = useDispatch();
 	const cartQuantity = cart.length
@@ -39,10 +39,12 @@ const Navbar = () => {
 						</Link>
 						<Link to="/products">Products</Link>
 						<Link to="/cart">Cart:{cartQuantity}</Link>
+						{email}
 					</div>
 				) : (
 					<div>
 						{/* The navbar will show these links before you log in */}
+						<Link to="/home">Home</Link>
 						<Link to="/login">Login</Link>
 						<Link to="/signup">Sign Up</Link>
 						<Link to="/products">Products</Link>
