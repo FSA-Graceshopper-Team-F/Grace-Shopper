@@ -4,7 +4,7 @@ module.exports = router;
 router.post("/login", async (req, res, next) => {
 	try {
 		const token = await User.authenticate(req.body);
-		const user = await User.findByToken(token);0
+		const user = await User.findByToken(token);
 		res.send({ token: token });
 		if (req.body.cart.length !== 0)
 			return await user.update({ cart: req.body.cart });
