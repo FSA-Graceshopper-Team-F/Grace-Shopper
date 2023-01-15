@@ -13,7 +13,6 @@ const Product = db.define('product', {
     defaultValue: 'placeholder'
   },
   price: {
-    //Come back for decimal number specification
     type: Sequelize.DECIMAL(10,2),
     allowNull: false,
   },

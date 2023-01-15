@@ -1,8 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const locallyStoredCart = window.localStorage.getItem("cart");
+const localStorageCart = JSON.parse(locallyStoredCart);
 export const fetchCartAsync = createAsyncThunk("getCart", async (userId) => {
+	const localCart = window.localStorage.getItem("cart");
+	const localCartParsed = JSON.parse(localCart);
 	const token = window.localStorage.getItem("token");
+	if (localCartParsed.length) {
+		try {
+			return localCart;
+		} catch (error) {
+			console.error(error);
+		}
+	}
 	try {
 		const { data } = await axios.get(`/api/users/${userId}`, {
 			headers: {
@@ -18,9 +29,9 @@ export const fetchCartAsync = createAsyncThunk("getCart", async (userId) => {
 export const updateCartAsync = createAsyncThunk(
 	"updateCart",
 	async (_, { getState }) => {
-		const token = window.localStorage.getItem("token");
 		const { cart, auth } = getState();
 		try {
+			const token = window.localStorage.getItem("token");
 			const { data } = await axios.put(`/api/cart/${auth.me.id}`, cart, {
 				headers: {
 					authorization: token,
@@ -32,7 +43,17 @@ export const updateCartAsync = createAsyncThunk(
 		}
 	}
 );
-
+export const updateCartLocalAsync = createAsyncThunk(
+	"updateCartLocal",
+	async (_, { getState }) => {
+		const { cart } = getState();
+		try {
+			return window.localStorage.setItem("cart", JSON.stringify(cart));
+		} catch (error) {
+			console.error(error);
+		}
+	}
+);
 export const cartToOrderAsync = createAsyncThunk(
 	"cartToOrder",
 	async (address, { getState }) => {
@@ -64,7 +85,8 @@ export const cartToOrderAsync = createAsyncThunk(
 
 const cartSlice = createSlice({
 	name: "cart",
-	initialState: [],
+	initialState:
+		localStorageCart && localStorageCart.length ? localStorageCart : [],
 	reducers: {
 		addItem: (state, action) => {
 			const { productId, quantity } = action.payload;
@@ -104,6 +126,9 @@ const cartSlice = createSlice({
 		});
 		builder.addCase(cartToOrderAsync.fulfilled, (_state, action) => {
 			return [];
+		});
+		builder.addCase(updateCartLocalAsync.fulfilled, (state, action) => {
+			return action.payload;
 		});
 	},
 });

@@ -7,6 +7,7 @@ import {
 	increaseQuantity,
 	selectCart,
 	updateCartAsync,
+	updateCartLocalAsync,
 } from "../cart/cartSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { selectAuth } from "../auth/authSlice";
@@ -31,6 +32,7 @@ export const Product = () => {
 	};
 
 	const handleUpdateCart = () =>{
+		dispatch(updateCartLocalAsync())
 		if(id)return dispatch(updateCartAsync());
 		return null
 	}
