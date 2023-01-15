@@ -40,7 +40,7 @@ const Checkout = () => {
 			setCountry("");
 			setEmail("");
 			setOrderPlaced(true)
-			setTimeout(()=> {
+			return setTimeout(()=> {
 				setOrderPlaced(false)
 				navigate("/products")}, 3000)
 		}
