@@ -9,6 +9,10 @@ const Order = db.define('order',{
     address: {
         type:Sequelize.JSONB,
         defaultValue:{}
+    },
+    guest: {
+        type:Sequelize.BOOLEAN,
+        defaultValue:false
     }
 })
 

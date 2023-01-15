@@ -26,17 +26,26 @@ router.get("/:userId", async (req, res, next) => {
 });
 
 //creating a new order
-router.post("/:userId", async (req, res, next) => {
+router.post("/newOrder", async (req, res, next) => {
 	try {
-		const user = await User.findByToken(req.headers.authorization)
-		res.status(201).send(
+		if (req.headers.authorization) {
+			const user = await User.findByToken(req.headers.authorization);
+			res.status(201).send(
+				await Order.create({
+					userId: user.id,
+					order: user.cart,
+					address: req.body.address,
+				})
+			);
+			return await user.update({ cart: [] });
+		}
+		return res.status(201).send(
 			await Order.create({
-				userId: user.id,
-				order: user.cart,
-				address: req.body.address
+				order: req.body.cart,
+				address: req.body.address,
+				guest: true,
 			})
 		);
-		await user.update({ cart: [] });
 	} catch (error) {
 		next(error);
 	}

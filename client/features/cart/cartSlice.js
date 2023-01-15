@@ -5,9 +5,9 @@ export const fetchCartAsync = createAsyncThunk("getCart", async (userId) => {
 	const token = window.localStorage.getItem("token");
 	try {
 		const { data } = await axios.get(`/api/users/${userId}`, {
-			headers:{
+			headers: {
 				authorization: token,
-			}
+			},
 		});
 		return data;
 	} catch (error) {
@@ -21,10 +21,10 @@ export const updateCartAsync = createAsyncThunk(
 		const token = window.localStorage.getItem("token");
 		const { cart, auth } = getState();
 		try {
-			const { data } = await axios.put(`/api/cart/${auth.me.id}`, cart,{
+			const { data } = await axios.put(`/api/cart/${auth.me.id}`, cart, {
 				headers: {
 					authorization: token,
-				}
+				},
 			});
 			return data;
 		} catch (error) {
@@ -37,12 +37,23 @@ export const cartToOrderAsync = createAsyncThunk(
 	"cartToOrder",
 	async (address, { getState }) => {
 		const token = window.localStorage.getItem("token");
-		const { cart, auth } = getState();
+		const { cart } = getState();
 		try {
-			const { data } = await axios.post(`/api/orders/${auth.me.id}`,{address, cart}, {
-				headers: {
-					authorization: token,
-				}
+			if (token) {
+				const { data } = await axios.post(
+					`/api/orders/newOrder`,
+					{ address, cart },
+					{
+						headers: {
+							authorization: token,
+						},
+					}
+				);
+				return data;
+			}
+			const { data } = await axios.post("/api/orders/newOrder", {
+				address,
+				cart,
 			});
 			return data;
 		} catch (error) {
@@ -92,7 +103,7 @@ const cartSlice = createSlice({
 			return action.payload.cart;
 		});
 		builder.addCase(cartToOrderAsync.fulfilled, (_state, action) => {
-			return []
+			return [];
 		});
 	},
 });

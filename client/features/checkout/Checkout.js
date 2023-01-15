@@ -9,7 +9,6 @@ const Checkout = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const cart = useSelector(selectCart);
-	const { id } = useSelector(selectAuth);
 	const [orderPlaced, setOrderPlaced] = useState(false);
 	const [userAddress, setUserAddress] = useState({
 		name: "",
@@ -22,8 +21,8 @@ const Checkout = () => {
 	});
 	const handleCartToOrder = (event) => {
 		event.preventDefault();
-		if (id && cart.length) {
-			dispatch(cartToOrderAsync(userAddress));
+		if (cart.length) {
+			dispatch(cartToOrderAsync(userAddress, cart));
 			setUserAddress({
 				name: "",
 				address: "",
