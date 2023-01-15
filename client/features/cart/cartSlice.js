@@ -35,11 +35,11 @@ export const updateCartAsync = createAsyncThunk(
 
 export const cartToOrderAsync = createAsyncThunk(
 	"cartToOrder",
-	async (_, { getState }) => {
+	async (address, { getState }) => {
 		const token = window.localStorage.getItem("token");
 		const { cart, auth } = getState();
 		try {
-			const { data } = await axios.post(`/api/orders/${auth.me.id}`,cart, {
+			const { data } = await axios.post(`/api/orders/${auth.me.id}`,{address, cart}, {
 				headers: {
 					authorization: token,
 				}

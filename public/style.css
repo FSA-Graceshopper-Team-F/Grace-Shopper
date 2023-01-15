@@ -47,7 +47,7 @@ form div {
   padding: 40px;
   box-sizing: border-box;
   }
-  .singleProduct a {
+  .singleProduct button {
     display: block;
     padding: 10px 20px;
     margin: 10px;
@@ -58,7 +58,7 @@ form div {
     border-radius: 5px;
     text-align: center;
 }
-.singleProduct a:hover {
+.singleProduct button:hover {
   color: #ff0000; /* change to desired color */
   text-decoration: underline;
 }

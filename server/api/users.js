@@ -2,8 +2,8 @@ const router = require("express").Router();
 const User = require("../db/models/User");
 
 router.get("/", async (req, res, next) => {
-	const user = await User.findByToken(req.headers.authorization);
 	try {
+		const user = await User.findByToken(req.headers.authorization);
 		if (user.isAdmin) {
 			const users = await User.findAll({
 				// explicitly select only the id and email fields - even though
@@ -16,6 +16,7 @@ router.get("/", async (req, res, next) => {
 			res.json([{ email: "access denied" }]);
 		}
 	} catch (err) {
+		res.send(401)
 		next(err);
 	}
 });

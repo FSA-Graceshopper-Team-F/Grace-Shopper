@@ -33,6 +33,7 @@ router.post("/:userId", async (req, res, next) => {
 			await Order.create({
 				userId: user.id,
 				order: user.cart,
+				address: req.body.address
 			})
 		);
 		await user.update({ cart: [] });
