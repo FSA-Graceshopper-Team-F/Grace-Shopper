@@ -72,6 +72,10 @@ const AppRoutes = () => {
 						path="/cart"
 						element={<CartView name="cart" displayName="Cart" />}
 					/>
+					<Route
+						path="/checkout"
+						element={<Checkout name="checkout" displayName="checkout" />}
+					/>
 				</Routes>
 			)}
 		</div>

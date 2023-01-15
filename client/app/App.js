@@ -10,8 +10,8 @@ const App = () => {
 	const { id } = useSelector(selectAuth);
 	const dispatch = useDispatch();
 	useEffect(() => {
-    if(id)dispatch(fetchCartAsync(id));
-	}, [dispatch,id]);
+		if (id) dispatch(fetchCartAsync(id));
+	}, [dispatch, id]);
 	return (
 		<div>
 			<Navbar />

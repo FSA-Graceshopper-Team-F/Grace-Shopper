@@ -8,6 +8,7 @@ import {
 	decreaseQuantity,
 	removeItem,
 	updateCartAsync,
+	updateCartLocalAsync,
 } from "./cartSlice";
 
 const Cart = () => {
@@ -40,17 +41,21 @@ const Cart = () => {
 
 	const handleIncreaseQuantity = ({ id: productId }) => {
 		dispatch(increaseQuantity({ productId }));
+		dispatch(updateCartLocalAsync())
 	};
 
 	const handleDecreaseQuantity = ({ id: productId }) => {
 		dispatch(decreaseQuantity({ productId }));
+		dispatch(updateCartLocalAsync())
 	};
 
 	const handleRemoveItem = ({ id: productId }) => {
 		dispatch(removeItem({ productId }));
+		dispatch(updateCartLocalAsync())
 	};
 
 	const handleUpdateCart = () => {
+		dispatch(updateCartLocalAsync())
 		if (id) return dispatch(updateCartAsync());
 		return null;
 	};

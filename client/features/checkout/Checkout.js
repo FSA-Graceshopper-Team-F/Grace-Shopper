@@ -9,117 +9,131 @@ const Checkout = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const cart = useSelector(selectCart);
-	const { id } = useSelector(selectAuth);
-	const [name, setName] = useState("");
-	const [streetAddress, setStreetAddress] = useState("");
-	const [city, setCity] = useState("");
-	const [stateAddress, setStateAddress] = useState("");
-	const [zipCode, setZipCode] = useState("");
-	const [country, setCountry] = useState("United States");
-	const [email, setEmail] = useState("");
-	const [formMissingField, setFormMissingField] = useState(true);
-	const [orderPlaced, setOrderPlaced] = useState(false)
-	const address = {
-		name,
-		address: streetAddress,
-		city,
-		state: stateAddress,
-		ZIP: zipCode,
-		country,
-		email,
-	};
+	const [orderPlaced, setOrderPlaced] = useState(false);
+	const [userAddress, setUserAddress] = useState({
+		name: "",
+		address: "",
+		city: "",
+		state: "",
+		ZIP: "",
+		country: "",
+		email: "",
+	});
 	const handleCartToOrder = (event) => {
 		event.preventDefault();
-		if (id && cart.length) {
-			dispatch(cartToOrderAsync(address));
-			setName("");
-			setStreetAddress("");
-			setCity("");
-			setStateAddress("");
-			setZipCode("");
-			setCountry("");
-			setEmail("");
-			setOrderPlaced(true)
-			return setTimeout(()=> {
-				setOrderPlaced(false)
-				navigate("/products")}, 3000)
+		if (cart.length) {
+			dispatch(cartToOrderAsync(userAddress, cart));
+			setUserAddress({
+				name: "",
+				address: "",
+				city: "",
+				state: "",
+				ZIP: "",
+				country: "",
+				email: "",
+			});
+			setOrderPlaced(true);
+			window.localStorage.removeItem("cart")
+			return setTimeout(() => {
+				setOrderPlaced(false);
+				navigate("/products");
+			}, 3000);
 		}
 		return null;
 	};
-	useEffect(() => {
-		if (
-			address.name.length &&
-			address.address.length &&
-			address.city.length &&
-			address.state.length &&
-			address.ZIP.length &&
-			address.country.length &&
-			address.email.length &&
-			cart.length
-		)
-			return setFormMissingField(false);
-		return setFormMissingField(true);
-	}, [address]);
 
+	const updateAddress = (event) => {
+		const keyToUpdate = event.target.name;
+		setUserAddress((currentAddress) => ({
+			...currentAddress,
+			[keyToUpdate]: event.target.value,
+		}));
+	};
 	return (
 		<div>
 			{orderPlaced ? <h1>THANK YOU FOR YOUR ORDER</h1> : "Checkout"}
 			<Cart />
 			<form id="order-form" onSubmit={(event) => handleCartToOrder(event)}>
-				<label htmlFor="userName">Name: </label>
-				<input
-					name="name"
-					value={name}
-					onChange={(event) => setName(event.target.value)}
-				></input>
+				<label htmlFor="userName">
+					Name:
+					<input
+						name="name"
+						value={userAddress.name}
+						required={true}
+						onChange={updateAddress}
+						placeholder="required"
+					></input>
+				</label>
 				<br />
-				<label htmlFor="userStreetAddress">Address: </label>
-				<input
-					name="streetAddress"
-					value={streetAddress}
-					onChange={(event) => setStreetAddress(event.target.value)}
-				></input>
+				<label htmlFor="address">
+					Address:
+					<input
+						name="address"
+						value={userAddress.address}
+						required={true}
+						onChange={updateAddress}
+						placeholder="required"
+					></input>
+				</label>
 				<br />
-				<label htmlFor="userCity">City: </label>
-				<input
-					name="streetAddress"
-					value={city}
-					onChange={(event) => setCity(event.target.value)}
-				></input>
+				<label htmlFor="city">
+					City:
+					<input
+						name="city"
+						value={userAddress.city}
+						required={true}
+						onChange={updateAddress}
+						placeholder="required"
+					></input>
+				</label>
 				<br />
-				<label htmlFor="userStateAddress">State/Province: </label>
-				<input
-					name="stateAddress"
-					value={stateAddress}
-					onChange={(event) => setStateAddress(event.target.value)}
-				></input>
+				<label htmlFor="state">
+					State/Province:
+					<input
+						name="state"
+						value={userAddress.state}
+						required={true}
+						onChange={updateAddress}
+						placeholder="required"
+					></input>
+				</label>
 				<br />
-				<label htmlFor="userZipCode">ZIP Code: </label>
-				<input
-					name="zipCode"
-					value={zipCode}
-					onChange={(event) => setZipCode(event.target.value)}
-				></input>
+				<label htmlFor="ZIP">
+					ZIP Code:
+					<input
+						name="ZIP"
+						value={userAddress.ZIP}
+						required={true}
+						onChange={updateAddress}
+						placeholder="required"
+					></input>
+				</label>
 				<br />
-				<label htmlFor="userCountry">Country: </label>
-				<input
-					name="country"
-					value={country}
-					onChange={(event) => setCountry(event.target.value)}
-				></input>
+				<label htmlFor="country">
+					Country:
+					<input
+						name="country"
+						value={userAddress.country}
+						required={true}
+						onChange={updateAddress}
+						placeholder="required"
+					></input>
+				</label>
 				<br />
-				<label htmlFor="email"> Email: </label>
-				<input
-					name="description"
-					value={email}
-					onChange={(event) => setEmail(event.target.value)}
-				></input>
+				<label htmlFor="email">
+					{" "}
+					Email:
+					<input
+						name="email"
+						type="email"
+						required={true}
+						value={userAddress.email}
+						onChange={updateAddress}
+						placeholder="required"
+					></input>
+				</label>
 				<br />
-				{formMissingField ? (
-					"Fill Out Order Form To Checkout"
-				) : (
-					<button type="submit"> Complete Checkout </button>
-				)}
+				<button type="submit"> Complete Checkout </button>
 				<br />
 			</form>
 		</div>

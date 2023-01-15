@@ -50,6 +50,7 @@ export const authenticate = createAsyncThunk(
 
 export const logout = createAsyncThunk("auth/logout", async () => {
 	await localStorage.removeItem(TOKEN);
+	localStorage.removeItem("cart")
 });
 
 /*
