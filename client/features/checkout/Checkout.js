@@ -10,35 +10,14 @@ const Checkout = () => {
 	const navigate = useNavigate();
 	const cart = useSelector(selectCart);
 	const { id } = useSelector(selectAuth);
-	const [name, setName] = useState("");
-	const [streetAddress, setStreetAddress] = useState("");
-	const [city, setCity] = useState("");
-	const [stateAddress, setStateAddress] = useState("");
-	const [zipCode, setZipCode] = useState("");
-	const [country, setCountry] = useState("United States");
-	const [email, setEmail] = useState("");
 	const [formMissingField, setFormMissingField] = useState(true);
 	const [orderPlaced, setOrderPlaced] = useState(false)
-	const address = {
-		name,
-		address: streetAddress,
-		city,
-		state: stateAddress,
-		ZIP: zipCode,
-		country,
-		email,
-	};
+	const [userAddress, setUserAddress] = useState({name:"", address:"", city:"",state:"", ZIP:"", country:"", email:""})
 	const handleCartToOrder = (event) => {
 		event.preventDefault();
 		if (id && cart.length) {
-			dispatch(cartToOrderAsync(address));
-			setName("");
-			setStreetAddress("");
-			setCity("");
-			setStateAddress("");
-			setZipCode("");
-			setCountry("");
-			setEmail("");
+			dispatch(cartToOrderAsync(userAddress));
+			setUserAddress({name:"", address:"", city:"",state:"", ZIP:"", country:"", email:""})
 			setOrderPlaced(true)
 			return setTimeout(()=> {
 				setOrderPlaced(false)
@@ -48,19 +27,26 @@ const Checkout = () => {
 	};
 	useEffect(() => {
 		if (
-			address.name.length &&
-			address.address.length &&
-			address.city.length &&
-			address.state.length &&
-			address.ZIP.length &&
-			address.country.length &&
-			address.email.length &&
+			userAddress.name.length &&
+			userAddress.address.length &&
+			userAddress.city.length &&
+			userAddress.state.length &&
+			userAddress.ZIP.length &&
+			userAddress.country.length &&
+			userAddress.email.length &&
 			cart.length
 		)
 			return setFormMissingField(false);
 		return setFormMissingField(true);
-	}, [address]);
-
+	}, [userAddress]);
+	const updateAddress = (event) => {
+		const keyToUpdate = event.target.name
+		setUserAddress(currentAddress => ({
+			...currentAddress, 
+			[keyToUpdate]:event.target.value
+		}))
+		console.log(userAddress)
+	}
 	return (
 		<div>
 			{orderPlaced ? <h1>THANK YOU FOR YOUR ORDER</h1> : "Checkout"}
@@ -69,50 +55,52 @@ const Checkout = () => {
 				<label htmlFor="userName">Name: </label>
 				<input
 					name="name"
-					value={name}
-					onChange={(event) => setName(event.target.value)}
+					value={userAddress.name}
+					onChange={updateAddress}
 				></input>
 				<br />
-				<label htmlFor="userStreetAddress">Address: </label>
+				<label htmlFor="address">Address: </label>
 				<input
-					name="streetAddress"
-					value={streetAddress}
-					onChange={(event) => setStreetAddress(event.target.value)}
+					name="address"
+					value={userAddress.address}
+					onChange={updateAddress}
 				></input>
 				<br />
-				<label htmlFor="userCity">City: </label>
+				<label htmlFor="city">City: </label>
 				<input
-					name="streetAddress"
-					value={city}
-					onChange={(event) => setCity(event.target.value)}
+					name="city"
+					value={userAddress.city}
+					onChange={updateAddress}
 				></input>
 				<br />
-				<label htmlFor="userStateAddress">State/Province: </label>
+				<label htmlFor="state">State/Province: </label>
 				<input
-					name="stateAddress"
-					value={stateAddress}
-					onChange={(event) => setStateAddress(event.target.value)}
+					name="state"
+					value={userAddress.state}
+					onChange={updateAddress}
 				></input>
 				<br />
-				<label htmlFor="userZipCode">ZIP Code: </label>
+				<label htmlFor="ZIP">ZIP Code: </label>
 				<input
-					name="zipCode"
-					value={zipCode}
-					onChange={(event) => setZipCode(event.target.value)}
+					name="ZIP"
+					value={userAddress.ZIP}
+					onChange={updateAddress}
 				></input>
 				<br />
-				<label htmlFor="userCountry">Country: </label>
+				<label htmlFor="country">Country: </label>
 				<input
 					name="country"
-					value={country}
-					onChange={(event) => setCountry(event.target.value)}
+					value={userAddress.country}
+					onChange={updateAddress}
 				></input>
 				<br />
 				<label htmlFor="email"> Email: </label>
 				<input
-					name="description"
-					value={email}
-					onChange={(event) => setEmail(event.target.value)}
+					name="email"
+					type="email"
+					required={true}
+					value={userAddress.email}
+					onChange={updateAddress}
 				></input>
 				<br />
 				{formMissingField ? (
