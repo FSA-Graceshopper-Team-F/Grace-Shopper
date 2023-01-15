@@ -7,7 +7,7 @@ export const fetchCartAsync = createAsyncThunk("getCart", async (userId) => {
 	const localCart = window.localStorage.getItem("cart");
 	const localCartParsed = JSON.parse(localCart);
 	const token = window.localStorage.getItem("token");
-	if (localCartParsed.length) {
+	if (localCart && localCartParsed.length) {
 		try {
 			return localCart;
 		} catch (error) {

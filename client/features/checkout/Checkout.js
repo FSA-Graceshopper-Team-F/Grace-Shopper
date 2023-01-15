@@ -33,7 +33,7 @@ const Checkout = () => {
 				email: "",
 			});
 			setOrderPlaced(true);
-			window.localStorage.setItem("cart","[]")
+			window.localStorage.removeItem("cart")
 			return setTimeout(() => {
 				setOrderPlaced(false);
 				navigate("/products");
