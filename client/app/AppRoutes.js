@@ -8,6 +8,8 @@ import Checkout from "../features/checkout/Checkout";
 import { me } from "./store";
 import Users from "../features/users/Users";
 import { CartView } from "../features/cart/CartView";
+import { OrderHistory } from "../features/orders/OrderHistory";
+import { UserProfile } from "../features/users/UserProfile";
 /**
  * COMPONENT
  */
@@ -44,6 +46,14 @@ const AppRoutes = () => {
 					<Route
 						path="/checkout"
 						element={<Checkout name="checkout" displayName="checkout" />}
+					/>
+					<Route
+						path="/myOrders"
+						element={<OrderHistory name="orderHistory" displayName="order history" />}
+					/>
+					<Route
+						path="/myProfile"
+						element={<UserProfile name="myProfile" displayName="my profile" />}
 					/>
 				</Routes>
 			) : (

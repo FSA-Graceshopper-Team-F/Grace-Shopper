@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectAuth } from "../auth/authSlice";
 import { fetchProductsAsync, selectProducts } from "../product/productSlice";
+import { storeProductDetails } from "./cartProductDetailsSlice";
 import {
 	selectCart,
 	increaseQuantity,
@@ -17,7 +18,8 @@ const Cart = () => {
 	const cart = useSelector(selectCart);
 	const { id } = useSelector(selectAuth);
 	useEffect(() => {
-		dispatch(fetchProductsAsync());
+		dispatch(fetchProductsAsync())
+		dispatch(storeProductDetails(cartProducts))
 	}, [dispatch, cart]);
 
 	if (allProducts.length === 0) return null;
@@ -38,6 +40,7 @@ const Cart = () => {
 		(total, { price, quantity }) => total + price * quantity,
 		0
 	);
+	console.log(cartProducts, "cartproducts")
 
 	const handleIncreaseQuantity = ({ id: productId }) => {
 		dispatch(increaseQuantity({ productId }));
@@ -59,7 +62,6 @@ const Cart = () => {
 		if (id) return dispatch(updateCartAsync());
 		return null;
 	};
-
 	return (
 		<div className="cart">
 			<ul>

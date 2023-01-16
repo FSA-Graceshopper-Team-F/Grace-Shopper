@@ -12,11 +12,12 @@ router.get("/", async (req, res, next) => {
 });
 
 //retrieving a single users, entire order history
-router.get("/:userId", async (req, res, next) => {
+router.get("/myOrders", async (req, res, next) => {
 	try {
+		const user = await User.findByToken(req.headers.authorization);
 		const orderHistory = await Order.findAll({
 			where: {
-				userId: req.params.userId,
+				userId: user.id
 			},
 		});
 		res.json(orderHistory);
@@ -29,12 +30,14 @@ router.get("/:userId", async (req, res, next) => {
 router.post("/newOrder", async (req, res, next) => {
 	try {
 		if (req.headers.authorization) {
+			console.log(req.body.orderDetails)
 			const user = await User.findByToken(req.headers.authorization);
 			res.status(201).send(
 				await Order.create({
 					userId: user.id,
 					order: user.cart,
 					address: req.body.address,
+					productDetails: req.body.orderDetails
 				})
 			);
 			return await user.update({ cart: [] });
