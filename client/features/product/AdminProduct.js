@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { addProductAsync } from "./productSlice";
-import { Link, useNavigate } from "react-router-dom";
-import { isRejectedWithValue } from "@reduxjs/toolkit";
 
 const AdminProduct = () => {
   const [name, setName] = useState('');
@@ -15,10 +12,10 @@ const AdminProduct = () => {
   const onSubmit = (event) => {
     event.preventDefault();
     dispatch(addProductAsync({name, imageUrl, price, description }));
-    setName('');
-    setImageUrl('');
-    setPrice('');
-    setDescription('');
+    setName("");
+    setImageUrl("");
+    setPrice("");
+    setDescription("");
   };
 
 
