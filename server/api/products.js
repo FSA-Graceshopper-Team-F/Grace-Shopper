@@ -15,14 +15,18 @@ router.route('/')
   const user = await User.findByToken(req.headers.authorization);
   try{
     if(user.isAdmin){
-      const { name, price } = req.body;
+      const { name, price, description, imageUrl } = req.body;
       //validation
       if(!name || !price){
         res.status(400);
         throw new Error('Please include a product name and price');
       }
       //Find if product already exists
-      const productExists = await Product.findOne({name});
+      const productExists = await Product.findOne({
+        where:{
+          name: name
+        }
+      });
       if(productExists){
         res.status(400);
         throw new Error('Product already exists');
