@@ -30,7 +30,6 @@ router.get("/myOrders", async (req, res, next) => {
 router.post("/newOrder", async (req, res, next) => {
 	try {
 		if (req.headers.authorization) {
-			console.log(req.body.orderDetails)
 			const user = await User.findByToken(req.headers.authorization);
 			res.status(201).send(
 				await Order.create({

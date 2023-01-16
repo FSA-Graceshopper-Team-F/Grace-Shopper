@@ -40,7 +40,6 @@ const Cart = () => {
 		(total, { price, quantity }) => total + price * quantity,
 		0
 	);
-	console.log(cartProducts, "cartproducts")
 
 	const handleIncreaseQuantity = ({ id: productId }) => {
 		dispatch(increaseQuantity({ productId }));
