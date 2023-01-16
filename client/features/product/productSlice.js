@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 export const fetchProductsAsync = createAsyncThunk("getProducts", async () => {
 	try {
@@ -22,7 +23,8 @@ export const addProductAsync = createAsyncThunk("addProduct", async (productData
 		const { data } = await axios.post("/api/products", productData, config);
 		return data;
 	}catch(error){
-		console.error('FROM THE ADD PRODUCT THUNK', error)
+		//Displays alert popup to user
+		alert (error.response.data)
 	}
 });
 

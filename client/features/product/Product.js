@@ -18,6 +18,7 @@ export const Product = () => {
 	const { productId } = useParams();
 	const dispatch = useDispatch();
 	const { name, price, imageUrl, description } = product;
+	
 	useEffect(() => {
 		dispatch(fetchProductAsync(productId));
 	}, [dispatch]);

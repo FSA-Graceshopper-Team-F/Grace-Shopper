@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { addProductAsync } from "./productSlice";
 import { Link, useNavigate } from "react-router-dom";
+import { isRejectedWithValue } from "@reduxjs/toolkit";
 
 const AdminProduct = () => {
   const [name, setName] = useState('');
@@ -10,11 +11,12 @@ const AdminProduct = () => {
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
 	const dispatch = useDispatch();
-  
+
   const onSubmit = (e) => {
-    e.preventDefault()
-    dispatch(addProductAsync({name, imageUrl, price, description }))
+    e.preventDefault();
+    dispatch(addProductAsync({name, imageUrl, price, description }));
   };
+
 
   return (
     <>
