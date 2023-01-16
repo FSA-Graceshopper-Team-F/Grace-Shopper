@@ -12,9 +12,13 @@ const AdminProduct = () => {
   const [description, setDescription] = useState('');
 	const dispatch = useDispatch();
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = (event) => {
+    event.preventDefault();
     dispatch(addProductAsync({name, imageUrl, price, description }));
+    setName('');
+    setImageUrl('');
+    setPrice('');
+    setDescription('');
   };
 
 
@@ -32,7 +36,7 @@ const AdminProduct = () => {
             <input type="text"
             placeholder="Product"
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onChange={(event) => setName(event.target.value)}
             />
           </div>
 
@@ -42,7 +46,7 @@ const AdminProduct = () => {
               name="price"
               placeholder="Price"
               value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              onChange={(event) => setPrice(event.target.value)}
               />
           </div>
 
@@ -52,16 +56,16 @@ const AdminProduct = () => {
               name="description"
               placeholder="description"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(event) => setDescription(event.target.value)}
               />
           </div>
 
           <div className="form-group">
               <label>Image</label>
-              <input type="file"
+              <input type="text"
               placeholder="Image link"
               value={imageUrl}
-              onChange={(e) => setImageUrl(e.target.value)}
+              onChange={(event) => setImageUrl(event.target.value)}
               />
           </div>
           <div className="form-group">
