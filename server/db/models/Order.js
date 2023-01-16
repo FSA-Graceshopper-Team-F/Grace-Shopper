@@ -13,6 +13,14 @@ const Order = db.define('order',{
     guest: {
         type:Sequelize.BOOLEAN,
         defaultValue:false
+    },
+    productDetails:{
+        type: Sequelize.JSONB,
+        defaultValue:{}
+    },
+    orderTotal:{
+        type:Sequelize.INTEGER,
+        defaultValue:0
     }
 })
 

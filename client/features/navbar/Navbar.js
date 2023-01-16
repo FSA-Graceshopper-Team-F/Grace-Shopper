@@ -42,7 +42,7 @@ const Navbar = () => {
 						</Link>
 						<Link to="/products">Products</Link>
 						<Link to="/cart">Cart:{cartQuantity}</Link>
-						{email}
+						<Link to="/myProfile">{email}</Link>
 					</div>
 				) : (
 					<div>
