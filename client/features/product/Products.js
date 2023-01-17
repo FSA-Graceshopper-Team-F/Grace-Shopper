@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from 'react';
 import { fetchProductsAsync, selectProducts } from "./productSlice";
 import { Link } from "react-router-dom";
-import AdminProduct from "./AdminProduct";
+import AddProduct from "./AddProduct";
 import { selectAuth } from "../auth/authSlice";
 
 const AllProducts = () => {
@@ -19,7 +19,7 @@ const AllProducts = () => {
       <div>
       {isAdmin ? (
 					<div>
-						<AdminProduct />
+						<AddProduct />
 					</div>
 				) : null}
 

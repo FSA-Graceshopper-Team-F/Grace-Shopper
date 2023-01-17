@@ -8,17 +8,18 @@ import {
 	selectCart,
 	updateCartAsync,
 } from "../cart/cartSlice";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { selectAuth } from "../auth/authSlice";
+import EditProduct from "./EditProduct";
 
 export const Product = () => {
-	const {id} = useSelector(selectAuth)
+	const { isAdmin, id } = useSelector(selectAuth)
 	const product = useSelector(selectSingleProduct);
 	const cart = useSelector(selectCart);
 	const { productId } = useParams();
 	const dispatch = useDispatch();
 	const { name, price, imageUrl, description } = product;
-	
+
 	useEffect(() => {
 		dispatch(fetchProductAsync(productId));
 	}, [dispatch]);
@@ -37,6 +38,14 @@ export const Product = () => {
 	}
 	return (
 		<div className="singleProduct">
+			<div>
+      {isAdmin ? (
+					<div>
+						<EditProduct />
+					</div>
+				) : null}
+				</div>
+
 			<img src={`${imageUrl}`} /><br/>
 			<div>
 			<h2>{[name]}</h2>

@@ -19,9 +19,9 @@ const Product = db.define('product', {
   },
   description: {
     type: Sequelize.TEXT,
-    
+
   },
 
 });
 
-module.exports = Product; 
+module.exports = Product;
