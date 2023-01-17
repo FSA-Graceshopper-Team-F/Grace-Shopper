@@ -5,7 +5,9 @@ const User = require('../db/models/User')
 router.route('/')
 .get(async (req, res, next) => {
   try {
-    const products = await Product.findAll({});
+    const products = await Product.findAll({
+      order:[['id','ASC']]
+    });
     res.json(products);
   } catch (err) {
     next(err);
@@ -68,16 +70,12 @@ router.route('/:productId')
     try{
       const product = await Product.findByPk(req.params.productId);
 
-      // const product = await Product.findOne({
-      //   where:{
-      //     id: req.params.productId
-      //   }
-      // })
       if(!product){
         res.status(404);
         throw new Error('Product not found');
       }else{
         const updatedProduct = await product.update(req.body);
+        console.log(req.body)
         res.status(202).send(updatedProduct);
       }
     } catch(err){
@@ -92,17 +90,15 @@ router.route('/:productId')
   const user = await User.findByToken(req.headers.authorization);
   if(user.isAdmin){
     try{
-      const product = await Product.findOne({
-        where:{
-          id: req.params.productId
-        }
-      })
+      const product = await Product.findByPk(req.params.productId);
       if(!product){
         res.status(404);
         throw new Error('Product not found');
       }else{
         await product.destroy();
-        res.status(200).send('Terminated');
+        res.status(200).send('Terminated'); 
+
+
       }
     } catch(err){
       next(err);

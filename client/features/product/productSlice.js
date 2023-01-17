@@ -28,8 +28,8 @@ export const addProductAsync = createAsyncThunk("addProduct", async (productData
 	}
 });
 
-//Edit Product
-export const editProductAsync = createAsyncThunk("editProduct", async( product ) => {
+//Delete Product
+export const deleteProductAsync = createAsyncThunk("deleteProduct", async(productId) => {
 	try{
 		const token = window.localStorage.getItem("token")
 		const config = {
@@ -37,14 +37,14 @@ export const editProductAsync = createAsyncThunk("editProduct", async( product )
 				Authorization: token
 			}
 		};
-		const { data } = await axios.put(`/api/products/${product.productId}`, product, config);
+		console.log('PRODUCT FROM THUNK', productId)
+		const { data } = await axios.delete(`/api/products/${productId}`, config);
+		console.log('DELETE THUNK', data)
 		return data;
 	}catch(error){
-		alert(error.response.data)
+		throw new Error(error);
 	}
 });
-
-
 
 const productsSlice = createSlice({
 	name: "products",
@@ -54,10 +54,11 @@ const productsSlice = createSlice({
 		builder.addCase(fetchProductsAsync.fulfilled, (_state, action) => {
 			return action.payload;
 		})
-		builder.addCase(addProductAsync.fulfilled), (_state, action) => {
-			return action.payload;
+		builder.addCase(addProductAsync.fulfilled), (state, action) => {
+			console.log(action.payload)
+			return state
 		}
-		builder.addCase(editProductAsync.fulfilled), (_state, action) => {
+		builder.addCase(deleteProductAsync.fulfilled), (_state, action) => {
 			return action.payload;
 		}
 	},

@@ -14,9 +14,9 @@ export const OrderHistory = () => {
 			total: orders.productDetails.reduce(
 				(total, product) => total + product.quantity * product.price,
 				0
-			),
-		};
-	});
+			)
+		}; 
+	}) 
 
 	return (
 		<div>

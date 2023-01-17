@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addProductAsync } from "./productSlice";
+import { addProductAsync, fetchProductsAsync } from "./productSlice";
 
 const AddProduct = () => {
   const [name, setName] = useState('');
@@ -41,7 +41,7 @@ const AddProduct = () => {
           <div className="form-group">
               <label>Product Price</label>
               <input
-                type="text"
+                type="number"
                 name="price"
                 placeholder="Price"
                 value={price}
@@ -62,7 +62,7 @@ const AddProduct = () => {
           <div className="form-group">
               <label>Image</label>
               <input
-                type="text"
+                type="url"
                 placeholder="Image link"
                 value={imageUrl}
                 onChange={(event) => setImageUrl(event.target.value)}
