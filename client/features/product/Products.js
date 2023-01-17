@@ -2,11 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from 'react';
 import { fetchProductsAsync, selectProducts } from "./productSlice";
 import { Link } from "react-router-dom";
-
+import { selectAuth } from "../auth/authSlice";
+import DeleteButton from "./DeleteButton";
 const AllProducts = () => {
   const products = useSelector(selectProducts);
+  const { isAdmin } = useSelector(selectAuth) 
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchProductsAsync());
   }, [dispatch]);
