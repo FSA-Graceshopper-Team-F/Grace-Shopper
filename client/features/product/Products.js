@@ -16,27 +16,32 @@ const AllProducts = () => {
 
   return (
     <div>
+      <div className="productsTextCard">
+        <h1 className="productsTitle">Shop products</h1>
+        <h3 className="productsText">Our most popular products based on sales. Updated frequently.</h3>
+      </div>
       <div>
-      {isAdmin ? (
-					<div>
-						<AddProduct />
-					</div>
-				) : null}
+        {isAdmin ? (
+          <div>
+            <AddProduct />
+          </div>
+        ) : null}
 
       </div>
       {products && products.length ?
-       products.map((product) => (
-        <ul
-        className="allProducts"
-        key={`All products: ${product.id}`}>
-          <Link to={`/products/${product.id}`}>
-            <img src={`${product.imageUrl}`}/>
-            <li>
-            {[product.name, product.price, product.imageUrl]}  </li>
-        </Link>
-        </ul>
-       )): console.log('---NO PRODUCTS---', null)
-    }
+        products.map((product) => (
+
+          <ul
+            className="productGrid"
+            key={`All products: ${product.id}`}>
+            <Link to={`/products/${product.id}`} className="productCard">
+              <img src={`${product.imageUrl}`} className="productImage"/>
+              <li className="productText">
+                {[product.name, product.price, product.imageUrl]}  </li>
+            </Link>
+          </ul>
+        )) : console.log('---NO PRODUCTS---', null)
+      }
     </div>
   )
 };

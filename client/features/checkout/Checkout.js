@@ -53,7 +53,7 @@ const Checkout = () => {
 		<div>
 			{orderPlaced ? <h1>THANK YOU FOR YOUR ORDER</h1> : "Checkout"}
 			<Cart />
-			<form id="order-form" onSubmit={(event) => handleCartToOrder(event)}>
+			<form className="checkoutForm" onSubmit={(event) => handleCartToOrder(event)}>
 				<label htmlFor="userName">
 					Name:
 					<input
@@ -133,7 +133,7 @@ const Checkout = () => {
 					></input>
 				</label>
 				<br />
-				<button type="submit"> Complete Checkout </button>
+				<button className="completeCheckoutButton" type="submit"> Complete Checkout </button>
 				<br />
 			</form>
 		</div>

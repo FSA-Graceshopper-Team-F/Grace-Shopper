@@ -24,8 +24,8 @@ const Navbar = () => {
 
 	return (
 		<div>
-			<h1>Grace Shopper Store</h1>
-			<nav>
+			<h1 className="logoTitle">Grace Shopper Store</h1>
+			<nav className="navBar">
 				{" "}
 				{isAdmin ? (
 					<div>
@@ -33,9 +33,9 @@ const Navbar = () => {
 					</div>
 				) : null}
 			</nav>
-			<nav>
+			<nav className="navBar">
 				{isLoggedIn ? (
-					<div>
+					<div className="linksFrame">
 						{/* The navbar will show these links after you log in */}
 						<Link to="/products" onClick={onLogout}>
 							Logout
@@ -45,7 +45,7 @@ const Navbar = () => {
 						<Link to="/myProfile">{email}</Link>
 					</div>
 				) : (
-					<div>
+					<div className="linksFrame">
 						{/* The navbar will show these links before you log in */}
 						<Link to="/login">Login</Link>
 						<Link to="/signup">Sign Up</Link>

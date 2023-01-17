@@ -19,94 +19,508 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-.allProducts {
-  font-family: 'Poppins', sans-serif;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  width: 400px;
-  height: 400px;
-  margin: 20px;
-  background: #fff;
-  padding: 40px;
-  box-sizing: border-box;
-  }
-  
+.logoTitle {
+  width: 136px;
+  height: 24px;
 
-  .singleProduct {
-    font-family: 'Poppins', sans-serif;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  width: 400px;
-  height: 400px;
-  margin: 20px;
-  background: #fff;
-  padding: 40px;
-  box-sizing: border-box;
-  }
-  .singleProduct button {
-    display: block;
-    padding: 10px 20px;
-    margin: 10px;
-    text-decoration: none;
-    color: #000;
-    background: #fff;
-    border: 1px solid #000;
-    border-radius: 5px;
-    text-align: center;
-}
-.singleProduct button:hover {
-  color: #ff0000; /* change to desired color */
-  text-decoration: underline;
-}
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.6px;
 
-.singleProduct h2 {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px;
-    font-size: 1.5em;
-    color: #444;
-}
+  color: #ffffff;
 
-.singleProduct h2 span {
-    display: block;
-    margin: 10px;
-}
+  /* Inside auto layout */
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f5f5f5;
-  padding: 10px;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
-
-nav a {
-  color: #000;
-  text-decoration: none;
-  padding: 10px;
-}
-
-nav a:hover {
-  color: #fff;
-  background-color: #000;
-}
-
-nav button {
-  background-color: #000;
-  color: #fff;
-  border: none;
-  padding: 10px;
+/* nav bar css ------------------------------------ */
+.navBar {
   position: absolute;
-  right: 1%;
+  width: 1400px;
+  height: 60px;
+  left: 0px;
+  top: 0px;
+
+  background: #000000;
+}
+.linksFrame {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 32px;
+
+  position: absolute;
+  width: 460px;
+  height: 24px;
+  left: 145px;
+  top: 18px;
+}
+.linksFrame link {
 }
 
-nav button:hover {
-  background-color: rgb(164, 23, 23);
-  color: rgb(0, 0, 0);
+.linksFrame a {
+  width: 40px;
+  height: 21px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 21px;
+  /* identical to box height */
+
+  letter-spacing: -0.6px;
+
+  color: #ffffff;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.linksFrame a:hover {
+  color: #fff;
+  background-color: #000;
+}
+/* all products css -------------------------- */
+.productsTitle {
+  position: absolute;
+  width: 235px;
+  height: 48px;
+  left: 145px;
+  top: 94px;
+
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 48px;
+  /* identical to box height, or 133% */
+
+  letter-spacing: -0.03em;
+
+  color: #ffffff;
+}
+
+.productsText {
+  position: absolute;
+  width: 476px;
+  height: 78px;
+  left: 145px;
+  top: 151px;
+
+  /* Paragraph 02 */
+
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  /* or 144% */
+
+  letter-spacing: -0.3px;
+
+  color: #ffffff;
+}
+
+.productsTextCard {
+  position: absolute;
+  width: 1400px;
+  height: 276px;
+  left: 0px;
+  top: 100px;
+
+  /* Primary */
+
+  background: #0d0d0d;
+}
+.productGrid {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 20px;
+
+  /* position: absolute; */
+  width: 835px;
+  height: 682px;
+  left: 425px;
+  top: 413px;
+}
+
+.productCard {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+}
+
+.productText {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 28px;
+  /* identical to box height, or 165% */
+  list-style: none;
+  letter-spacing: -0.4px;
+
+  color: #000000;
+}
+
+/* singlep product css =============== */
+.singleProduct h2 {
+  position: absolute;
+  left: 54.43%;
+  right: 8.5%;
+  top: 16.44%;
+  bottom: 78.22%;
+
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 48px;
+  /* identical to box height, or 133% */
+
+  letter-spacing: -0.03em;
+
+  color: #000000;
+}
+
+.singleProduct img {
+  position: absolute;
+  width: 483px;
+  height: 548px;
+  left: 111px;
+  top: 148px;
+
+  background: #c4c4c4;
+}
+
+.singleProduct span {
+  position: absolute;
+  width: 357px;
+  height: 96px;
+  left: 762px;
+  top: 247px;
+
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 24px;
+  /* or 141% */
+
+  letter-spacing: -0.03em;
+
+  color: #000000;
+}
+
+.singleProduct h3 {
+  position: absolute;
+  left: 54.43%;
+  right: 8.5%;
+  top: 21.78%;
+  bottom: 74.22%;
+
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 36px;
+  /* identical to box height, or 150% */
+
+  letter-spacing: -0.03em;
+
+  color: #000000;
+}
+
+.singleProduct button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  width: 198px;
+  height: 50px;
+}
+/* cart css ------------------------------------------ */
+.cartStandardText {
+  margin: 30px
+}
+.cartStandardText h1 {
+  width: 519px;
+  height: 44px;
+  left: 141px;
+  top: 111px;
+
+  /* Heading 03 */
+
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 44px;
+  /* identical to box height, or 122% */
+
+  letter-spacing: -1.5px;
+
+  color: #000000;
+}
+
+.cartProductCard {
+  border-bottom: 5px solid rgb(48, 48, 48);
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 25px;
+  gap: 7px;
+  margin: 10px;
+
+  width: 1000px;
+  height: 150px;
+}
+
+.cartProductCard img {
+  width: 150px;
+  height: 150px;
+  background: #c4c4c4;
+  margin: 5px;
+}
+
+.cartItemName {
+  width: 189px;
+  height: 30px;
+
+  /* Heading 04 */
+
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+  /* identical to box height, or 136% */
+
+  letter-spacing: -0.55px;
+
+  color: #000000;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.cartQuantity {
+  height: 26px;
+  left: 36px;
+  right: 36px;
+  top: calc(50% - 26px / 2);
+
+  /* Paragraph / 02 */
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  /* identical to box height, or 144% */
+
+  text-align: center;
+  letter-spacing: -0.3px;
+
+  /* Primary */
+
+  color: #0d0d0d;
+
+  mix-blend-mode: normal;
+}
+
+.cartPrice {
+  width: 81px;
+  height: 30px;
+
+  /* Heading 04 */
+
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+  /* identical to box height, or 136% */
+
+  letter-spacing: -0.55px;
+
+  color: #000000;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 3;
+  flex-grow: 0;
+}
+
+.cartTotalPrice {
+  /* $200 */
+
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: right;
+  letter-spacing: -0.3px;
+
+  /* Primary */
+
+  color: #0d0d0d;
+}
+.cartTotalQty {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: right;
+  letter-spacing: -0.3px;
+
+  /* Primary */
+
+  color: #0d0d0d;
+}
+
+.orderSummaryItems {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  left: 1200px;
+  top: 200px;
+  background-color: #c4c4c4;
+  padding: 10px;
+  border: 1px solid #000;
+}
+.orderSummaryItems h2 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+ border-bottom: 2px solid black;
+  /* identical to box height, or 136% */
+
+  letter-spacing: -0.55px;
+
+  color: #000000;
+}
+
+.orderSummaryItems p {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+ 
+  letter-spacing: -0.3px;
+
+  color: #0d0d0d;
+}
+
+
+.checkoutButton {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: absolute;
+  background-color: #fff200;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  left: 1300px;
+  top: 360px;
+ width: 100px;
+ border-radius: 12px;
+   margin: 4px 2px;
+  cursor: pointer;
+  font-family: "Public Sans";
+  font-style: normal;
+}
+.completeCheckoutButton {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #fff200;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+ width: 100px;
+ border-radius: 12px;
+   margin: 4px 2px;
+  cursor: pointer;
+  font-family: "Public Sans";
+  font-style: normal;
+}
+
+.checkoutForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: absolute;
+  width: 300px;
+  height: 350px;
+  left: 1200px;
+  top: 450px;
+  background-color: #c4c4c4;
+  padding: 10px;
+  border: 1px solid #000;
+}
+
+.emptyCart {
+  left: 500px;
+  top: 400px;
+position: absolute;
+  /* Paragraph 03 */
+
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 26px;
+  /* identical to box height, or 162% */
+
+  letter-spacing: -0.2px;
+
+  color: #000000;
+
+
+}
+
+.keepShoppingButton {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #04AA6D;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
 }

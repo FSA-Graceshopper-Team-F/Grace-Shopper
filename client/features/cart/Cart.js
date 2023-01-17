@@ -63,43 +63,57 @@ const Cart = () => {
 	};
 	return (
 		<div className="cart">
-			<ul>
+			<div className="cartStandardText">
+			<h1>Your Cart</h1>
+			</div>
+			<ul >
 				{cartProducts.map((item) => (
-					<li key={`Cart item ${item.id}`}>
-						Item:{item.name}{" "}
-						<button
-							onClick={() => {
-								handleIncreaseQuantity(item);
-								handleUpdateCart();
-							}}
-						>
-							+
-						</button>{" "}
-						<button
-							onClick={() => {
-								handleDecreaseQuantity(item);
-								handleUpdateCart();
-							}}
-						>
-							-
-						</button>{" "}
-						<button
+					<li className="cartProductCard" key={`Cart item ${item.id}`}>
+						<img src={item.imageUrl} width="75" height="75" />
+						<p className="cartItemName">Item:{item.name}{" "}</p>
+						<div className="moreLessButtons">
+							<button
+								onClick={() => {
+									handleIncreaseQuantity(item);
+									handleUpdateCart();
+								}}
+								className="moreButton"
+							>
+								+
+							</button>{" "}
+							<p className="cartQuantity">Qty:{item.quantity}</p>
+							<button className="lessButton"
+								onClick={() => {
+									handleDecreaseQuantity(item);
+									handleUpdateCart();
+								}}
+							>
+								-
+							</button>{" "}
+						</div>
+
+						<button className="removeButton"
 							onClick={() => {
 								handleRemoveItem(item);
 								handleUpdateCart();
 							}}
 						>
-							X
-						</button><br/>
-						<img src={item.imageUrl} width="75" height="75"/><br/>
-						Qty:{item.quantity}<br/>
-						Price:{item.price}<br/>
-						ItemTotal:${item.price * item.quantity}.00{" "}
+							Remove
+						</button><br />
+
+
+
+						<p className="cartPrice">Price:{item.price}</p>
+
 						<hr />
 					</li>
 				))}
-				Total Qty: {cartQuantity}<br/>
-				Total Price: ${totalCartPrice}.00
+				
+				<div className="orderSummaryItems">
+				<h2>Order Summary</h2>
+				<p className="cartTotalQty">Total Qty: {cartQuantity}</p>
+				<p className="cartTotalPrice">Total Price: ${totalCartPrice}.00</p>
+				</div>
 			</ul>
 		</div>
 	);
