@@ -11,6 +11,8 @@ const AllProducts = () => {
     dispatch(fetchProductsAsync());
   }, [dispatch]);
 
+
+
   return (
     <div>
       {products.length ?
@@ -23,6 +25,7 @@ const AllProducts = () => {
             <li>
             {[product.name, product.price]}  </li>
         </Link>
+            {isAdmin ? (<DeleteButton productId={product.id} productName={product.name} />) : null}
         </ul>
        )): console.log('---NO PRODUCTS---', null)
     }
