@@ -35,6 +35,9 @@ const AllProducts = () => {
                   <li>
                     {[product.name, product.price, product.imageUrl]}  
                     </li>
+                    <div>
+              Category: {product.category}
+            </div>
                 </Link>
               </div>
               {isAdmin ? (<DeleteButton productId={product.id} productName={product.name} />) : null}

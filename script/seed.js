@@ -18,6 +18,7 @@ const seed = async () => {
 	const fakeDescription = faker.commerce.productDescription();
 	const fakePrice = faker.commerce.price(1, 100);
 	const fakeImage = faker.image.imageUrl(200, 200, true);
+	
 	//creating products
 	await Product.create({
 		name: fakeProduct,
@@ -25,6 +26,7 @@ const seed = async () => {
 		imageUrl: fakeImage,
 		category: fakeCategory,
 		price: fakePrice,
+		category: fakeCategory,
 	});
 	//creating Users
 	await User.create({
