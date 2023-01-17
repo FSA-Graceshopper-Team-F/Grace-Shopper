@@ -2,17 +2,28 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from 'react';
 import { fetchProductsAsync, selectProducts } from "./productSlice";
 import { Link } from "react-router-dom";
+import AddProduct from "./AddProduct";
+import { selectAuth } from "../auth/authSlice";
 
 const AllProducts = () => {
   const products = useSelector(selectProducts);
+  const { isAdmin } = useSelector(selectAuth);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(fetchProductsAsync());
   }, [dispatch]);
 
   return (
     <div>
+      <div>
+      {isAdmin ? (
+					<div>
+						<AddProduct />
+					</div>
+				) : null}
+
+      </div>
       {products && products.length ?
        products.map((product) => (
         <ul
@@ -22,7 +33,7 @@ const AllProducts = () => {
             <img src={`${product.imageUrl}`}/>
             <li>
             {[product.name, product.price, product.imageUrl]}  </li>
-        </Link>        
+        </Link>
         </ul>
        )): console.log('---NO PRODUCTS---', null)
     }
