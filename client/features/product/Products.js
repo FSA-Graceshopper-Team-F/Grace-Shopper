@@ -2,13 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect } from 'react';
 import { fetchProductsAsync, selectProducts } from "./productSlice";
 import { Link } from "react-router-dom";
-import AddProduct from "./AddProduct";
-import { selectAuth } from "../auth/authSlice";
-import DeleteButton from "./DeleteButton";
 
 const AllProducts = () => {
   const products = useSelector(selectProducts);
-  const { isAdmin } = useSelector(selectAuth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,15 +15,7 @@ const AllProducts = () => {
 
   return (
     <div>
-      <div>
-      {isAdmin ? (
-					<div>
-						<AddProduct />
-					</div>
-				) : null}
-
-      </div>
-      {products && products.length ?
+      {products.length ?
        products.map((product) => (
         <ul
         className="allProducts"
@@ -35,8 +23,7 @@ const AllProducts = () => {
           <Link to={`/products/${product.id}`}>
             <img src={`${product.imageUrl}`}/>
             <li>
-            {[product.name, product.price, product.imageUrl]}
-            </li>
+            {[product.name, product.price]}  </li>
         </Link>
             {isAdmin ? (<DeleteButton productId={product.id} productName={product.name} />) : null}
         </ul>

@@ -5,6 +5,7 @@ export const AdminNavbar = () => {
 	return (
 		<div>
 			<Link to="/users">All users</Link>
+			<Link to="/addProduct">Add A Product</Link>
 		</div>
 	);
 };

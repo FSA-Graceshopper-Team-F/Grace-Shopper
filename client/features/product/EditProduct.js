@@ -1,82 +1,100 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { editProductAsync } from "./productSlice";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-const EditProduct = () => {
-  const [name, setName] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [price, setPrice] = useState('');
-  const [description, setDescription] = useState('');
-	const dispatch = useDispatch();
-  const { productId } = useParams();
+const EditProduct = ({ afterEdit, currentProduct }) => {
+	const [product, setProduct] = useState({ ...currentProduct });
+	const [loading, setLoading] = useState(false);
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    dispatch(editProductAsync({ productId, name, imageUrl, price, description }));
-    setName("");
-    setImageUrl("");
-    setPrice("");
-    setDescription("");
-  };
+	useEffect(() => {
+		setProduct({ ...currentProduct });
+	}, [currentProduct]);
 
+	const onSubmit = (event) => {
+		event.preventDefault();
+		setLoading(true);
+		const token = window.localStorage.getItem("token");
+		const config = {
+			headers: {
+				Authorization: token,
+			},
+		};
 
-  return (
-    <>
-      <section className="heading">
-        <h2>Edit Product</h2>
-        <p>Fill out form below</p>
-      </section>
+		axios
+			.put(`/api/products/${product.id}`, product, config)
+			.then(afterEdit)
+			.catch(console.error)
+			.finally(() => setLoading(false));
+	};
+	const updateProductValues = (event) => {
+		const keyToUpdate = event.target.name;
+		setProduct((currentValues) => ({
+			...currentValues,
+			[keyToUpdate]: event.target.value,
+		}));
+	};
 
-      <section className="form">
-        <form onSubmit={onSubmit}>
-          <div className="form-group">
-            <label>Product Name</label>
-            <input
-              type="text"
-              placeholder="Product"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-            />
-          </div>
+	return (
+		<>
+			<section className="heading">
+				<h2>Edit Product</h2>
+				<p>Fill out form below</p>
+			</section>
 
-          <div className="form-group">
-              <label>Product Price</label>
-              <input
-                type="number"
-                name="price"
-                placeholder="Price"
-                value={price}
-                onChange={(event) => setPrice(event.target.value)}
-              />
-          </div>
+			<section className="form">
+				<form onSubmit={onSubmit}>
+					<div className="form-group">
+						<label>Product Name</label>
+						<input
+							disabled={loading}
+							name="name"
+							onChange={updateProductValues}
+							placeholder="name"
+							type="text"
+							value={product.name}
+						/>
+					</div>
 
-          <div className="form-group">
-              <label>Product Description</label>
-              <textarea
-                name="description"
-                placeholder="description"
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
-              />
-          </div>
+					<div className="form-group">
+						<label>Product Price</label>
+						<input
+							disabled={loading}
+							name="price"
+							onChange={updateProductValues}
+							placeholder="Price"
+							type="number"
+							value={product.price}
+						/>
+					</div>
 
-          <div className="form-group">
-              <label>Image</label>
-              <input
-                type="text"
-                placeholder="Image link"
-                value={imageUrl}
-                onChange={(event) => setImageUrl(event.target.value)}
-              />
-          </div>
-          <div className="form-group">
-            <button className="btn">Submit</button>
-          </div>
-        </form>
-      </section>
-    </>
-  )
+					<div className="form-group">
+						<label>Product Description</label>
+						<textarea
+							disabled={loading}
+							name="description"
+							onChange={updateProductValues}
+							placeholder="description"
+							value={product.description}
+						/>
+					</div>
+
+					<div className="form-group">
+						<label>Image</label>
+						<input
+							disabled={loading}
+							name="imageUrl"
+							onChange={updateProductValues}
+							placeholder="Image link"
+							type="text"
+							value={product.imageUrl}
+						/>
+					</div>
+					<div className="form-group">
+						<button className="btn" disabled={loading}>Submit</button>
+					</div>
+				</form>
+			</section>
+		</>
+	);
 };
 
-export default EditProduct
+export default EditProduct;

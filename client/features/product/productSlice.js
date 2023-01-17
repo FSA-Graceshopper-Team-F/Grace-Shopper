@@ -28,22 +28,6 @@ export const addProductAsync = createAsyncThunk("addProduct", async (productData
 	}
 });
 
-//Edit Product
-export const editProductAsync = createAsyncThunk("editProduct", async( product ) => {
-	try{
-		const token = window.localStorage.getItem("token")
-		const config = {
-			headers: {
-				Authorization: token
-			}
-		};
-		const { data } = await axios.put(`/api/products/${product.productId}`, product, config);
-		return data;
-	}catch(error){
-		alert(error.response.data)
-	}
-});
-
 //Delete Product
 export const deleteProductAsync = createAsyncThunk("deleteProduct", async(productId) => {
 	try{
@@ -62,8 +46,6 @@ export const deleteProductAsync = createAsyncThunk("deleteProduct", async(produc
 	}
 });
 
-
-
 const productsSlice = createSlice({
 	name: "products",
 	initialState: [],
@@ -72,11 +54,9 @@ const productsSlice = createSlice({
 		builder.addCase(fetchProductsAsync.fulfilled, (_state, action) => {
 			return action.payload;
 		})
-		builder.addCase(addProductAsync.fulfilled), (_state, action) => {
-			return action.payload;
-		}
-		builder.addCase(editProductAsync.fulfilled), (_state, action) => {
-			return action.payload;
+		builder.addCase(addProductAsync.fulfilled), (state, action) => {
+			console.log(action.payload)
+			return state
 		}
 		builder.addCase(deleteProductAsync.fulfilled), (_state, action) => {
 			return action.payload;

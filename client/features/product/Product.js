@@ -14,7 +14,7 @@ import { selectAuth } from "../auth/authSlice";
 import EditProduct from "./EditProduct";
 
 export const Product = () => {
-	const { isAdmin, id } = useSelector(selectAuth)
+	const { isAdmin, id } = useSelector(selectAuth);
 	const product = useSelector(selectSingleProduct);
 	const cart = useSelector(selectCart);
 	const { productId } = useParams();
@@ -23,7 +23,7 @@ export const Product = () => {
 
 	useEffect(() => {
 		dispatch(fetchProductAsync(productId));
-	}, [dispatch]);
+	}, [dispatch, productId]);
 
 	const handleAddToCart = (product) => {
 		const doesItExist = cart.find((item) => item.productId === product.id);
@@ -33,36 +33,45 @@ export const Product = () => {
 		return dispatch(addItem({ productId: product.id, quantity: 1 }));
 	};
 
-	const handleUpdateCart = () =>{
-		dispatch(updateCartLocalAsync())
-		if(id)return dispatch(updateCartAsync());
-		return null
-	}
+	const handleUpdateCart = () => {
+		dispatch(updateCartLocalAsync());
+		if (id) return dispatch(updateCartAsync());
+		return null;
+	};
 	return (
 		<div className="singleProduct">
 			<div>
-      {isAdmin ? (
+				{isAdmin ? (
 					<div>
-						<EditProduct />
+						<EditProduct
+							afterEdit={() => dispatch(fetchProductAsync(productId))}
+							currentProduct={product}
+						/>
 					</div>
 				) : null}
-				</div>
+			</div>
 
-			<img src={`${imageUrl}`} /><br/>
+			<img src={`${imageUrl}`} />
+			<br />
 			<div>
-			<h2>{[name]}</h2>
-			<span>{description}</span><br/>
-			<h3>${price}</h3><br/>
+				<h2>{[name]}</h2>
+				<span>{description}</span>
+				<br />
+				<h3>${price}</h3>
+				<br />
 			</div>
 			<button
 				onClick={() => {
 					handleAddToCart(product);
-					handleUpdateCart()
+					handleUpdateCart();
 				}}
 			>
 				Add to Cart
-			</button><br/>
-			<Link to="/products"><button>Keep Shopping</button></Link>
+			</button>
+			<br />
+			<Link to="/products">
+				<button>Keep Shopping</button>
+			</Link>
 		</div>
 	);
 };
