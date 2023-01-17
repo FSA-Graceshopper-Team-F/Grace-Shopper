@@ -44,6 +44,24 @@ export const editProductAsync = createAsyncThunk("editProduct", async( product )
 	}
 });
 
+//Delete Product
+export const deleteProductAsync = createAsyncThunk("deleteProduct", async(productId) => {
+	try{
+		const token = window.localStorage.getItem("token")
+		const config = {
+			headers: {
+				Authorization: token
+			}
+		};
+		console.log('PRODUCT FROM THUNK', productId)
+		const { data } = await axios.delete(`/api/products/${productId}`, config);
+		console.log('DELETE THUNK', data)
+		return data;
+	}catch(error){
+		throw new Error(error);
+	}
+});
+
 
 
 const productsSlice = createSlice({
@@ -58,6 +76,9 @@ const productsSlice = createSlice({
 			return action.payload;
 		}
 		builder.addCase(editProductAsync.fulfilled), (_state, action) => {
+			return action.payload;
+		}
+		builder.addCase(deleteProductAsync.fulfilled), (_state, action) => {
 			return action.payload;
 		}
 	},

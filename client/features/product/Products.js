@@ -4,6 +4,7 @@ import { fetchProductsAsync, selectProducts } from "./productSlice";
 import { Link } from "react-router-dom";
 import AddProduct from "./AddProduct";
 import { selectAuth } from "../auth/authSlice";
+import DeleteButton from "./DeleteButton";
 
 const AllProducts = () => {
   const products = useSelector(selectProducts);
@@ -13,6 +14,8 @@ const AllProducts = () => {
   useEffect(() => {
     dispatch(fetchProductsAsync());
   }, [dispatch]);
+
+
 
   return (
     <div>
@@ -32,8 +35,10 @@ const AllProducts = () => {
           <Link to={`/products/${product.id}`}>
             <img src={`${product.imageUrl}`}/>
             <li>
-            {[product.name, product.price, product.imageUrl]}  </li>
+            {[product.name, product.price, product.imageUrl]}
+            </li>
         </Link>
+            {isAdmin ? (<DeleteButton productId={product.id} productName={product.name} />) : null}
         </ul>
        )): console.log('---NO PRODUCTS---', null)
     }
