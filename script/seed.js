@@ -45,6 +45,30 @@ const orderSeed = async () => {
 			{ productId: 2, quantity: 3 },
 			{ productId: 3, quantity: 1 },
 		],
+		productDetails:[
+			{
+			  "id": 1,
+			  "name": "Oriental Metal Cheese",
+			  "price": "6.00",
+			  "imageUrl": "https://loremflickr.com/200/200/true",
+			  "quantity": 6,
+			  "createdAt": "2023-01-16T01:47:10.536Z",
+			  "productId": 1,
+			  "updatedAt": "2023-01-16T01:47:10.536Z",
+			  "description": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive"
+			},
+			{
+			  "id": 2,
+			  "name": "Tasty Soft Pants",
+			  "price": "94.00",
+			  "imageUrl": "https://loremflickr.com/200/200/true",
+			  "quantity": 5,
+			  "createdAt": "2023-01-16T01:47:10.536Z",
+			  "productId": 2,
+			  "updatedAt": "2023-01-16T01:47:10.536Z",
+			  "description": "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit"
+			}
+		  ]
 	});
 	await Order.create({
 		userId: 2,
@@ -53,6 +77,30 @@ const orderSeed = async () => {
 			{ productId: 2, quantity: 3 },
 			{ productId: 1, quantity: 1 },
 		],
+		productDetails:[
+			{
+			  "id": 1,
+			  "name": "Oriental Metal Cheese",
+			  "price": "6.00",
+			  "imageUrl": "https://loremflickr.com/200/200/true",
+			  "quantity": 6,
+			  "createdAt": "2023-01-16T01:47:10.536Z",
+			  "productId": 1,
+			  "updatedAt": "2023-01-16T01:47:10.536Z",
+			  "description": "The automobile layout consists of a front-engine design, with transaxle-type transmissions mounted at the rear of the engine and four wheel drive"
+			},
+			{
+			  "id": 2,
+			  "name": "Tasty Soft Pants",
+			  "price": "94.00",
+			  "imageUrl": "https://loremflickr.com/200/200/true",
+			  "quantity": 5,
+			  "createdAt": "2023-01-16T01:47:10.536Z",
+			  "productId": 2,
+			  "updatedAt": "2023-01-16T01:47:10.536Z",
+			  "description": "Carbonite web goalkeeper gloves are ergonomically designed to give easy fit"
+			}
+		  ]
 	});
 };
 
