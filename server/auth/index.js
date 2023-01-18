@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const User = require("../db/models/User");
+
 module.exports = router;
+
 router.post("/login", async (req, res, next) => {
 	try {
 		const token = await User.authenticate(req.body);
