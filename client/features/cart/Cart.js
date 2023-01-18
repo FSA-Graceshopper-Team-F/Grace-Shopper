@@ -51,7 +51,7 @@ const Cart = () => {
 		dispatch(updateCartLocalAsync())
 	};
 
-	const handleRemoveItem = ({productId}) => {
+	const handleRemoveItem = ({ productId }) => {
 		dispatch(removeItem(productId));
 		dispatch(updateCartLocalAsync())
 	};
@@ -62,61 +62,60 @@ const Cart = () => {
 		return null;
 	};
 	return (
-		<div className="cart">
-			<div className="cartStandardText">
-			<h1>Review your cart.</h1>
-			<h2>Free delivery and free returns.</h2>
+		<div className="cartPage">
+			<div >
+				<h1>Review your cart.</h1>
+				<h2>Free delivery and free returns.</h2>
 			</div>
 			<ul >
 				{cartProducts.map((item) => (
-					<li className="cartProductCard"  key={`Cart item ${item.productId}`}> 
-					{!item.name ? <div className="error">DELETE THIS ITEM IT IS NO LONGER AVAILABLE<button onClick={() => {
+					<li key={`Cart item ${item.productId}`}>
+						{!item.name ? <div className="error">DELETE THIS ITEM IT IS NO LONGER AVAILABLE<button onClick={() => {
 							handleRemoveItem(item);
 							handleUpdateCart(item.productId);
-						}}>Remove</button><hr/></div> : <div>
-						<p className="cartItemName">Item:{item.name}{" "}</p>
-            <div className="moreLessButtons">
-						<button
-							onClick={() => {
-								handleIncreaseQuantity(item);
-								handleUpdateCart();
-							}}
-              		className="moreButton"
-						>
-							+
-						</button>{" "}
-            <p className="cartQuantity">Qty:{item.quantity}</p>
-						<button className="lessButton"
-							onClick={() => {
-								handleDecreaseQuantity(item);
-								handleUpdateCart();
-							}}
-						>
-							-
-						</button>{" "}
-            </div>
-					<button className="removeButton"
+						}}>Remove</button><hr /></div> :
+							<div className="cartProductCard">
+								<img src={item.imageUrl} width="75" height="75" /><br />
 
-							onClick={() => {
-								handleRemoveItem(item);
-								handleUpdateCart(item.productId);
-							}}
-						>
-							Remove
-						</button><br/>
-						<img src={item.imageUrl} width="75" height="75"/><br/>
-						Qty:{item.quantity}<br/>
-						<p className="cartPrice">Price:{item.price}</p>
-						ItemTotal:${item.price * item.quantity}.00
-						<hr />
-						</div> }
+								<div className="cartProductCardInfo">
+								<h1>{item.name}{" "}</h1>
+								<div className="cartProductCardButtons">
+									<button className="adjustQtyBtn" onClick={() => {
+											handleIncreaseQuantity(item);
+											handleUpdateCart();
+										}}>
+										+
+									</button>{" "}
+									<h2>Qty:{item.quantity}</h2>
+									<button className="adjustQtyBtn"
+										onClick={() => {
+											handleDecreaseQuantity(item);
+											handleUpdateCart();
+										}}
+									>
+										-
+									</button>{" "}
+									<button
+									onClick={() => {
+										handleRemoveItem(item);
+										handleUpdateCart(item.productId);
+									}}
+								>
+									Remove
+								</button>
+								</div>
+							
+								<h3>Price: ${item.price}</h3>
+								</div>
+								Total Price: ${item.price * item.quantity}.00
+							</div>}
 					</li>
 				))}
-        	<div className="orderSummaryItems">
-          <h2>Order Summary</h2>
-				{Number.isNaN(totalCartPrice) ? null : <p className="cartTotalQty">`Total Qty: ${cartQuantity}`</p>}<br/>
-				{Number.isNaN(totalCartPrice) ? "Some Products no longer available remove them from cart" : <p className="cartTotalPrice">`Total Price: $${totalCartPrice}.00`</p>}
-        </div>
+				<div className="orderSummary">
+					<h2>Order Summary</h2>
+					{Number.isNaN(totalCartPrice) ? null : <p >`Total Qty: ${cartQuantity}`</p>}<br />
+					{Number.isNaN(totalCartPrice) ? "Some Products no longer available remove them from cart" : <p >`Total Price: $${totalCartPrice}.00`</p>}
+				</div>
 			</ul>
 		</div>
 	);
