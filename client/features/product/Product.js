@@ -50,17 +50,16 @@ export const Product = () => {
 					</div>
 				) : null}
 			</div>
-
+<Link to="/products" className="backToProductsBtn">
+				<p>Back to all products</p>
+			</Link>
 			<img src={`${imageUrl}`} />
-			<br />
-			<div>
+			<div className="singleProductInfo">
 				<h2>{[name]}</h2>
 				<span>{description}</span>
-				<br />
+
 				<h3>${price}</h3>
-				<br />
-			</div>
-			<button
+				<button
 				onClick={() => {
 					handleAddToCart(product);
 					handleUpdateCart();
@@ -68,10 +67,10 @@ export const Product = () => {
 			>
 				Add to Cart
 			</button>
-			<br />
-			<Link to="/products">
-				<button>Keep Shopping</button>
-			</Link>
+			</div>
+			
+			
+			
 		</div>
 	);
 };

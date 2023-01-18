@@ -64,7 +64,8 @@ const Cart = () => {
 	return (
 		<div className="cart">
 			<div className="cartStandardText">
-			<h1>Your Cart</h1>
+			<h1>Review your cart.</h1>
+			<h2>Free delivery and free returns.</h2>
 			</div>
 			<ul >
 				{cartProducts.map((item) => (

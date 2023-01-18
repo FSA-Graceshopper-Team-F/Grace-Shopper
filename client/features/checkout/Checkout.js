@@ -51,7 +51,7 @@ const Checkout = () => {
 	};
 	return (
 		<div>
-			{orderPlaced ? <h1>THANK YOU FOR YOUR ORDER</h1> : "Checkout"}
+			{orderPlaced ? <h1>THANK YOU FOR YOUR ORDER</h1> : ""}
 			<Cart />
 			<form className="checkoutForm" onSubmit={(event) => handleCartToOrder(event)}>
 				<label htmlFor="userName">

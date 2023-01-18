@@ -34,9 +34,11 @@ const AuthForm = ({ name, displayName }) => {
 
 
   return (
-    <div>
+    <div className="loginForm">
       {isError ? <h3>{message}</h3> :
       <form onSubmit={handleSubmit} name={name}>
+        <h1>Welcome Back</h1>
+        <h2>Please login or signup with your email</h2>
         <div>
           <label htmlFor="email">
             <small>Email</small>

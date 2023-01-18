@@ -11,11 +11,11 @@ const Users = () => {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="allUsers">
       {users && users.length ?
        users.map((user) => (
         <ul
-        className="allUsers"
+        className="singleUser"
         key={`All Users: ${user.id}`}>
           <li>
             {[user.email]}

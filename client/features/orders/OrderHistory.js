@@ -19,24 +19,24 @@ export const OrderHistory = () => {
 	}) 
 
 	return (
-		<div>
-			OrderHistory
+		<div className="OrderHistory">
+			<span>Your Orders</span>
 			<hr />
 			{orderHistory && orderHistory.length ? (
 				orderDetails.map((order) => (
-					<div key={`orderId ${order.id}`}>
-						<span>Order Number: {order.id}</span>
+					<div className="singleOrderHistory" key={`orderId ${order.id}`}>
+						<h2>Order Number: {order.id}</h2>
 						<br />
-						<span>Order Total: ${order.total}.00</span>
+						<h2>Order Total: ${order.total}.00</h2>
 						{order.productDetails.map((product) => (
 							<ul key={`product ${product.id}`}>
-								{product.name}
+								<h1>{product.name}</h1>
 								<li>Price: {product.price}</li>
 								<li>Qty: {product.quantity}</li>
 								<li>Item Total: ${product.quantity * product.price}.00</li>
 							</ul>
 						))}
-						<hr />
+						
 					</div>
 				))
 			) : (

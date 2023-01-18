@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-color: #f4f4f4;
 }
 
 a {
@@ -20,250 +21,170 @@ form div {
   display: inline-block;
 }
 .logoTitle {
-  width: 136px;
-  height: 24px;
-
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 50px;
   letter-spacing: -0.6px;
-
-  color: #ffffff;
-
-  /* Inside auto layout */
-
-  flex: none;
-  order: 0;
-  flex-grow: 0;
+  color: #000000;
 }
 /* nav bar css ------------------------------------ */
 .navBar {
-  position: absolute;
-  width: 1400px;
-  height: 60px;
-  left: 0px;
-  top: 0px;
-
-  background: #000000;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  overflow: auto;
 }
-.linksFrame {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
-  gap: 32px;
-
-  position: absolute;
-  width: 460px;
-  height: 24px;
-  left: 145px;
-  top: 18px;
-}
-.linksFrame link {
-}
-
-.linksFrame a {
-  width: 40px;
-  height: 21px;
-
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
+.navbar a {
+  float: left;
+  padding: 12px;
+  color: white;
+  text-decoration: none;
   font-size: 17px;
-  line-height: 21px;
-  /* identical to box height */
-
-  letter-spacing: -0.6px;
-
-  color: #ffffff;
-
-  /* Inside auto layout */
-
-  flex: none;
-  order: 1;
-  flex-grow: 0;
 }
 
-.linksFrame a:hover {
-  color: #fff;
-  background-color: #000;
+.navbar a:hover {
+  opacity: .9;
 }
+
+.cartLink {
+  float: right;
+}
+.loginLink {
+  float: right;
+}
+.logOutLink {
+  float: right;
+}
+.ordersLink {
+  float: right;
+}
+.profileLink {
+  float: right;
+}
+
 /* all products css -------------------------- */
 .productsTitle {
-  position: absolute;
-  width: 235px;
-  height: 48px;
-  left: 145px;
-  top: 94px;
-
   font-family: "Public Sans";
   font-style: normal;
   font-weight: 600;
-  font-size: 36px;
-  line-height: 48px;
-  /* identical to box height, or 133% */
-
+  font-size: 40px;
   letter-spacing: -0.03em;
-
-  color: #ffffff;
+  padding: 20px;
+  background-color: #ffffff;
+  color: #000000;
+  text-align: center;
 }
 
 .productsText {
-  position: absolute;
-  width: 476px;
-  height: 78px;
-  left: 145px;
-  top: 151px;
-
   /* Paragraph 02 */
 
   font-family: "Public Sans";
   font-style: normal;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 26px;
+  font-size: 22px;
   /* or 144% */
-
+  padding: 20px;
   letter-spacing: -0.3px;
-
+  text-align: center;
   color: #ffffff;
 }
 
 .productsTextCard {
-  position: absolute;
-  width: 1400px;
-  height: 276px;
-  left: 0px;
-  top: 100px;
-
-  /* Primary */
-
-  background: #0d0d0d;
+  width: 90%;
+  height: 200px;
+  background: rgb(86, 86, 86);
+  align-items: center;
+  margin: auto;
 }
 .productGrid {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 20px;
-
-  /* position: absolute; */
-  width: 835px;
-  height: 682px;
-  left: 425px;
-  top: 413px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #ffffff;
+  width: 90%;
+  align-items: center;
+  margin: auto;
 }
 
 .productCard {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
+  max-width: 350px;
+  max-height: fit-content;
   margin: auto;
+  padding: 10px;
   text-align: center;
-}
-
-.productText {
-  font-family: "Public Sans";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 17px;
-  line-height: 28px;
-  /* identical to box height, or 165% */
+  font-family: arial;
+  background-color: rgb(255, 255, 255);
   list-style: none;
-  letter-spacing: -0.4px;
-
-  color: #000000;
+}
+.productCard:hover {
+  opacity: 0.7;
+}
+.productCardLink {
+  all: unset;
 }
 
 /* singlep product css =============== */
-.singleProduct h2 {
-  position: absolute;
-  left: 54.43%;
-  right: 8.5%;
-  top: 16.44%;
-  bottom: 78.22%;
-
-  font-family: "Public Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 48px;
-  /* identical to box height, or 133% */
-
-  letter-spacing: -0.03em;
-
-  color: #000000;
+.singleProduct {
+  background-color: #ffffff;
+  display: flex;
 }
-
 .singleProduct img {
-  position: absolute;
-  width: 483px;
-  height: 548px;
-  left: 111px;
-  top: 148px;
-
-  background: #c4c4c4;
+  max-height: 700px;
+  max-width: 700px;
+  flex: 1;
+  margin: 50px;
 }
 
-.singleProduct span {
-  position: absolute;
-  width: 357px;
-  height: 96px;
-  left: 762px;
-  top: 247px;
-
-  font-family: "Public Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 17px;
-  line-height: 24px;
-  /* or 141% */
-
-  letter-spacing: -0.03em;
-
-  color: #000000;
+.singleProductInfo {
+  background-color: #ffffff;
+  margin: 50px;
+  
 }
-
-.singleProduct h3 {
-  position: absolute;
-  left: 54.43%;
-  right: 8.5%;
-  top: 21.78%;
-  bottom: 74.22%;
-
-  font-family: "Public Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 36px;
-  /* identical to box height, or 150% */
-
-  letter-spacing: -0.03em;
-
-  color: #000000;
+.singleProductInfo h2 {
+  margin: 10px;
+  font-size: 40px;
 }
-
-.singleProduct button {
-  border: none;
-  outline: 0;
-  padding: 12px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
+.singleProductInfo span {
+  margin: 10px;
   font-size: 18px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
-  width: 198px;
-  height: 50px;
+  line-height: 25px;
+  background-color: #ffffff;
+}
+.singleProductInfo h3 {
+  margin: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 25px;
+}
+
+.singleProductInfo button {
+  background-color: #1d1d1d;
+  border: none;
+  color: rgb(255, 255, 255);
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 25px;
+  width: 80%;
+  cursor: pointer; 
+}
+
+.singleProductInfo button:hover {
+  opacity: .8;
+}
+
+.backToProductsBtn {
+ margin: 25px;
+ position: absolute;
+ left: 2%;
+ top:18%;
+ text-decoration:underline;
 }
 /* cart css ------------------------------------------ */
 .cartStandardText {
-  margin: 30px
+  margin: 30px;
 }
 .cartStandardText h1 {
   width: 519px;
@@ -309,22 +230,13 @@ form div {
 .cartItemName {
   width: 189px;
   height: 30px;
-
-  /* Heading 04 */
-
   font-family: "Public Sans";
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
   line-height: 30px;
-  /* identical to box height, or 136% */
-
   letter-spacing: -0.55px;
-
   color: #000000;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -335,45 +247,27 @@ form div {
   left: 36px;
   right: 36px;
   top: calc(50% - 26px / 2);
-
-  /* Paragraph / 02 */
-
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 26px;
-  /* identical to box height, or 144% */
-
   text-align: center;
   letter-spacing: -0.3px;
-
-  /* Primary */
-
   color: #0d0d0d;
-
   mix-blend-mode: normal;
 }
 
 .cartPrice {
   width: 81px;
   height: 30px;
-
-  /* Heading 04 */
-
   font-family: "Public Sans";
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
   line-height: 30px;
-  /* identical to box height, or 136% */
-
   letter-spacing: -0.55px;
-
   color: #000000;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 3;
   flex-grow: 0;
@@ -417,16 +311,15 @@ form div {
   height: 200px;
   left: 1200px;
   top: 200px;
-  background-color: #c4c4c4;
+  background-color: #ffffff;
   padding: 10px;
-  border: 1px solid #000;
 }
 .orderSummaryItems h2 {
   font-family: "Public Sans";
   font-style: normal;
   font-weight: 600;
   font-size: 22px;
- border-bottom: 2px solid black;
+  border-bottom: 2px solid black;
   /* identical to box height, or 136% */
 
   letter-spacing: -0.55px;
@@ -439,12 +332,11 @@ form div {
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
- 
+
   letter-spacing: -0.3px;
 
   color: #0d0d0d;
 }
-
 
 .checkoutButton {
   display: flex;
@@ -457,9 +349,9 @@ form div {
   text-align: center;
   left: 1300px;
   top: 360px;
- width: 100px;
- border-radius: 12px;
-   margin: 4px 2px;
+  width: 100px;
+  border-radius: 12px;
+  margin: 4px 2px;
   cursor: pointer;
   font-family: "Public Sans";
   font-style: normal;
@@ -472,9 +364,9 @@ form div {
   font-size: 16px;
   cursor: pointer;
   text-align: center;
- width: 100px;
- border-radius: 12px;
-   margin: 4px 2px;
+  width: 100px;
+  border-radius: 12px;
+  margin: 4px 2px;
   cursor: pointer;
   font-family: "Public Sans";
   font-style: normal;
@@ -489,15 +381,14 @@ form div {
   height: 350px;
   left: 1200px;
   top: 450px;
-  background-color: #c4c4c4;
+  background-color: #ffffff;
   padding: 10px;
-  border: 1px solid #000;
 }
 
 .emptyCart {
   left: 500px;
   top: 400px;
-position: absolute;
+  position: absolute;
   /* Paragraph 03 */
 
   font-family: "Public Sans";
@@ -510,17 +401,249 @@ position: absolute;
   letter-spacing: -0.2px;
 
   color: #000000;
-
-
 }
 
 .keepShoppingButton {
   display: block;
   width: 100%;
   border: none;
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   padding: 14px 28px;
   font-size: 16px;
   cursor: pointer;
   text-align: center;
+}
+
+/* login page --------------- */
+
+.loginForm {
+  background-color: #ffffff;
+
+  box-sizing: border-box;
+
+  width: 500px;
+  height: 500px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.loginForm h1 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 30px;
+  text-align: center;
+  /* identical to box height, or 136% */
+
+  letter-spacing: -0.55px;
+  padding-top: 10%;
+
+  /* Colors / Base / Color 6 */
+
+  color: #111111;
+}
+.loginForm h2 {
+  text-align: center;
+  /* Paragraph 03 */
+
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 26px;
+  /* identical to box height, or 162% */
+
+  letter-spacing: -0.2px;
+
+  /* Colors / Grey / Grey 2 */
+
+  color: #a9abbd;
+}
+.loginForm label {
+  width: 35px;
+  height: 17px;
+  left: 16px;
+  top: 11.5px;
+
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.3px;
+
+  /* Colors / Grey / Grey 2 */
+
+  color: #a9abbd;
+}
+
+.loginForm input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+
+  border: 0.5px solid #000000;
+}
+
+.loginForm button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+}
+/* order history -------------------------------------- */
+.OrderHistory {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 20px;
+}
+.OrderHistory span {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  letter-spacing: -1.5px;
+  color: #000000;
+  margin-top: 20px;
+}
+.OrderHistory h2 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 26px;
+  letter-spacing: -1.5px;
+  color: #000000;
+ margin-left:50px;
+  
+}
+.OrderHistory li {
+  width: 81px;
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.55px;
+  color: #000000;
+}
+.OrderHistory h1 {
+  width: 189px;
+  height: 30px;
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.55px;
+  color: #000000;
+  
+}
+.OrderHistory ul {
+  border-bottom: 5px solid rgb(48, 48, 48);
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 25px;
+  margin: 10px;
+
+  width: 700px;
+  
+}
+.singleOrderHistory {
+  border:1px solid #000000;
+  margin: 30px;
+  border-radius: 25px;
+}
+
+/* admin ---------------------------------------- */
+
+/* all users ----------------------------------------- */
+
+.allUsers {
+  background-color: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+.singleUser {
+  background-color: #4848486c;
+  margin: 10px;
+  padding: 15px;
+  font-size: 12px;
+  max-width: fit-content;
+}
+
+/* add a product ---------------------------------------------- */
+.addAProduct {
+  background-color: #ffffff;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.addAProductForm {
+  background-color: #6a6a6a;
+ width: 50%;
+  margin: 50px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+ 
+  
+}
+
+.addAProductForm label {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px;
+}
+
+.addAProductForm input[type=text], input[type=number], input[type=url]{
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+.addAProductForm textarea {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+.addAProductForm button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.addAProductForm button:hover {
+  opacity:1;
 }
