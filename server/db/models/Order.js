@@ -18,10 +18,6 @@ const Order = db.define('order',{
         type: Sequelize.JSONB,
         defaultValue:{}
     },
-    orderTotal:{
-        type:Sequelize.INTEGER,
-        defaultValue:0
-    }
 })
 
 module.exports = Order

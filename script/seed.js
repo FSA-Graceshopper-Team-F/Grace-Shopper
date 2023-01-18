@@ -11,18 +11,19 @@ const Order = require("../server/db/models/Order");
  */
 const seed = async () => {
 	// faker functions
+	const fakeCategory = faker.helpers.arrayElement(["sports", "clothes", "food"])
 	const fakeEmail = faker.internet.email();
 	const fakePassword = faker.internet.password();
 	const fakeProduct = faker.commerce.productName();
 	const fakeDescription = faker.commerce.productDescription();
 	const fakePrice = faker.commerce.price(1, 100);
 	const fakeImage = faker.image.imageUrl(200, 200, true);
-
 	//creating products
 	await Product.create({
 		name: fakeProduct,
 		description: fakeDescription,
 		imageUrl: fakeImage,
+		category: fakeCategory,
 		price: fakePrice,
 	});
 	//creating Users
@@ -40,6 +41,15 @@ const seed = async () => {
 const orderSeed = async () => {
 	await Order.create({
 		userId: 1,
+		address:{
+			"ZIP": "12345",
+			"city": "adminCity",
+			"name": "admin",
+			"email": "admin@admin.com",
+			"state": "ADMIN",
+			"address": "123 admin lane",
+			"country": "Admintina"
+		  },
 		order: [
 			{ productId: 1, quantity: 2 },
 			{ productId: 2, quantity: 3 },
@@ -71,7 +81,16 @@ const orderSeed = async () => {
 		  ]
 	});
 	await Order.create({
-		userId: 2,
+		userId: 1,
+		address:{
+			"ZIP": "12345",
+			"city": "adminCity",
+			"name": "admin",
+			"email": "admin@admin.com",
+			"state": "ADMIN",
+			"address": "123 admin lane",
+			"country": "Admintina"
+		  },
 		order: [
 			{ productId: 3, quantity: 2 },
 			{ productId: 2, quantity: 3 },
