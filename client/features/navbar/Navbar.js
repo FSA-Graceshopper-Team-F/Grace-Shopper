@@ -24,8 +24,9 @@ const Navbar = () => {
 
 	return (
 		<div>
-			<h1>Grace Shopper Store</h1>
-			<nav>
+			<Link to="/"><h1 className="logoTitle">Grace Shopper Store</h1></Link>
+			
+			<nav className="navBar">
 				{" "}
 				{isAdmin ? (
 					<div>
@@ -33,24 +34,29 @@ const Navbar = () => {
 					</div>
 				) : null}
 			</nav>
-			<nav>
+			<nav className="navBar">
 				{isLoggedIn ? (
-					<div>
+					<div className="linksFrame">
 						{/* The navbar will show these links after you log in */}
-						<Link to="/products" onClick={onLogout}>
+						
+						<Link to="/">Home</Link>
+						<Link to="/products">Products</Link>
+						
+						<Link className="logOutLink" to="/products" onClick={onLogout}>
 							Logout
 						</Link>
-						<Link to="/products">Products</Link>
-						<Link to="/cart">Cart:{cartQuantity}</Link>
-						<Link to="/myProfile">{email}</Link>
+						<Link className="cartLink" to="/cart">Cart:{cartQuantity}</Link>
+						<Link className="profileLink" to="/myProfile">Profile</Link>
+						<Link className="ordersLink" to="/myOrders">My Orders</Link>
 					</div>
 				) : (
-					<div>
+					<div className="linksFrame">
 						{/* The navbar will show these links before you log in */}
-						<Link to="/login">Login</Link>
+						
 						<Link to="/signup">Sign Up</Link>
 						<Link to="/products">Products</Link>
-						<Link to="/cart">Cart:{cartQuantity}</Link>
+						<Link className="cartLink" to="/cart">Cart:{cartQuantity}</Link>
+						<Link className="loginLink" to="/login">Login</Link>
 					</div>
 				)}
 			</nav>

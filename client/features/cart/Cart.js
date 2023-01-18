@@ -63,23 +63,30 @@ const Cart = () => {
 	};
 	return (
 		<div className="cart">
-			<ul>
+			<div className="cartStandardText">
+			<h1>Review your cart.</h1>
+			<h2>Free delivery and free returns.</h2>
+			</div>
+			<ul >
 				{cartProducts.map((item) => (
-					<li key={`Cart item ${item.productId}`}> 
+					<li className="cartProductCard"  key={`Cart item ${item.productId}`}> 
 					{!item.name ? <div className="error">DELETE THIS ITEM IT IS NO LONGER AVAILABLE<button onClick={() => {
 							handleRemoveItem(item);
 							handleUpdateCart(item.productId);
-						}}>X</button><hr/></div> : <div>
-						Item:{item.name}{" "}
+						}}>Remove</button><hr/></div> : <div>
+						<p className="cartItemName">Item:{item.name}{" "}</p>
+            <div className="moreLessButtons">
 						<button
 							onClick={() => {
 								handleIncreaseQuantity(item);
 								handleUpdateCart();
 							}}
+              		className="moreButton"
 						>
 							+
 						</button>{" "}
-						<button
+            <p className="cartQuantity">Qty:{item.quantity}</p>
+						<button className="lessButton"
 							onClick={() => {
 								handleDecreaseQuantity(item);
 								handleUpdateCart();
@@ -87,24 +94,29 @@ const Cart = () => {
 						>
 							-
 						</button>{" "}
-						<button
+            </div>
+					<button className="removeButton"
+
 							onClick={() => {
 								handleRemoveItem(item);
 								handleUpdateCart(item.productId);
 							}}
 						>
-							X
+							Remove
 						</button><br/>
 						<img src={item.imageUrl} width="75" height="75"/><br/>
 						Qty:{item.quantity}<br/>
-						Price:{item.price}<br/>
+						<p className="cartPrice">Price:{item.price}</p>
 						ItemTotal:${item.price * item.quantity}.00
 						<hr />
 						</div> }
 					</li>
 				))}
-				{Number.isNaN(totalCartPrice) ? null : `Total Qty: ${cartQuantity}`}<br/>
-				{Number.isNaN(totalCartPrice) ? "Some Products no longer available remove them from cart" : `Total Price: $${totalCartPrice}.00`}
+        	<div className="orderSummaryItems">
+          <h2>Order Summary</h2>
+				{Number.isNaN(totalCartPrice) ? null : <p className="cartTotalQty">`Total Qty: ${cartQuantity}`}</p><br/>
+				{Number.isNaN(totalCartPrice) ? "Some Products no longer available remove them from cart" : <p className="cartTotalPrice">`Total Price: $${totalCartPrice}.00`</>}
+        </div>
 			</ul>
 		</div>
 	);

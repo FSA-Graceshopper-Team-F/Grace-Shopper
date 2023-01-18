@@ -7,11 +7,11 @@ const AddProduct = () => {
   const [imageUrl, setImageUrl] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
-	const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const onSubmit = (event) => {
     event.preventDefault();
-    dispatch(addProductAsync({name, imageUrl, price, description }));
+    dispatch(addProductAsync({ name, imageUrl, price, description }));
     setName("");
     setImageUrl("");
     setPrice("");
@@ -20,60 +20,59 @@ const AddProduct = () => {
 
 
   return (
-    <>
-      <section className="heading">
-        <h2>Create new Product</h2>
-        <p>Fill out form below</p>
-      </section>
+    <div className="addAProduct">
 
-      <section className="form">
+      <section className="addAProductForm">
+        <h1>Add a product</h1>
+        <p>Please fill in this form to create a new product.</p>
+
         <form onSubmit={onSubmit}>
-          <div className="form-group">
-            <label>Product Name</label>
-            <input
-              type="text"
-              placeholder="Product"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-            />
-          </div>
 
-          <div className="form-group">
-              <label>Product Price</label>
-              <input
-                type="number"
-                name="price"
-                placeholder="Price"
-                value={price}
-                onChange={(event) => setPrice(event.target.value)}
-              />
-          </div>
+          <label>Product Name</label>
+          <input
+            type="text"
+            placeholder="Product"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
 
-          <div className="form-group">
-              <label>Product Description</label>
-              <textarea
-                name="description"
-                placeholder="description"
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
-              />
-          </div>
 
-          <div className="form-group">
-              <label>Image</label>
-              <input
-                type="url"
-                placeholder="Image link"
-                value={imageUrl}
-                onChange={(event) => setImageUrl(event.target.value)}
-              />
-          </div>
-          <div className="form-group">
-            <button className="btn">Submit</button>
-          </div>
+
+          <label>Product Price</label>
+          <input
+            type="number"
+            name="price"
+            placeholder="Price"
+            value={price}
+            onChange={(event) => setPrice(event.target.value)}
+          />
+
+
+
+          <label>Product Description</label>
+          <textarea
+            name="description"
+            placeholder="description"
+            value={description}
+            onChange={(event) => setDescription(event.target.value)}
+          />
+
+
+
+          <label>Image</label>
+          <input
+            type="url"
+            placeholder="Image link"
+            value={imageUrl}
+            onChange={(event) => setImageUrl(event.target.value)}
+          />
+
+
+          <button>Submit</button>
+
         </form>
       </section>
-    </>
+    </div>
   )
 };
 
