@@ -31,6 +31,7 @@ const EditProduct = ({ afterEdit, currentProduct }) => {
 			...currentValues,
 			[keyToUpdate]: event.target.value,
 		}));
+		console.log(product)
 	};
 
 	return (
