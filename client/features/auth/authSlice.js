@@ -53,6 +53,21 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 	localStorage.removeItem("cart")
 });
 
+export const editUserAsync = createAsyncThunk("editUser", async () => {
+	const token = window.localStorage.getItem("token");
+	try {
+		if (token) {
+			const { data } = await axios.put("/auth/me", {
+				headers: {
+					authorization: token,
+				},
+			});
+			return data;
+		}
+	} catch (error) {
+		console.error(error);
+	}
+});
 /*
   SLICE*/
 export const authSlice = createSlice({

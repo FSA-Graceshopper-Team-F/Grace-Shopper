@@ -633,6 +633,7 @@ form div {
   border: none;
   background: #f1f1f1;
 }
+
 .addAProductForm button {
   background-color: #04AA6D;
   color: white;
@@ -647,3 +648,9 @@ form div {
 .addAProductForm button:hover {
   opacity:1;
 }
+
+.error button, .error {
+  color:red;
+  font-size:18pt;
+}
+

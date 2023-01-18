@@ -51,8 +51,8 @@ const Cart = () => {
 		dispatch(updateCartLocalAsync())
 	};
 
-	const handleRemoveItem = ({ id: productId }) => {
-		dispatch(removeItem({ productId }));
+	const handleRemoveItem = ({productId}) => {
+		dispatch(removeItem(productId));
 		dispatch(updateCartLocalAsync())
 	};
 
@@ -69,52 +69,54 @@ const Cart = () => {
 			</div>
 			<ul >
 				{cartProducts.map((item) => (
-					<li className="cartProductCard" key={`Cart item ${item.id}`}>
-						<img src={item.imageUrl} width="75" height="75" />
+					<li className="cartProductCard"  key={`Cart item ${item.productId}`}> 
+					{!item.name ? <div className="error">DELETE THIS ITEM IT IS NO LONGER AVAILABLE<button onClick={() => {
+							handleRemoveItem(item);
+							handleUpdateCart(item.productId);
+						}}>Remove</button><hr/></div> : <div>
 						<p className="cartItemName">Item:{item.name}{" "}</p>
-						<div className="moreLessButtons">
-							<button
-								onClick={() => {
-									handleIncreaseQuantity(item);
-									handleUpdateCart();
-								}}
-								className="moreButton"
-							>
-								+
-							</button>{" "}
-							<p className="cartQuantity">Qty:{item.quantity}</p>
-							<button className="lessButton"
-								onClick={() => {
-									handleDecreaseQuantity(item);
-									handleUpdateCart();
-								}}
-							>
-								-
-							</button>{" "}
-						</div>
-
-						<button className="removeButton"
+            <div className="moreLessButtons">
+						<button
 							onClick={() => {
-								handleRemoveItem(item);
+								handleIncreaseQuantity(item);
+								handleUpdateCart();
+							}}
+              		className="moreButton"
+						>
+							+
+						</button>{" "}
+            <p className="cartQuantity">Qty:{item.quantity}</p>
+						<button className="lessButton"
+							onClick={() => {
+								handleDecreaseQuantity(item);
 								handleUpdateCart();
 							}}
 						>
+							-
+						</button>{" "}
+            </div>
+					<button className="removeButton"
+
+							onClick={() => {
+								handleRemoveItem(item);
+								handleUpdateCart(item.productId);
+							}}
+						>
 							Remove
-						</button><br />
-
-
-
+						</button><br/>
+						<img src={item.imageUrl} width="75" height="75"/><br/>
+						Qty:{item.quantity}<br/>
 						<p className="cartPrice">Price:{item.price}</p>
-
+						ItemTotal:${item.price * item.quantity}.00
 						<hr />
+						</div> }
 					</li>
 				))}
-				
-				<div className="orderSummaryItems">
-				<h2>Order Summary</h2>
-				<p className="cartTotalQty">Total Qty: {cartQuantity}</p>
-				<p className="cartTotalPrice">Total Price: ${totalCartPrice}.00</p>
-				</div>
+        	<div className="orderSummaryItems">
+          <h2>Order Summary</h2>
+				{Number.isNaN(totalCartPrice) ? null : <p className="cartTotalQty">`Total Qty: ${cartQuantity}`}</p><br/>
+				{Number.isNaN(totalCartPrice) ? "Some Products no longer available remove them from cart" : <p className="cartTotalPrice">`Total Price: $${totalCartPrice}.00`</>}
+        </div>
 			</ul>
 		</div>
 	);

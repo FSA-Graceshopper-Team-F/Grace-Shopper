@@ -8,7 +8,6 @@ const DeleteButton = ({productId, productName}) => {
 
   const handleDelete = () => {
     dispatch(deleteProductAsync(productId));
-    console.log('PRODUCT ID FROM handleDelete', productId)
     alert(`${productName} was deleted`);
     dispatch(fetchProductsAsync());
   };
