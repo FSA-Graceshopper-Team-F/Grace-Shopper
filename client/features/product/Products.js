@@ -4,6 +4,8 @@ import { fetchProductsAsync, selectProducts } from "./productSlice";
 import { Link } from "react-router-dom";
 import { selectAuth } from "../auth/authSlice";
 import DeleteButton from "./DeleteButton";
+import { SortingSelector } from "./SortingSelector";
+import { SearchBar } from "./SearchBar";
 const AllProducts = () => {
   const products = useSelector(selectProducts);
   const { isAdmin } = useSelector(selectAuth)
@@ -13,13 +15,14 @@ const AllProducts = () => {
   }, [dispatch]);
 
 
-
   return (
     <div>
       <div className="productsTextCard">
         <h1 className="productsTitle">Shop products</h1>
         <h3 className="productsText">Our most popular products based on sales. Updated frequently.</h3>
       </div>
+      <SearchBar/>
+      <SortingSelector/>
       <div className="productGrid">
 
         {products && products.length ?
