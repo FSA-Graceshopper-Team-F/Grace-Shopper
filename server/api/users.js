@@ -16,15 +16,24 @@ router.get("/", async (req, res, next) => {
 			res.json([{ email: "access denied" }]);
 		}
 	} catch (err) {
-		res.send(401)
+		res.send(401);
 		next(err);
 	}
 });
 
 router.get("/:userId", async (req, res, next) => {
 	try {
-		const user = await User.findByToken(req.headers.authorization)
+		const user = await User.findByToken(req.headers.authorization);
 		res.json(user);
+	} catch (error) {
+		next(error);
+	}
+});
+
+router.put("/me", async (req, res, next) => {
+	try {
+		const user = await User.findByToken(req.headers.authorization);
+		res.send(user.update(req.body));
 	} catch (error) {
 		next(error);
 	}
