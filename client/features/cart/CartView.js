@@ -10,11 +10,13 @@ export const CartView = () => {
       <Cart />
       <br />
       {cart.length ? <Link to="/checkout">
-        <button className="checkoutButton">GO TO CHECKOUT</button>
+        <button className="checkoutButton"><p>GO TO CHECKOUT</p></button>
       </Link> :
         <div className='emptyCart'>
+          <div className='emptyCartText'>
           <h1>Uh oh!</h1>
           <h2>Looks like your carts empty!</h2>
+          </div>
           <Link to="/products">
           <button className="keepShoppingButton">Click here to keep shopping</button>
         </Link>

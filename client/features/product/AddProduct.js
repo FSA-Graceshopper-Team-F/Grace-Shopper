@@ -24,7 +24,7 @@ const AddProduct = () => {
 
       <section className="addAProductForm">
         <h1>Add a product</h1>
-        <p>Please fill in this form to create a new product.</p>
+        <p>Please fill out this form to create a new product.</p>
 
         <form onSubmit={onSubmit}>
 
@@ -52,7 +52,7 @@ const AddProduct = () => {
           <label>Product Description</label>
           <textarea
             name="description"
-            placeholder="description"
+            placeholder="Description"
             value={description}
             onChange={(event) => setDescription(event.target.value)}
           />

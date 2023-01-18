@@ -16,14 +16,18 @@ const AllProducts = () => {
 
 
   return (
-    <div>
+    <div className="productsPage">
       <div className="productsTextCard">
-        
-        <h1 className="productsTitle">Shop products</h1>
-        <h3 className="productsText">Our most popular products based on sales. Updated frequently.</h3>
+
+        <div className="productsTextCardText">
+        <h1 >Shop products</h1>
+        <h3 >Our most popular products based on sales. Updated frequently.</h3>
+        </div>
+       <div className="searchCatDiv">
+       <SearchBar />
+        <SortingSelector />
+       </div>
       </div>
-      <SearchBar/>
-      <SortingSelector/>
       <div className="productGrid">
 
         {products && products.length ?

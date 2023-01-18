@@ -15,7 +15,7 @@ const DeleteButton = ({productId, productName}) => {
   return (
     <div>
       <button
-      className="btn"
+      className="deleteProductButton"
       onClick={handleDelete}>Delete Product
       </button>
     </div>

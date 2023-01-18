@@ -59,13 +59,14 @@ const Checkout = () => {
 		errorClassCheck ? setErrorStatus(false) : setErrorStatus(true);
 	}
 	return (
-		<div>
+		<div >
 			{orderPlaced ? <h1>THANK YOU FOR YOUR ORDER</h1> : ""}
 			<Cart />
 			<form className="checkoutForm" onSubmit={(event) => handleCartToOrder(event)}>
 				<label htmlFor="userName">
 					Name:
 					<input
+						type="text"
 						name="name"
 						value={userAddress.name}
 						required={true}
@@ -77,6 +78,7 @@ const Checkout = () => {
 				<label htmlFor="address">
 					Address:
 					<input
+						type="text"
 						name="address"
 						value={userAddress.address}
 						required={true}
@@ -88,6 +90,7 @@ const Checkout = () => {
 				<label htmlFor="city">
 					City:
 					<input
+						type="text"
 						name="city"
 						value={userAddress.city}
 						required={true}
@@ -99,6 +102,7 @@ const Checkout = () => {
 				<label htmlFor="state">
 					State/Province:
 					<input
+						type="text"
 						name="state"
 						value={userAddress.state}
 						required={true}
@@ -110,6 +114,7 @@ const Checkout = () => {
 				<label htmlFor="ZIP">
 					ZIP Code:
 					<input
+						type="text"
 						name="ZIP"
 						value={userAddress.ZIP}
 						required={true}
@@ -121,6 +126,7 @@ const Checkout = () => {
 				<label htmlFor="country">
 					Country:
 					<input
+						type="text"
 						name="country"
 						value={userAddress.country}
 						required={true}
@@ -133,8 +139,9 @@ const Checkout = () => {
 					{" "}
 					Email:
 					<input
+
 						name="email"
-						type="email"
+						type="text"
 						required={true}
 						value={userAddress.email}
 						onChange={updateAddress}

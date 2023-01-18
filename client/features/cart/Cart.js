@@ -86,7 +86,7 @@ const Cart = () => {
 										}}>
 										+
 									</button>{" "}
-									<h2>Qty:{item.quantity}</h2>
+									<h3>Total:{item.quantity}</h3>
 									<button className="adjustQtyBtn"
 										onClick={() => {
 											handleDecreaseQuantity(item);
@@ -95,7 +95,7 @@ const Cart = () => {
 									>
 										-
 									</button>{" "}
-									<button
+									<button className="removeItemButton"
 									onClick={() => {
 										handleRemoveItem(item);
 										handleUpdateCart(item.productId);
@@ -105,7 +105,7 @@ const Cart = () => {
 								</button>
 								</div>
 							
-								<h3>Price: ${item.price}</h3>
+								<h3 className="cartProductPrice">Price: ${item.price}</h3>
 								</div>
 								Total Price: ${item.price * item.quantity}.00
 							</div>}
@@ -113,8 +113,8 @@ const Cart = () => {
 				))}
 				<div className="orderSummary">
 					<h2>Order Summary</h2>
-					{Number.isNaN(totalCartPrice) ? null : <p >`Total Qty: ${cartQuantity}`</p>}<br />
-					{Number.isNaN(totalCartPrice) ? "Some Products no longer available remove them from cart" : <p >`Total Price: $${totalCartPrice}.00`</p>}
+					{Number.isNaN(totalCartPrice) ? null : <p >Total Quantity: ${cartQuantity}</p>}<br />
+					{Number.isNaN(totalCartPrice) ? "Some Products no longer available remove them from cart" : <p >Total Price: ${totalCartPrice}.00</p>}
 				</div>
 			</ul>
 		</div>
