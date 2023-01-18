@@ -5,6 +5,7 @@ import Navbar from "../features/navbar/Navbar";
 import AppRoutes from "./AppRoutes";
 import { selectAuth } from "../features/auth/authSlice.js";
 import { fetchCartAsync } from "../features/cart/cartSlice";
+import Footer from "../features/footer/Footer"
 
 const App = () => {
 	const { id } = useSelector(selectAuth);
@@ -16,6 +17,7 @@ const App = () => {
 		<div>
 			<Navbar />
 			<AppRoutes />
+			<Footer />
 		</div>
 	);
 };
