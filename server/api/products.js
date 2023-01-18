@@ -75,7 +75,6 @@ router.route('/:productId')
         throw new Error('Product not found');
       }else{
         const updatedProduct = await product.update(req.body);
-        console.log(req.body)
         res.status(202).send(updatedProduct);
       }
     } catch(err){
