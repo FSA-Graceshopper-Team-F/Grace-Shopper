@@ -5,6 +5,8 @@ import { logout, reset, selectAuth } from "../auth/authSlice";
 import { clearCartOnLogout, selectCart } from "../cart/cartSlice";
 import { resetUsers } from "../users/usersSlice";
 import { AdminNavbar } from "./AdminNavbar";
+import Submenu from "../product/Submenu"
+
 const Navbar = () => {
 	const isLoggedIn = useSelector((state) => !!state.auth.me.id);
 	const { isAdmin, email } = useSelector(selectAuth);
@@ -17,7 +19,7 @@ const Navbar = () => {
 		dispatch(logout());
 		dispatch(reset());
 		dispatch(clearCartOnLogout());
-		if(isAdmin){
+		if (isAdmin) {
 			dispatch(resetUsers())
 		}
 	};
@@ -25,7 +27,7 @@ const Navbar = () => {
 	return (
 		<div>
 			<Link to="/"><h1 className="logoTitle">Grace Shopper Store</h1></Link>
-			
+
 			<nav className="navBar">
 				{" "}
 				{isAdmin ? (
@@ -38,25 +40,34 @@ const Navbar = () => {
 				{isLoggedIn ? (
 					<div className="linksFrame">
 						{/* The navbar will show these links after you log in */}
-						
+
 						<Link to="/">Home</Link>
-						<Link to="/products">Products</Link>
-						
+
 						<Link className="logOutLink" to="/products" onClick={onLogout}>
 							Logout
 						</Link>
 						<Link className="cartLink" to="/cart">Cart:{cartQuantity}</Link>
 						<Link className="profileLink" to="/myProfile">Profile</Link>
 						<Link className="ordersLink" to="/myOrders">My Orders</Link>
+						<Link to="/products" className="nav__menu-item">
+							<p>Products</p>
+						</Link>
+						<Submenu />
+						<Link to="/cart">Cart:{cartQuantity}</Link>
+						<Link to="/myProfile">{email}</Link>
 					</div>
 				) : (
 					<div className="linksFrame">
 						{/* The navbar will show these links before you log in */}
-						
+
 						<Link to="/signup">Sign Up</Link>
-						<Link to="/products">Products</Link>
 						<Link className="cartLink" to="/cart">Cart:{cartQuantity}</Link>
 						<Link className="loginLink" to="/login">Login</Link>
+						<Link to="/products" className="nav__menu-item">
+							<div>Products</div>
+							<Submenu />
+						</Link>
+						<Link to="/cart">Cart:{cartQuantity}</Link>
 					</div>
 				)}
 			</nav>

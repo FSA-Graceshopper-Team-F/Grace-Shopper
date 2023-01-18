@@ -11,6 +11,8 @@ import { CartView } from "../features/cart/CartView";
 import { OrderHistory } from "../features/orders/OrderHistory";
 import { UserProfile } from "../features/users/UserProfile";
 import AddProduct from "../features/product/AddProduct";
+import SingleCategory from "../features/product/SingleCategory";
+
 /**
  * COMPONENT
  */
@@ -35,6 +37,10 @@ const AppRoutes = () => {
 					<Route
 						path="/products/:productId"
 						element={<Product name="product" displayName="Product" />}
+					/>
+					<Route
+						path="/categories/:singleCategory"
+						element={<SingleCategory name="Category" displayName="Category" />}
 					/>
 					<Route
 						path="/cart"
@@ -78,6 +84,10 @@ const AppRoutes = () => {
 					<Route
 						path="/products"
 						element={<AllProducts name="products" displayName="All Products" />}
+					/>
+					<Route
+						path="/categories/:singleCategory"
+						element={<SingleCategory name="Category" displayName="Category" />}
 					/>
 					<Route
 						path="/products/:productId"

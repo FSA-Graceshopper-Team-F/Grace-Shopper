@@ -654,3 +654,19 @@ form div {
   font-size:18pt;
 }
 
+.nav__submenu {
+  display: none;
+}
+
+.nav__menu-item:hover .nav__submenu {
+  display: block;
+}
+
+.nav__submenu {
+  font-weight: 300;
+  text-transform: none;
+  display: none;
+  position: absolute;
+  width: 180px;
+  background-color: #00aeef;
+}
