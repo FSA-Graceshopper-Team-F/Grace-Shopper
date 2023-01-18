@@ -654,3 +654,31 @@ form div {
   font-size:18pt;
 }
 
+.content-wrap {
+  flex: 1;
+}
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.col {
+  flex-basis:25%;
+  padding:10px;
+}
+.col h3 {
+  width: fit-content;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.row {
+  width:85%;
+  margin: auto;
+  display:flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
