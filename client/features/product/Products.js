@@ -21,14 +21,7 @@ const AllProducts = () => {
         <h3 className="productsText">Our most popular products based on sales. Updated frequently.</h3>
       </div>
       <div className="productGrid">
-        <div>
-          {isAdmin ? (
-            <div>
-              <AddProduct />
-            </div>
-          ) : null}
-
-        </div>
+      
         {products && products.length ?
           products.map((product) => (
 
