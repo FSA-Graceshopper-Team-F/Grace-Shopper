@@ -114,8 +114,8 @@ const Cart = () => {
 				))}
         	<div className="orderSummaryItems">
           <h2>Order Summary</h2>
-				{Number.isNaN(totalCartPrice) ? null : <p className="cartTotalQty">`Total Qty: ${cartQuantity}`}</p><br/>
-				{Number.isNaN(totalCartPrice) ? "Some Products no longer available remove them from cart" : <p className="cartTotalPrice">`Total Price: $${totalCartPrice}.00`</>}
+				{Number.isNaN(totalCartPrice) ? null : <p className="cartTotalQty">`Total Qty: ${cartQuantity}`</p>}<br/>
+				{Number.isNaN(totalCartPrice) ? "Some Products no longer available remove them from cart" : <p className="cartTotalPrice">`Total Price: $${totalCartPrice}.00`</p>}
         </div>
 			</ul>
 		</div>
