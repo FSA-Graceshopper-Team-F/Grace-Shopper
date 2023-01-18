@@ -18,6 +18,7 @@ const AllProducts = () => {
   return (
     <div>
       <div className="productsTextCard">
+        
         <h1 className="productsTitle">Shop products</h1>
         <h3 className="productsText">Our most popular products based on sales. Updated frequently.</h3>
       </div>
