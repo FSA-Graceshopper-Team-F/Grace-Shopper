@@ -50,9 +50,9 @@ export const Product = () => {
 					</div>
 				) : null}
 			</div>
-<Link to="/products" className="backToProductsBtn">
+{/* <Link to="/products" className="backToProductsBtn">
 				<p>Back to all products</p>
-			</Link>
+			</Link> */}
 			<img src={`${imageUrl}`} />
 			<div className="singleProductInfo">
 				<h2>{[name]}</h2>

@@ -51,20 +51,17 @@ export const UserProfile = () => {
 		}));
 	};
 	return (
-		<div>
-			<h1>My Profile</h1>
-			<hr />
-			<h3>Order History</h3>
+		<div className="myProfile">
+			<h1>Your Account</h1>
 			<Link to="/myOrders">
-				<button>View Order History</button>
+			<h3>Order History</h3>
 			</Link>
-			<hr />
-			<section className="heading">
+			<section className="myProfileHeading">
 				<h3>Edit User Profile</h3>
 			</section>
-			<section className="form">
+			<section className="myProfileForm">
 				<form onSubmit={onSubmit}>
-					<div className="form-group">
+					<div className="myProfileForm-group">
 						<label>Email</label>
 						<input
 							name="email"
@@ -76,7 +73,7 @@ export const UserProfile = () => {
 					</div>
 					<br />
 
-					<div className="form-group">
+					<div className="myProfileForm-group">
 						<label>New Password</label>
 						<input
 							disabled={loading}
@@ -87,7 +84,7 @@ export const UserProfile = () => {
 							value={user.password}
 						/>
 					</div>
-					<div className="form-group">
+					<div className="myProfileForm-group">
 						<label>Re-Type New Password </label>
 						<input
 							disabled={loading}
@@ -102,10 +99,10 @@ export const UserProfile = () => {
 					{updated ? (
 						<div>Your information has been updated! Thank you!</div>
 					) : (
-						<div className="form-group">
+						<div className="myProfileForm-group">
 							{passwordsDontMatch ? "Make sure your passwords match" : null}
 							<br />
-							<button className="btn" disabled={loading || passwordsDontMatch}>
+							<button disabled={loading || passwordsDontMatch}>
 								Click To Update My User Infomation
 							</button>
 						</div>

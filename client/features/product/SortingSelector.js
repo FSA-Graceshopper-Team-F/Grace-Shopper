@@ -20,9 +20,8 @@ export const SortingSelector = () => {
         if(value=== "priceDesc") dispatch(sortPriceDesc())
     }
 	return (
-		<div>
-
-			<label>Categories:<select name="categories" id="categories" onChange={handleChange}> 
+		<div className="categories">
+			<label>Categories: <select name="categories" id="categories" onChange={handleChange}> 
                <option value="categories" disabled={true}>Categories</option>
 				<option value="all">all</option>
 				<option value="clothes">clothes</option>
@@ -30,7 +29,7 @@ export const SortingSelector = () => {
 				<option value="sports">sports</option>
 			</select>
             </label>
-            <label>Sort By:<select name="SortByAscDesc" id="SortByAscDesc" onChange={handleSort}> 
+            <label>Sort By: <select name="SortByAscDesc" id="SortByAscDesc" onChange={handleSort}> 
                <option value="sortBy" disabled={true}>Sort By:</option>
 				<option value="nameAsc">Name: A to Z</option>
 				<option value="nameDesc">Name: Z to A</option>

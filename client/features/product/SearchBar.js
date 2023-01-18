@@ -14,10 +14,10 @@ export const SearchBar = () => {
         dispatch(fetchProductsAsync())
     }
 	return (
-		<div>
+		<div className="searchBar">
 			<form onSubmit={handleSearch}>
 				<input name="search" placeholder="search" onChange={handleChange} value={searchTerm} type="text"></input>
-				<button type="submit">Search</button>
+				<button type="submit"><p>Search</p></button>
 			</form>
 		</div>
 	);

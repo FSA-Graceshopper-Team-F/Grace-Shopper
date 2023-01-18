@@ -32,18 +32,8 @@ form div {
 .navBar {
   width: 100%;
   background-color: rgb(255, 255, 255);
-  overflow: auto;
-}
-.navbar a {
-  float: left;
-  padding: 12px;
-  color: white;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.navbar a:hover {
-  opacity: .9;
+  border-radius: 25px;
+  margin: 10px;
 }
 
 .cartLink {
@@ -63,39 +53,127 @@ form div {
 }
 
 /* all products css -------------------------- */
-.productsTitle {
+
+.productsTextCard {
+  background-color: #ffffff;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
   font-family: "Public Sans";
   font-style: normal;
   font-weight: 600;
-  font-size: 40px;
   letter-spacing: -0.03em;
-  padding: 20px;
-  background-color: #ffffff;
   color: #000000;
-  text-align: center;
 }
-
-.productsText {
-  /* Paragraph 02 */
-
+.productsTextCardText {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  font-weight: 600;
   font-family: "Public Sans";
   font-style: normal;
-  font-weight: 400;
-  font-size: 22px;
-  /* or 144% */
-  padding: 20px;
-  letter-spacing: -0.3px;
-  text-align: center;
-  color: #ffffff;
+  align-items: flex-start;
+  justify-items: center;
 }
-
-.productsTextCard {
-  width: 90%;
-  height: 200px;
-  background: rgb(86, 86, 86);
+.searchCatDiv {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-items: center;
+}
+/* search bar ----------------------------- */
+.searchBar {
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50%;
+  background-color: #595959;
+}
+.searchBar p {
+  margin: 10px;
+  display: flex;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Public Sans";
+  font-style: normal;
   align-items: center;
-  margin: auto;
+  justify-items: center;
 }
+.searchBar form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px;
+  height: 50%;
+}
+.searchBar input[type="text"] {
+  width: 800px;
+  padding: 25px;
+  margin: 10px;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 25px;
+}
+.searchBar button {
+  padding: 25px;
+  margin: 10px;
+  display: block;
+  width: 10%;
+  border: none;
+  background-color: #ffbf00da;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  align-items: center;
+  border-radius: 25px;
+}
+/* categories ---------------------------------------------- */
+.categories {
+  background-color: #595959;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50%;
+}
+.categories label {
+  margin: 10px;
+  text-align: center;
+  align-items: center;
+  border-radius: 25px;
+  justify-content: center;
+  display: flex;
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  letter-spacing: -0.55px;
+  color: #111111;
+}
+.categories option {
+  background-color: rgb(255, 255, 255);
+   font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+ 
+  letter-spacing: -0.55px;
+  color: #111111;
+}
+/* product grid -------------------------------------------- */
 .productGrid {
   display: grid;
   grid-template-columns: auto auto auto;
@@ -103,11 +181,12 @@ form div {
   width: 90%;
   align-items: center;
   margin: auto;
+  border-radius: 25px;
 }
 
 .productCard {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 350px;
+  max-width: 300px;
   max-height: fit-content;
   margin: auto;
   padding: 10px;
@@ -115,6 +194,36 @@ form div {
   font-family: arial;
   background-color: rgb(255, 255, 255);
   list-style: none;
+  border-radius: 25px;
+}
+.productCard img {
+  border-radius: 25px;
+}
+.productCard p {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: -0.03em;
+  color: #000000;
+  text-align: center;
+}
+.productCard h1 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  letter-spacing: -0.03em;
+  color: #000000;
+  text-align: center;
+}
+.productCard li {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: -0.3px;
+  text-align: center;
 }
 .productCard:hover {
   opacity: 0.7;
@@ -127,18 +236,20 @@ form div {
 .singleProduct {
   background-color: #ffffff;
   display: flex;
+  margin: auto;
+  border-radius: 25px;
 }
 .singleProduct img {
   max-height: 700px;
   max-width: 700px;
   flex: 1;
   margin: 50px;
+  border-radius: 25px;
 }
 
 .singleProductInfo {
   background-color: #ffffff;
   margin: 50px;
-  
 }
 .singleProductInfo h2 {
   margin: 10px;
@@ -168,239 +279,186 @@ form div {
   margin: 4px 2px;
   border-radius: 25px;
   width: 80%;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .singleProductInfo button:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
 
 .backToProductsBtn {
- margin: 25px;
- position: absolute;
- left: 2%;
- top:18%;
- text-decoration:underline;
+  margin: 25px;
+  position: absolute;
+  left: 2%;
+  top: 18%;
+  text-decoration: underline;
 }
 /* cart css ------------------------------------------ */
-.cartStandardText {
-  margin: 30px;
+.cartPage {
+  background-color: #ffffff;
+  box-sizing: border-box;
+  border-radius: 25px;
+  width: 700px;
+  height: fit-content;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-.cartStandardText h1 {
-  width: 519px;
-  height: 44px;
-  left: 141px;
-  top: 111px;
-
-  /* Heading 03 */
-
+.cartPage h1 {
   font-family: "Public Sans";
   font-style: normal;
   font-weight: 600;
-  font-size: 36px;
-  line-height: 44px;
-  /* identical to box height, or 122% */
-
-  letter-spacing: -1.5px;
-
-  color: #000000;
+  font-size: 50px;
+  line-height: 30px;
+  text-align: center;
+  letter-spacing: -0.55px;
+  padding-top: 10%;
+  color: #111111;
 }
-
-.cartProductCard {
-  border-bottom: 5px solid rgb(48, 48, 48);
+.cartPage h2 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: -0.2px;
+  color: #000000;
+  margin: 10px;
+  background-color: #1d1d1d6c;
+  margin: 10px;
+  border-radius: 25px;
+  text-align: center;
+}
+.cartPage ul {
+  margin: 10px;
+  padding: 10px;
   list-style: none;
   display: flex;
+  flex-direction: column;
+}
+.cartProductCard {
+  background-color: #f4f4f4;
+  border-radius: 25px;
+  height: fit-content;
+  display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  padding: 25px;
-  gap: 7px;
+  justify-content: center;
   margin: 10px;
-
-  width: 1000px;
-  height: 150px;
+}
+.cartProductCardInfo {
+  width: 60%;
+  max-height: fit-content;
+  margin: 10px;
+}
+.cartProductCardInfo h1 {
+  font-family: "Public Sans";
+  font-weight: 600;
+  font-size: 25px;
+  text-decoration: underline;
+  letter-spacing: -0.55px;
+  color: #111111;
 }
 
+.cartProductCardInfo h3 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 550;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: -0.55px;
+  color: #111111;
+}
+.cartProductCardButtons h3 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 550;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: -0.55px;
+  color: #111111;
+}
 .cartProductCard img {
-  width: 150px;
-  height: 150px;
-  background: #c4c4c4;
-  margin: 5px;
+  margin: 10px;
+  width: 25%;
+  height: 180px;
+  border-radius: 25px;
 }
-
-.cartItemName {
-  width: 189px;
-  height: 30px;
-  font-family: "Public Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 30px;
-  letter-spacing: -0.55px;
-  color: #000000;
-  flex: none;
-  order: 0;
-  flex-grow: 0;
-}
-
-.cartQuantity {
-  height: 26px;
-  left: 36px;
-  right: 36px;
-  top: calc(50% - 26px / 2);
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 26px;
-  text-align: center;
-  letter-spacing: -0.3px;
-  color: #0d0d0d;
-  mix-blend-mode: normal;
-}
-
-.cartPrice {
-  width: 81px;
-  height: 30px;
-  font-family: "Public Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  line-height: 30px;
-  letter-spacing: -0.55px;
-  color: #000000;
-  flex: none;
-  order: 3;
-  flex-grow: 0;
-}
-
-.cartTotalPrice {
-  /* $200 */
-
-  font-family: "Public Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-  text-align: right;
-  letter-spacing: -0.3px;
-
-  /* Primary */
-
-  color: #0d0d0d;
-}
-.cartTotalQty {
-  font-family: "Public Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-  text-align: right;
-  letter-spacing: -0.3px;
-
-  /* Primary */
-
-  color: #0d0d0d;
-}
-
-.orderSummaryItems {
+.cartProductCardButtons {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: absolute;
-  width: 300px;
-  height: 200px;
-  left: 1200px;
-  top: 200px;
-  background-color: #ffffff;
-  padding: 10px;
+  height: 40px;
+  align-items: center;
 }
-.orderSummaryItems h2 {
-  font-family: "Public Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  border-bottom: 2px solid black;
-  /* identical to box height, or 136% */
-
-  letter-spacing: -0.55px;
-
-  color: #000000;
+.cartProductCardButtons h3 {
+  margin-left: 10px;
+  margin-right: 10px;
 }
-
-.orderSummaryItems p {
-  font-family: "Public Sans";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-
-  letter-spacing: -0.3px;
-
-  color: #0d0d0d;
-}
-
-.checkoutButton {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: absolute;
-  background-color: #fff200;
-  font-size: 16px;
-  cursor: pointer;
+.adjustQtyBtn {
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 10px 20px;
   text-align: center;
-  left: 1300px;
-  top: 360px;
-  width: 100px;
-  border-radius: 12px;
+  text-decoration: none;
+  display: inline-block;
   margin: 4px 2px;
   cursor: pointer;
-  font-family: "Public Sans";
-  font-style: normal;
+  border-radius: 16px;
 }
-.completeCheckoutButton {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background-color: #fff200;
-  font-size: 16px;
-  cursor: pointer;
+.removeItemButton {
+  background-color: #ddd;
+  border: none;
+  color: black;
+  padding: 10px 20px;
   text-align: center;
-  width: 100px;
-  border-radius: 12px;
+  text-decoration: none;
+  display: inline-block;
   margin: 4px 2px;
   cursor: pointer;
+  border-radius: 16px;
+}
+.cartProductPrice {
+  height: 0px;
+}
+.cartProductCard button {
+  background-color: #595959;
+}
+
+/* order summary in cart ---------------------------------------- */
+.orderSummary {
+  box-sizing: border-box;
+  border-radius: 25px;
+  width: 100%;
+  height: fit-content;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.orderSummary p {
   font-family: "Public Sans";
   font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+  letter-spacing: -0.55px;
+  color: #111111;
 }
-
-.checkoutForm {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: absolute;
-  width: 300px;
-  height: 350px;
-  left: 1200px;
-  top: 450px;
-  background-color: #ffffff;
-  padding: 10px;
-}
-
+/* empty cart css ------------------------------------------ */
 .emptyCart {
-  left: 500px;
-  top: 400px;
-  position: absolute;
-  /* Paragraph 03 */
-
   font-family: "Public Sans";
   font-style: normal;
   font-weight: 500;
   font-size: 50px;
-  line-height: 26px;
-  /* identical to box height, or 162% */
-
-  letter-spacing: -0.2px;
-
-  color: #000000;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  border-radius: 25px;
+  width: 700px;
+  height: fit-content;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.emptyCartText {
+  margin: 10px;
 }
 
 .keepShoppingButton {
@@ -412,15 +470,89 @@ form div {
   font-size: 16px;
   cursor: pointer;
   text-align: center;
+  border-radius: 25px;
 }
 
+/* checkout css -------------------------------------- */
+.checkoutButton {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 20%;
+  border: none;
+  background-color: #ffbf00da;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 25px;
+}
+.checkoutButton:hover {
+  opacity: 0.7;
+}
+.checkoutButton p {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  text-align: center;
+  letter-spacing: -0.55px;
+  color: #111111;
+}
+
+/* checkout form ----------------------------------- */
+.checkoutForm {
+  background-color: #ffffff;
+  box-sizing: border-box;
+  border-radius: 25px;
+  width: 700px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+.checkoutForm label {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Public Sans";
+  font-style: normal;
+  align-items: center;
+  justify-items: center;
+}
+.checkoutForm input[type="text"] {
+  width: 60%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+.completeCheckoutButton {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 50%;
+  height: 35px;
+  border: none;
+  background-color: #ffbf00da;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 25px;
+}
+.completeCheckoutButton:hover {
+  opacity: 0.7;
+}
 /* login page --------------- */
 
 .loginForm {
   background-color: #ffffff;
 
   box-sizing: border-box;
-
+  border-radius: 25px;
   width: 500px;
   height: 500px;
   display: block;
@@ -435,13 +567,8 @@ form div {
   font-size: 50px;
   line-height: 30px;
   text-align: center;
-  /* identical to box height, or 136% */
-
   letter-spacing: -0.55px;
   padding-top: 10%;
-
-  /* Colors / Base / Color 6 */
-
   color: #111111;
 }
 .loginForm h2 {
@@ -453,8 +580,6 @@ form div {
   font-weight: 500;
   font-size: 16px;
   line-height: 26px;
-  /* identical to box height, or 162% */
-
   letter-spacing: -0.2px;
 
   /* Colors / Grey / Grey 2 */
@@ -513,6 +638,7 @@ form div {
   margin-left: 100px;
   margin-right: 100px;
   margin-top: 20px;
+  border-radius: 25px;
 }
 .OrderHistory span {
   font-family: "Public Sans";
@@ -530,8 +656,7 @@ form div {
   font-size: 26px;
   letter-spacing: -1.5px;
   color: #000000;
- margin-left:50px;
-  
+  margin-left: 50px;
 }
 .OrderHistory li {
   width: 81px;
@@ -551,10 +676,12 @@ form div {
   font-size: 22px;
   letter-spacing: -0.55px;
   color: #000000;
-  
+}
+.OrderHistory img {
+  border-radius: 25px;
 }
 .OrderHistory ul {
-  border-bottom: 5px solid rgb(48, 48, 48);
+  border-bottom: 2px solid rgb(48, 48, 48);
   list-style: none;
   display: flex;
   flex-direction: row;
@@ -563,14 +690,96 @@ form div {
   margin: 10px;
 
   width: 700px;
-  
 }
 .singleOrderHistory {
-  border:1px solid #000000;
+  border: 1px solid #000000;
   margin: 30px;
   border-radius: 25px;
 }
+/* my profile -------------------------------------------------------------------- */
+.myProfile {
+  background-color: #ffffff;
+  box-sizing: border-box;
+  border-radius: 25px;
+  width: 700px;
+  height: fit-content;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
+.myProfile h1 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 30px;
+  text-align: center;
+  letter-spacing: -0.55px;
+  padding-top: 10%;
+  color: #111111;
+}
+.myProfile h3 {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: -0.2px;
+  color: #000000;
+  margin: 10px;
+  background-color: #1d1d1d6c;
+  margin: 10px;
+  border-radius: 25px;
+  text-align: center;
+}
+.myProfile h3:hover {
+  opacity: 0.8;
+}
+
+.myProfileForm form {
+  margin: 10px;
+  padding: 10px;
+}
+.myProfileForm-group {
+  margin: 10px;
+}
+.myProfileForm-group label {
+  width: fit-content;
+  height: 17px;
+  left: 16px;
+  top: 11.5px;
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.3px;
+  color: #a9abbd;
+}
+
+.myProfileForm-group input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+
+  border: 0.5px solid #000000;
+}
+.myProfileForm-group button {
+  background-color: #4caf50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
+  margin: 10px;
+}
 /* admin ---------------------------------------- */
 
 /* all users ----------------------------------------- */
@@ -579,7 +788,7 @@ form div {
   background-color: #ffffff;
   display: flex;
   flex-wrap: wrap;
-  
+  border-radius: 25px;
 }
 .singleUser {
   background-color: #4848486c;
@@ -587,6 +796,8 @@ form div {
   padding: 15px;
   font-size: 12px;
   max-width: fit-content;
+  border-radius: 25px;
+  list-style-type: none;
 }
 
 /* add a product ---------------------------------------------- */
@@ -597,26 +808,30 @@ form div {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 25px;
 }
 
 .addAProductForm {
   background-color: #6a6a6a;
- width: 50%;
+  width: 50%;
   margin: 50px;
   padding: 25px;
   display: flex;
   flex-direction: column;
- 
-  
+  border-radius: 25px;
 }
 
 .addAProductForm label {
   font-size: 20px;
   font-weight: 600;
+  font-family: "Public Sans";
+  font-style: normal;
   margin: 10px;
 }
 
-.addAProductForm input[type=text], input[type=number], input[type=url]{
+.addAProductForm input[type="text"],
+input[type="number"],
+input[type="url"] {
   width: 90%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -635,50 +850,96 @@ form div {
 }
 
 .addAProductForm button {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
   cursor: pointer;
   width: 100%;
-  opacity: 0.9;
+  border-radius: 25px;
 }
 
 .addAProductForm button:hover {
-  opacity:1;
+  opacity: 0.8;
 }
 
-.error button, .error {
-  color:red;
-  font-size:18pt;
+.error button,
+.error {
+  color: red;
+  font-size: 18pt;
 }
 
-.content-wrap {
-  flex: 1;
+/* delete product button -------------------------------------- */
+.deleteProductButton {
+  background-color: #e43f3f; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 8px;
 }
-.page-container {
+.deleteProductButton:hover {
+  opacity: 0.8;
+}
+
+/* edit product ------------------------------------------ */
+
+.editProduct {
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-}
-
-.col {
-  flex-basis:25%;
-  padding:10px;
-}
-.col h3 {
+  justify-content: center;
+  align-items: center;
   width: fit-content;
-  margin-bottom: 40px;
-  position: relative;
+  border-radius: 25px;
+  outline: 1px solid black;
+  margin: 20px;
 }
-
-.row {
-  width:85%;
-  margin: auto;
-  display:flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
+.editProductHeader {
+  font-weight: 600;
+  font-family: "Public Sans";
+  font-style: normal;
+  margin: 10px;
 }
-
+.editProductForm {
+  background-color: #6a6a6a;
+  width: 80%;
+  margin: 10px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+}
+.editProductForm label {
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Public Sans";
+  font-style: normal;
+  margin: 10px;
+}
+.editProductForm input[type="text"],
+input[type="number"] {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+.editProductForm button {
+  background-color: #04aa6d;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 25px;
+}
+.editProductForm button:hover {
+  opacity: 0.8;
+}

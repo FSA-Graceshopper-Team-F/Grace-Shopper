@@ -35,15 +35,15 @@ const EditProduct = ({ afterEdit, currentProduct }) => {
 	};
 
 	return (
-		<>
-			<section className="heading">
+		<div className="editProduct">
+			<section className="editProductHeader">
 				<h2>Edit Product</h2>
-				<p>Fill out form below</p>
+				<p>Fill out the form below</p>
 			</section>
 
-			<section className="form">
+			<div className="editProductForm">
 				<form onSubmit={onSubmit}>
-					<div className="form-group">
+					
 						<label>Product Name</label>
 						<input
 							disabled={loading}
@@ -53,9 +53,9 @@ const EditProduct = ({ afterEdit, currentProduct }) => {
 							type="text"
 							value={product.name}
 						/>
-					</div>
+					
 
-					<div className="form-group">
+					
 						<label>Product Price</label>
 						<input
 							disabled={loading}
@@ -65,20 +65,21 @@ const EditProduct = ({ afterEdit, currentProduct }) => {
 							type="number"
 							value={product.price}
 						/>
-					</div>
+					
 
-					<div className="form-group">
+				
 						<label>Product Description</label>
 						<textarea
 							disabled={loading}
 							name="description"
 							onChange={updateProductValues}
 							placeholder="description"
+							type="description"
 							value={product.description}
 						/>
-					</div>
+				
 
-					<div className="form-group">
+				
 						<label>Image</label>
 						<input
 							disabled={loading}
@@ -88,13 +89,13 @@ const EditProduct = ({ afterEdit, currentProduct }) => {
 							type="text"
 							value={product.imageUrl}
 						/>
-					</div>
-					<div className="form-group">
+					
+					<div>
 						<button className="btn" disabled={loading}>Submit</button>
 					</div>
 				</form>
-			</section>
-		</>
+			</div>
+		</div>
 	);
 };
 

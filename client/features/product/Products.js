@@ -16,15 +16,20 @@ const AllProducts = () => {
 
 
   return (
-    <div>
+    <div className="productsPage">
       <div className="productsTextCard">
-        <h1 className="productsTitle">Shop products</h1>
-        <h3 className="productsText">Our most popular products based on sales. Updated frequently.</h3>
+
+        <div className="productsTextCardText">
+        <h1 >Shop products</h1>
+        <h3 >Our most popular products based on sales. Updated frequently.</h3>
+        </div>
+       <div className="searchCatDiv">
+       <SearchBar />
+        <SortingSelector />
+       </div>
       </div>
-      <SearchBar/>
-      <SortingSelector/>
       <div className="productGrid">
-      
+
         {products && products.length ?
           products.map((product) => (
 
@@ -32,12 +37,10 @@ const AllProducts = () => {
               // className="productGrid"
               key={`All products: ${product.id}`}>
               <div className="productCard">
-                <Link className="productCardLink"to={`/products/${product.id}`}>
-
+                <Link className="productCardLink" to={`/products/${product.id}`}>
                   <img src={`${product.imageUrl}`} />
-                  <li>
-                    {[product.name, product.price, product.imageUrl]}  
-                    </li>
+                  <h1>{product.name}</h1>
+                  <p>${product.price}</p>
                 </Link>
               </div>
               {isAdmin ? (<DeleteButton productId={product.id} productName={product.name} />) : null}
