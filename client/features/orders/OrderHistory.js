@@ -15,8 +15,8 @@ export const OrderHistory = () => {
 				(total, product) => total + product.quantity * product.price,
 				0
 			)
-		}; 
-	}) 
+		};
+	})
 
 	return (
 		<div className="OrderHistory">
@@ -30,13 +30,15 @@ export const OrderHistory = () => {
 						<h2>Order Total: ${order.total}.00</h2>
 						{order.productDetails.map((product) => (
 							<ul key={`product ${product.id}`}>
+								<img src={product.imageUrl} />
+
 								<h1>{product.name}</h1>
 								<li>Price: {product.price}</li>
 								<li>Qty: {product.quantity}</li>
 								<li>Item Total: ${product.quantity * product.price}.00</li>
 							</ul>
 						))}
-						
+
 					</div>
 				))
 			) : (
