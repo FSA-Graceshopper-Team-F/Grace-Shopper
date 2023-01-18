@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectAuth } from "../auth/authSlice";
 import Cart from "../cart/Cart";
 import { cartToOrderAsync, selectCart } from "../cart/cartSlice";
 
@@ -10,6 +9,7 @@ const Checkout = () => {
 	const navigate = useNavigate();
 	const cart = useSelector(selectCart);
 	const [orderPlaced, setOrderPlaced] = useState(false);
+	const [errorStatus, setErrorStatus] = useState(true);
 	const [userAddress, setUserAddress] = useState({
 		name: "",
 		address: "",
@@ -19,6 +19,11 @@ const Checkout = () => {
 		country: "",
 		email: "",
 	});
+
+	useEffect(() => {
+		cartErrorCheck();
+	}, [errorStatus, userAddress]);
+
 	const handleCartToOrder = (event) => {
 		event.preventDefault();
 		if (cart.length) {
@@ -33,7 +38,7 @@ const Checkout = () => {
 				email: "",
 			});
 			setOrderPlaced(true);
-			window.localStorage.removeItem("cart")
+			window.localStorage.removeItem("cart");
 			return setTimeout(() => {
 				setOrderPlaced(false);
 				navigate("/products");
@@ -49,6 +54,10 @@ const Checkout = () => {
 			[keyToUpdate]: event.target.value,
 		}));
 	};
+	function cartErrorCheck() {
+		const errorClassCheck = document.querySelector(".error") == null;
+		errorClassCheck ? setErrorStatus(false) : setErrorStatus(true);
+	}
 	return (
 		<div>
 			{orderPlaced ? <h1>THANK YOU FOR YOUR ORDER</h1> : "Checkout"}
@@ -133,7 +142,10 @@ const Checkout = () => {
 					></input>
 				</label>
 				<br />
-				<button type="submit"> Complete Checkout </button>
+				<button type="submit" disabled={errorStatus}>
+					{" "}
+					Complete Checkout{" "}
+				</button>
 				<br />
 			</form>
 		</div>

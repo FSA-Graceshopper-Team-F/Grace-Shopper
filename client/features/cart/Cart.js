@@ -51,8 +51,8 @@ const Cart = () => {
 		dispatch(updateCartLocalAsync())
 	};
 
-	const handleRemoveItem = ({ id: productId }) => {
-		dispatch(removeItem({ productId }));
+	const handleRemoveItem = ({productId}) => {
+		dispatch(removeItem(productId));
 		dispatch(updateCartLocalAsync())
 	};
 
@@ -65,7 +65,11 @@ const Cart = () => {
 		<div className="cart">
 			<ul>
 				{cartProducts.map((item) => (
-					<li key={`Cart item ${item.id}`}>
+					<li key={`Cart item ${item.productId}`}> 
+					{!item.name ? <div className="error">DELETE THIS ITEM IT IS NO LONGER AVAILABLE<button onClick={() => {
+							handleRemoveItem(item);
+							handleUpdateCart(item.productId);
+						}}>X</button><hr/></div> : <div>
 						Item:{item.name}{" "}
 						<button
 							onClick={() => {
@@ -86,7 +90,7 @@ const Cart = () => {
 						<button
 							onClick={() => {
 								handleRemoveItem(item);
-								handleUpdateCart();
+								handleUpdateCart(item.productId);
 							}}
 						>
 							X
@@ -94,12 +98,13 @@ const Cart = () => {
 						<img src={item.imageUrl} width="75" height="75"/><br/>
 						Qty:{item.quantity}<br/>
 						Price:{item.price}<br/>
-						ItemTotal:${item.price * item.quantity}.00{" "}
+						ItemTotal:${item.price * item.quantity}.00
 						<hr />
+						</div> }
 					</li>
 				))}
-				Total Qty: {cartQuantity}<br/>
-				Total Price: ${totalCartPrice}.00
+				{Number.isNaN(totalCartPrice) ? null : `Total Qty: ${cartQuantity}`}<br/>
+				{Number.isNaN(totalCartPrice) ? "Some Products no longer available remove them from cart" : `Total Price: $${totalCartPrice}.00`}
 			</ul>
 		</div>
 	);
