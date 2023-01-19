@@ -22,7 +22,7 @@ const Checkout = () => {
 
 	useEffect(() => {
 		cartErrorCheck();
-	}, [errorStatus, userAddress]);
+	}, [errorStatus, userAddress, cart]);
 
 	const handleCartToOrder = (event) => {
 		event.preventDefault();
