@@ -19,23 +19,26 @@ export const OrderHistory = () => {
 	})
 
 	return (
-		<div className="OrderHistory">
+		<div className="OrderHistoryFullPage">
+			<div className="OrderHistory">
 			<span>Your Orders</span>
 			<hr />
 			{orderHistory && orderHistory.length ? (
 				orderDetails.map((order) => (
 					<div className="singleOrderHistory" key={`orderId ${order.id}`}>
+						<div className="orderDetails">
 						<h2>Order Number: {order.id}</h2>
-						<br />
 						<h2>Order Total: ${order.total}.00</h2>
+						</div>
 						{order.productDetails.map((product) => (
 							<ul key={`product ${product.id}`}>
 								<img src={product.imageUrl} />
-
 								<h1>{product.name}</h1>
+								<div className="orderDetailsInfo">
 								<li>Price: {product.price}</li>
 								<li>Qty: {product.quantity}</li>
 								<li>Item Total: ${product.quantity * product.price}.00</li>
+								</div>
 							</ul>
 						))}
 
@@ -44,6 +47,7 @@ export const OrderHistory = () => {
 			) : (
 				<div>You have no orders</div>
 			)}
+			</div>
 		</div>
 	);
 };

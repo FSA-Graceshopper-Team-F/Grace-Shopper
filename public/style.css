@@ -20,6 +20,9 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+/* nav bar css ------------------------------------ */
+
 .logoTitle {
   font-family: "Inter";
   font-style: normal;
@@ -27,15 +30,27 @@ form div {
   font-size: 50px;
   letter-spacing: -0.6px;
   color: #000000;
+  margin: 10px;
 }
-/* nav bar css ------------------------------------ */
-.navBar {
-  width: 100%;
+
+.linksFrame {
+  width: 99%;
   background-color: rgb(255, 255, 255);
   border-radius: 25px;
   margin: 10px;
 }
-
+.linksFrame a{
+  background-color: #f4f4f4;
+  text-align: center;
+  padding: 10px 12px;
+  text-decoration: none;
+  font-size: 17px;
+  border-radius: 25px;
+}
+.linksFrame a:hover {
+  background-color: #ddd;
+  color: black;
+}
 .cartLink {
   float: right;
 }
@@ -97,7 +112,6 @@ form div {
   margin-left: auto;
   margin-right: auto;
   height: 50%;
-  background-color: #595959;
 }
 .searchBar p {
   margin: 10px;
@@ -118,29 +132,23 @@ form div {
 }
 .searchBar input[type="text"] {
   width: 800px;
-  padding: 25px;
-  margin: 10px;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-  border-radius: 25px;
+  border: 1px solid black;
+  background: #f4f4f4;
 }
 .searchBar button {
-  padding: 25px;
-  margin: 10px;
   display: block;
   width: 10%;
-  border: none;
+  border: 1px solid black;
   background-color: #ffbf00da;
   font-size: 16px;
   cursor: pointer;
   text-align: center;
   align-items: center;
-  border-radius: 25px;
+  
 }
 /* categories ---------------------------------------------- */
 .categories {
-  background-color: #595959;
+  background-color: #1d1d1d6c;
   border-radius: 25px;
   display: flex;
   flex-direction: row;
@@ -309,10 +317,8 @@ form div {
   font-style: normal;
   font-weight: 600;
   font-size: 50px;
-  line-height: 30px;
   text-align: center;
   letter-spacing: -0.55px;
-  padding-top: 10%;
   color: #111111;
 }
 .cartPage h2 {
@@ -320,12 +326,10 @@ form div {
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
-  line-height: 26px;
   letter-spacing: -0.2px;
   color: #000000;
   margin: 10px;
   background-color: #1d1d1d6c;
-  margin: 10px;
   border-radius: 25px;
   text-align: center;
 }
@@ -420,7 +424,23 @@ form div {
   height: 0px;
 }
 .cartProductCard button {
-  background-color: #595959;
+  background-color: #1d1d1d6c;
+}
+.cartTotalPrice {
+  
+  border-radius: 25px;
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 550;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: -0.55px;
+  color: #111111;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
 }
 
 /* order summary in cart ---------------------------------------- */
@@ -550,7 +570,6 @@ form div {
 
 .loginForm {
   background-color: #ffffff;
-
   box-sizing: border-box;
   border-radius: 25px;
   width: 500px;
@@ -558,6 +577,7 @@ form div {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .loginForm h1 {
@@ -629,15 +649,25 @@ form div {
   border-radius: 8px;
 }
 /* order history -------------------------------------- */
-.OrderHistory {
+.OrderHistoryFullPage {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+
+  height: fit-content ;
+  border-radius: 25px;
+}
+.OrderHistory {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   margin-left: 100px;
   margin-right: 100px;
   margin-top: 20px;
+  margin-bottom: 20px;
   border-radius: 25px;
 }
 .OrderHistory span {
@@ -645,56 +675,65 @@ form div {
   font-style: normal;
   font-weight: 600;
   font-size: 40px;
-  letter-spacing: -1.5px;
   color: #000000;
-  margin-top: 20px;
+  margin: 10px;
+}
+.orderDetails {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid black;
 }
 .OrderHistory h2 {
   font-family: "Public Sans";
   font-style: normal;
-  font-weight: 400;
-  font-size: 26px;
-  letter-spacing: -1.5px;
+  font-size: 18px;
   color: #000000;
-  margin-left: 50px;
+  margin: 10px;
 }
-.OrderHistory li {
-  width: 81px;
-  font-family: "Public Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  letter-spacing: -0.55px;
-  color: #000000;
-}
-.OrderHistory h1 {
-  width: 189px;
-  height: 30px;
-  font-family: "Public Sans";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 22px;
-  letter-spacing: -0.55px;
-  color: #000000;
+.orderDetailsInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px;
 }
 .OrderHistory img {
   border-radius: 25px;
+  margin: 10px;
+}
+.OrderHistory h1 {
+  margin: 10px;
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: -0.55px;
+  color: #000000;
+}
+.OrderHistory li {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-size: 22px;
+  letter-spacing: -0.55px;
+  color: #000000;
+  margin: 10px;
+  background-color: #1d1d1d6c;
+  border-radius: 25px;
+  padding: 10px;
 }
 .OrderHistory ul {
-  border-bottom: 2px solid rgb(48, 48, 48);
   list-style: none;
   display: flex;
+  justify-content: space-between;
   flex-direction: row;
   align-items: flex-start;
-  padding: 25px;
   margin: 10px;
-
-  width: 700px;
+  border-bottom: 1px solid black;
 }
 .singleOrderHistory {
-  border: 1px solid #000000;
-  margin: 30px;
   border-radius: 25px;
+  background-color: #f4f4f4;
+  margin: 10px;
 }
 /* my profile -------------------------------------------------------------------- */
 .myProfile {
@@ -780,6 +819,72 @@ form div {
   border-radius: 8px;
   margin: 10px;
 }
+
+/* footer ------------------------------------------ */
+.footer {
+  margin: 10px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+  border-radius: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+  
+  justify-content: center;
+  width: 100%;
+}
+.footerText {
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 25%;
+  list-style-type: none;
+}
+.footerText h1{
+  margin: 10px 0px 0px 10px;;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #000000;
+  list-style-type: none;
+  
+}
+.footerTextContent {
+  margin: 10px 0px 10px 10px;
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: #848484;
+  list-style-type: none;
+  text-decoration:none;
+  
+}
+.footerTextContent li a{
+  color: inherit;
+  list-style-type: none;
+  text-decoration:underline;
+}
+.footerTextContent a{
+  color: inherit;
+  list-style-type: none;
+  text-decoration:underline;
+}
+.footerTextContent a:hover{
+  opacity: .7;
+}
+.footerTextContent li a:hover{
+  opacity: .7;
+}
+
 /* admin ---------------------------------------- */
 
 /* all users ----------------------------------------- */
@@ -942,4 +1047,40 @@ input[type="number"] {
 }
 .editProductForm button:hover {
   opacity: 0.8;
+}
+/* route messages --------------------------------- */
+
+.thankyoucard {
+  background-color: #ffe100e0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  border-radius: 25px;
+  outline: 1px solid black;
+  margin: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Public Sans";
+  font-style: normal;
+  padding: 30px;
+
+}
+.error {
+  background-color: #ff00008b;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  border-radius: 25px;
+  outline: 1px solid black;
+  margin: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: "Public Sans";
+  font-style: normal;
+  padding: 30px;
+
 }

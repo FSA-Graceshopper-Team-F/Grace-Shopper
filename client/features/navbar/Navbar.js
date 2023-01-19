@@ -23,7 +23,7 @@ const Navbar = () => {
 	};
 
 	return (
-		<div>
+		<div className="navBarDiv">
 			<Link to="/"><h1 className="logoTitle">Grace Shopper Store</h1></Link>
 			
 			<nav className="navBar">
@@ -34,7 +34,7 @@ const Navbar = () => {
 					</div>
 				) : null}
 			</nav>
-			<nav className="navBar">
+			<nav >
 				{isLoggedIn ? (
 					<div className="linksFrame">
 						{/* The navbar will show these links after you log in */}
@@ -60,7 +60,7 @@ const Navbar = () => {
 					</div>
 				)}
 			</nav>
-			<hr />
+			
 		</div>
 	);
 };

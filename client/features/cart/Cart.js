@@ -65,7 +65,7 @@ const Cart = () => {
 		<div className="cartPage">
 			<div >
 				<h1>Review your cart.</h1>
-				<h2>Free delivery and free returns.</h2>
+				
 			</div>
 			<ul >
 				{cartProducts.map((item) => (
@@ -107,7 +107,7 @@ const Cart = () => {
 							
 								<h3 className="cartProductPrice">Price: ${item.price}</h3>
 								</div>
-								Total Price: ${item.price * item.quantity}.00
+								<div className="cartTotalPrice">Total Price: ${item.price * item.quantity}.00</div>
 							</div>}
 					</li>
 				))}
