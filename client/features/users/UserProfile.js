@@ -15,6 +15,7 @@ export const UserProfile = () => {
 		user.password && user.password === user.confirmPassword
 			? setPasswordsDontMatch(false)
 			: setPasswordsDontMatch(true);
+			console.log(loading, "loading", passwordsDontMatch, "passwords match")
 	}, [user, updated]);
 	const [loading, setLoading] = useState(false);
 	const [passwordsDontMatch, setPasswordsDontMatch] = useState(true);

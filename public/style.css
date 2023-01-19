@@ -1,3 +1,7 @@
+input::placeholder{
+  color:grey;
+  opacity:0.3
+}
 body {
   font-family: sans-serif;
   background-color: #f4f4f4;
