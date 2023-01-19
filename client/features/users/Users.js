@@ -21,7 +21,7 @@ const Users = () => {
             {[user.email]}
           </li>
         </ul>
-       )): console.log('---NO Users---', null)
+       )): null
     }
     </div>
   )

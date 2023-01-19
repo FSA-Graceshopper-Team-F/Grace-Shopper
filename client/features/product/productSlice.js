@@ -62,14 +62,12 @@ const productsSlice = createSlice({
 			});
 		},
 		sortBySearch(state, action) {
-			console.log(action.payload);
 			const filtered = state.filter(({ name }) => {
 				if (name.toLowerCase().includes(action.payload)) {
 					return true;
 				}
 			});
 			return filtered;
-			console.log(filtered);
 		},
 		sortAZ(state, action) {
 			return state.sort((a, b) =>

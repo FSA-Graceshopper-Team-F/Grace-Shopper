@@ -5,7 +5,6 @@ import { fetchProductsAsync, sortAZ, sortByCategory, sortPriceAsc, sortPriceDesc
 export const SortingSelector = () => {
 	const dispatch = useDispatch();
 	const handleChange = async (event) => {
-        console.log(event.target.name);
         if(event.target.value === 'all'){
           return dispatch(fetchProductsAsync());
         }
